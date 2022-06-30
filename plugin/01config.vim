@@ -98,7 +98,6 @@ let g:coc_global_extensions = [
     \ 'coc-lua',
     \ 'coc-tsserver',
     \ 'coc-vetur',
-    \ 'coc-explorer', 
   \ ]
 
 """"""""""""""""""""""""""""""

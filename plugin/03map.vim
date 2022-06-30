@@ -142,17 +142,13 @@ omap <leader>us <Plug>(easymotion-lineforward)
 omap <leader><leader>. <Plug>(easymotion-s)
 omap <leader>. <Plug>(easymotion-sn)
 
-nnoremap <leader>; :TlistToggle<CR>
-nnoremap <leader>q :CocCommand explorer --preset right<CR>
+nnoremap <leader>; :AerialToggle<CR>
+nnoremap <leader>q :NvimTreeToggle<CR>
 nnoremap <leader>j :GundoToggle<CR>
 
 nmap . <Plug>(choosewin)
-nnoremap '' .
-nnoremap > .
-nnoremap < ,
-xnoremap > .
-xnoremap < ,
-xnoremap '' .
+nnoremap " ,
+xnoremap " ,
 
 function! CopyAppend()
 	if g:with_x11 == 1
@@ -462,26 +458,9 @@ nnoremap <F6> :!make -j `nproc`<CR>:call g:Start_Termdebug("")<CR>
 
 
 "***********************************
-" vim-termdebug
+" debugger
 "***********************************
-
-function! TermDebug_run(program)
-  if (g:termdebug_started != 0)
-    call execute("Run")
-  else
-    call g:Start_Termdebug(a:program)
-  endif
-endfunc
-
-autocmd FileType c,cpp noremap <buffer> <CR> :GdbStart gdb ./a.out<CR>:GdbCreateWatch info locals<CR>
-autocmd FileType c,cpp nnoremap <buffer> <CR> :GdbBreakpointToggle<CR>
-nnoremap <leader>c :Continue<CR>
-nnoremap <leader>r :Run<CR>
-
-if &diff != 0
-nnoremap dg :diffget<CR>
-xnoremap dg :diffget<CR>
-endif 
+nnoremap <F5> :lua require'dap'.continue()<CR>
 
 "***********************************
 " coc-ecdict
