@@ -498,7 +498,7 @@ function NewtabTerminal()
 endfunction
 comm! -nargs=? -bang Terminal call NewtabTerminal()
 comm! -nargs=? -bang T Terminal
-au TermClose * :q
+"au TermClose * :q
 
 "***********************************
 " coc-ecdict
