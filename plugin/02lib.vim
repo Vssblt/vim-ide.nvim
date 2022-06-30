@@ -10,7 +10,6 @@ set relativenumber
 set encoding=utf8
 set fileencodings=ucs-bom,utf8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set hlsearch 
-"set incsearch
 set showmatch 
 set ignorecase
 set viminfo='20,\"50000
@@ -22,7 +21,6 @@ set mouse=v
 set t_Co=256
 set fillchars=stl:\ 
 set backspace=indent,eol,start
-"set foldcolumn=1
 set signcolumn=number
 set numberwidth=1
 set scrolloff=6
@@ -34,6 +32,7 @@ set softtabstop=0
 set hidden
 set synmaxcol=180    " Normally, the column count will not overtake 180.
 set matchpairs+=
+set noequalalways
 let g:localvimrc_ask=0
 "let g:localvimrc_persistent=2
 let g:localvimrc_sandbox=0
@@ -236,71 +235,6 @@ let g:clockn_winblend = 100
 highlight ClockNormal guifg=#000000
 let g:clockn_to_top = 1
 let g:clockn_to_right = 1
-
-
-""""""""""""""""""""""""""""""
-" coc-explorer settings
-""""""""""""""""""""""""""""""
-let g:coc_explorer_global_presets = {
-\   'tab': {
-\     'position': 'tab',
-\     'quit-on-open': v:true,
-\   },
-\   'tab:$': {
-\     'position': 'tab:$',
-\     'quit-on-open': v:true,
-\   },
-\   'floating': {
-\     'position': 'floating',
-\     'open-action-strategy': 'sourceWindow',
-\   },
-\   'floatingTop': {
-\     'position': 'floating',
-\     'floating-position': 'center-top',
-\     'open-action-strategy': 'sourceWindow',
-\   },
-\   'floatingLeftside': {
-\     'position': 'floating',
-\     'floating-position': 'left-center',
-\     'floating-width': 40,
-\     'open-action-strategy': 'sourceWindow',
-\   },
-\   'floatingRightside': {
-\     'position': 'floating',
-\     'floating-position': 'right-center',
-\     'floating-width': 40,
-\     'open-action-strategy': 'sourceWindow',
-\   },
-\   'simplify': {
-\     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
-\   },
-\   'buffer': {
-\     'sources': [{'name': 'buffer', 'expand': v:true}]
-\   },
-\   'right': {
-\     'position': 'right',
-\     'width': 40,
-\   },
-\   'left': {
-\     'position': 'left',
-\     'width': 40,
-\   },
-\   'top': {
-\     'position': 'top',
-\     'height': 40,
-\   },
-\   'bottom': {
-\     'position': 'bottom',
-\     'height': 40,
-\   },
-\   'current_window': {
-\     'position': 'current_window',
-\     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]',
-\     'width' : 40,
-\     'height' : 40
-\   },
-\ }
-
 
 """"""""""""""""""""""""""""""
 " quick-scope settings

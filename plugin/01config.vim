@@ -8,24 +8,10 @@ let mapleader=','
 let g:VM_leader='.'
 let g:plugindir = expand('<sfile>:p:h:h')
 let g:tagsPath = g:plugindir."/tags"
-"let g:undoDirPath= g:plugindir."/undodir"
 let g:vvimrc_name=".vvimrc"
 let g:with_x11 = 0
 set tabstop=2
 set sw=2
-"execute ':source' g:plugindir."/config/02lib.vim"
-
-""""""""""""""""""""""""""""""
-" Tlist settings
-""""""""""""""""""""""""""""""
-let Tlist_WinWidth = 40
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_Show_One_File = 1
-let Tlist_Use_Right_Window = 1
-let Tlist_Show_Menu = 1
-let Tlist_Auto_Open = 0
-let g:TagList_showNum = 0
-let g:TagList_showRelativeNumber = 0
 
 """"""""""""""""""""""""""""""
 " EasyMotion settings

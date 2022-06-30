@@ -22,21 +22,20 @@ require("dapui").setup({
   layouts = {
     {
       elements = {
-      -- Elements can be strings or table with id and size keys.
-        { id = "scopes", size = 0.25 },
+    --    "scopes",
         "breakpoints",
         "stacks",
         "watches",
       },
-      size = 40, -- 40 columns
-      position = "left",
+      size = 0.2,
+      position = "top",
     },
     {
       elements = {
-        "repl",
         "console",
+        "repl",
       },
-      size = 0.25, -- 25% of total lines
+      size = 0.2,
       position = "bottom",
     },
   },

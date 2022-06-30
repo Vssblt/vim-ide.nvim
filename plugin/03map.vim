@@ -461,6 +461,7 @@ nnoremap <F6> :!make -j `nproc`<CR>:call g:Start_Termdebug("")<CR>
 " debugger
 "***********************************
 nnoremap <F5> :lua require'dap'.continue()<CR>
+nnoremap <CR> :lua require'dap'.toggle_breakpoint()<CR>
 
 "***********************************
 " coc-ecdict
