@@ -6,6 +6,9 @@ dap.adapters.lldb = {
   name = 'lldb'
 }
 
+
+if (type(vim.g.cpp_executable_program) == "nil") 
+then
 dap.configurations.cpp = {
   {
     name = 'Launch',
@@ -19,6 +22,19 @@ dap.configurations.cpp = {
     args = {},
   },
 }
+else
+dap.configurations.cpp = {
+  {
+    name = 'Launch',
+    type = 'lldb',
+    request = 'launch',
+    program = vim.g.cpp_executable_program,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+    args = {},
+  },
+}
+end
 
 dap.configurations.c = dap.configurations.cpp
 dap.configurations.rust = dap.configurations.cpp
