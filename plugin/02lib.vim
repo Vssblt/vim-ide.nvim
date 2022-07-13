@@ -45,7 +45,15 @@ aug QFClose
   au WinEnter * if winnr('$') == 1 && &buftype == "quickfix"|q|endif
 aug END
 
-au BufEnter * call execute("setlocal winbar=" . expand('%:t'))
+au BufEnter * call execute("setlocal winbar=\"" . expand('%:t') . "\"")
+
+function NoFileCheck()
+  if (&buftype == 'nofile')
+    setlocal nobuflisted
+  endif
+endfunction
+
+au BufCreate * call NoFileCheck()
 
 let g:last_buffer = []
 
@@ -290,9 +298,10 @@ endfunction
 autocmd VimEnter * call LoadAerialSettings()
 
 """"""""""""""""""""""""""""""
-" vim-dap close
+" vim-dap
 """"""""""""""""""""""""""""""
 comm! -nargs=? DC lua require('dapui').close(); require('dap').terminate(); require('dap').repl.close(); require('dap').disconnect();
+au FileType dap-repl lua require('dap.ext.autocompl').attach()
 
 "
 "function Scrolloff_eof()

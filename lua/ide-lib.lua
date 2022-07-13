@@ -70,5 +70,6 @@ require("nvim-tree").setup({
 })
 
 -- dap debugger
+require('dap/dap')
 require('dap/ft-dap-cpp')
 require('dap/dap-ui')

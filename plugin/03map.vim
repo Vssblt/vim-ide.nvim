@@ -14,7 +14,7 @@
 """"""""""""""""""""""""""""""
 "map \ <leader>
 
-tnoremap <C-h> <C-\><C-n>
+noremap <C-d> <C-\><C-n>
 
 nnoremap <C-n> 3j
 nnoremap <C-t> 3k
@@ -41,12 +41,14 @@ xnoremap t k
 xnoremap n j
 xnoremap s l
 
-nnoremap T :Marks<CR>
-nnoremap S L
-nnoremap N J
-xnoremap T :Marks<CR>
-xnoremap S L
-xnoremap N J
+nnoremap T <C-\><C-n>k
+nnoremap S <C-\><C-n>l
+nnoremap N <C-\><C-n>j
+nnoremap H <C-\><C-n>h
+xnoremap T <C-\><C-n>k
+xnoremap S <C-\><C-n>l
+xnoremap N <C-\><C-n>j
+xnoremap H <C-\><C-n>h
 imap <c-n> <c-j>
 imap <c-t> <c-k>
 smap <c-n> <c-j>
@@ -483,6 +485,7 @@ autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <CR> :lua require'
 autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <F10> :lua require'dap'.step_over()<CR>
 autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <F11> :lua require'dap'.step_into()<CR>
 autocmd FileType c,cpp,javascript,python,java,go,php nnoremap CTRL-F11 :lua require'dap'.step_out()<CR>
+comm! -nargs=? Dclose lua require('dapui').close(); require('dap').terminate(); require('dap').repl.close(); require('dap').disconnect();
 
 "***********************************
 " coc-ecdict

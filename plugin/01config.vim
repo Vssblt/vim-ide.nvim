@@ -136,3 +136,8 @@ let g:doge_mapping='gc'
 let g:doge_mapping_comment_jump_forward='<c-n>'
 let g:doge_mapping_comment_jump_backward='<c-t>'
 let g:doge_doc_standard_cpp='doxygen_javadoc'
+
+""""""""""""""""""""""""""""""
+" dap
+""""""""""""""""""""""""""""""
+let g:dap_cpp_adapter='lldb'
