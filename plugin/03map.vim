@@ -67,13 +67,24 @@ nnoremap k 8<c-e>
 xnoremap j 8<c-y>
 xnoremap k 8<c-e>
 
+function Scrolloff_eof()
+  if (g:x < winheight("%"))
+    return 
+  endif
+  let l:lines = winheight("%")
+  let l:lines = l:lines / 5 * 2
+  call feedkeys( l:lines . "\<c-e>")
+endfunction
+
+nnoremap G :let g:x = line("$") - line(".")<CR>G:call Scrolloff_eof()<CR>
+
 nnoremap b c
 nnoremap r :bnext<CR>
 xnoremap b c
 xnoremap r :bnext<CR>
 nmap r <Plug>AirlineSelectNextTab
 nmap c <Plug>AirlineSelectPrevTab
-nmap <leader>b c:sp<CR>r:bd<cr>
+nmap <leader>b :set buflisted<CR>c:sp<CR>r:bd<cr>
 
 nnoremap <ScrollWheelUp> <C-Y><C-Y><C-Y><C-Y>
 nnoremap <ScrollWheelDown> <C-E><C-E><C-E><C-E>
@@ -82,7 +93,7 @@ xnoremap <ScrollWheelDown> <C-E><C-E><C-E><C-E>
 inoremap <ScrollWheelUp> <C-Y><C-Y><C-Y><C-Y>
 inoremap <ScrollWheelDown> <C-E><C-E><C-E><C-E>
 
-nnoremap <C-e> <C-i>
+"nnoremap <C-e> <C-i>
 
 nnoremap <leader>- $
 nnoremap <leader>d ^
@@ -144,6 +155,7 @@ omap <leader>. <Plug>(easymotion-sn)
 
 nnoremap <leader>; :AerialToggle<CR>
 nnoremap <leader>q :NvimTreeToggle<CR>
+":lua require("dapui").open({reset=true})<CR>
 nnoremap <leader>j :GundoToggle<CR>
 
 nmap . <Plug>(choosewin)
@@ -196,6 +208,11 @@ inoremap <C-BS> <C-W>
 inoremap  <C-W>
 onoremap <C-BS> <C-W>
 onoremap  <C-W>
+
+""""""""""""""""""""""""""""""
+" aerial.nvim
+""""""""""""""""""""""""""""""
+"autocmd FileType aerial nnoremap <CR> :AerialOpen<CR>
 
 """"""""""""""""""""""""""""""
 " ranger
@@ -252,6 +269,7 @@ nmap <leader>e :Files<CR>
 omap <leader>e :Files<CR>
 xmap <leader>e :Files<CR>
 nnoremap B :Buffer<CR>
+nnoremap M :Marks<CR>
 
 nmap <leader>o :GFiles<CR>
 omap <leader>o :GFiles<CR>
@@ -460,8 +478,11 @@ nnoremap <F6> :!make -j `nproc`<CR>:call g:Start_Termdebug("")<CR>
 "***********************************
 " debugger
 "***********************************
-nnoremap <F5> :lua require'dap'.continue()<CR>
-nnoremap <CR> :lua require'dap'.toggle_breakpoint()<CR>
+autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <F5> :lua require'dap'.continue()<CR>
+autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <CR> :lua require'dap'.toggle_breakpoint()<CR>
+autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <F10> :lua require'dap'.step_over()<CR>
+autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <F11> :lua require'dap'.step_into()<CR>
+autocmd FileType c,cpp,javascript,python,java,go,php nnoremap CTRL-F11 :lua require'dap'.step_out()<CR>
 
 "***********************************
 " coc-ecdict

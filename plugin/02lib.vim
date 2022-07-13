@@ -23,7 +23,7 @@ set fillchars=stl:\
 set backspace=indent,eol,start
 set signcolumn=number
 set numberwidth=1
-set scrolloff=6
+set scrolloff=8
 set tabstop=2
 set shiftwidth=2
 set expandtab
@@ -213,8 +213,8 @@ let g:LookupFile_PreserveLastPattern = 0
 """"""""""""""""""""""""""""""
 " orther
 """"""""""""""""""""""""""""""
-if filereadable(g:plugindir."/config/temp_config.vim")
-    execute ':source' g:plugindir."/config/temp_config.vim"
+if filereadable(g:plugindir."/plugin/04tempConfig.vim")
+    execute ':source' g:plugindir."/plugin/04tempConfig.vim"
 endif
 
 """"""""""""""""""""""""""""""
@@ -284,10 +284,231 @@ autocmd VimEnter * call LoadTreeSitterSettings()
 " aerial.nvim
 """"""""""""""""""""""""""""""
 function LoadAerialSettings()
-
-lua require("aerial").setup({ backends = { "treesitter", "lsp", "markdown" }, close_behavior = "auto", default_bindings = false, default_direction = "prefer_right", disable_max_lines = 10000, disable_max_size = 2000000, filter_kind = { "Class", "Constructor", "Enum", "Function", "Interface", "Module", "Method", "Struct", }, highlight_mode = "split_width", highlight_closest = true, highlight_on_hover = false, highlight_on_jump = 300, icons = {}, ignore = { unlisted_buffers = true, filetypes = {}, buftypes = "special", wintypes = "special", }, link_folds_to_tree = false, link_tree_to_folds = true, manage_folds = false, max_width = { 40, 0.2 }, width = nil, min_width = 10, nerd_font = "auto", on_attach = nil, on_first_symbols = nil, open_automatic = false, placement_editor_edge = false, post_jump_cmd = "normal! zz", close_on_select = false, show_guides = false, update_events = "TextChanged,InsertLeave", guides = { mid_item = "├─", last_item = "└─", nested_top = "│ ", whitespace = "  ", }, float = { border = "rounded", relative = "cursor", max_height = 0.9, height = nil, min_height = { 8, 0.1 }, override = function(conf) return conf end, }, lsp = { diagnostics_trigger_update = true, update_when_errors = true, update_delay = 300, }, treesitter = { update_delay = 300, }, markdown = { update_delay = 300, }, })
+lua require("aerial").setup({ backends = { "treesitter", "lsp", "markdown" }, close_behavior = "auto", default_bindings = true, default_direction = "prefer_right", disable_max_lines = 10000, disable_max_size = 2000000, filter_kind = { "Class", "Constructor", "Enum", "Function", "Interface", "Module", "Method", "Struct", }, highlight_mode = "split_width", highlight_closest = true, highlight_on_hover = false, highlight_on_jump = 300, icons = {}, ignore = { unlisted_buffers = true, filetypes = {}, buftypes = "special", wintypes = "special", }, link_folds_to_tree = false, link_tree_to_folds = true, manage_folds = false, max_width = { 40, 0.2 }, width = nil, min_width = 10, nerd_font = "auto", on_attach = nil, on_first_symbols = nil, open_automatic = false, placement_editor_edge = false, post_jump_cmd = "normal! zz", close_on_select = false, show_guides = false, update_events = "TextChanged,InsertLeave", guides = { mid_item = "├─", last_item = "└─", nested_top = "│ ", whitespace = "  ", }, float = { border = "rounded", relative = "cursor", max_height = 0.9, height = nil, min_height = { 8, 0.1 }, override = function(conf) return conf end, }, lsp = { diagnostics_trigger_update = true, update_when_errors = true, update_delay = 300, }, treesitter = { update_delay = 300, }, markdown = { update_delay = 300, }, })
 endfunction
 
 autocmd VimEnter * call LoadAerialSettings()
 
+""""""""""""""""""""""""""""""
+" vim-dap close
+""""""""""""""""""""""""""""""
+comm! -nargs=? DC lua require('dapui').close(); require('dap').terminate(); require('dap').repl.close(); require('dap').disconnect();
 
+"
+"function Scrolloff_eof()
+"  if (g:x < winwidth("%"))
+"    return 
+"  endif
+"  let l:lines = winwidth("%")
+"  let l:lines = l:lines / 5 * 2
+"  call feedkeys( l:lines . "\<c-e>")
+"endfunction
+"
+"function! CopyAppend()
+"	if g:with_x11 == 1
+"		let @*=@*.getline('.')."\n"
+"	else
+"		let @" .= getline('.')."\n"
+"	endif
+"endfunction
+"
+"function! CutAppend()
+"	if g:with_x11 == 1
+"		let @*=@*.getline('.')."\n"
+"	else
+"		let @" .= getline('.')."\n"
+"	endif
+"	execute "delete _"
+"endfunction
+"
+"function TermInit()
+"  setlocal nonu
+"  setlocal norelativenumber
+"  startinsert
+"endfunc
+"
+"autocmd TermEnter * call TermEnter()
+"function TermEnter()
+"  call rainbow#disable()
+"  if g:qs_enable == 1
+"    call quick_scope#Toggle()
+"  endif
+"  startinsert
+"endfunc
+"
+"autocmd TermLeave * call TermLeave()
+"
+"function TermLeave()
+"  call rainbow#enable()
+"  if g:qs_enable == 0
+"    call quick_scope#Toggle()
+"  endif
+"endfunc
+"
+"function BufEnter()
+"  let l:bufname=bufname("%")
+"  let l:bufwinnr = bufwinnr(bufname)
+"  if (exists("g:TagList_title") && l:bufname == g:TagList_title)
+"    if (exists("g:TagList_showNum") && g:TagList_showNum == 1)
+"      setlocal nu
+"    else
+"      setlocal nonu
+"    endif
+"    if (exists("g:TagList_showRelativeNumber") && g:TagList_showRelativeNumber == 1)
+"      setlocal relativenumber
+"    else
+"      setlocal norelativenumber
+"    endif
+"    call rainbow#disable()
+"  endif
+"endfunc
+"
+"function! s:check_back_space() abort
+"  let col = col('.') - 1
+"  return !col || getline('.')[col - 1]  =~ '\s'
+"endfunction
+"
+"function! GetBufferList()
+"  redir =>buflist
+"  silent! ls!
+"  redir END
+"  return buflist
+"endfunction
+"
+"function! ToggleList(bufname, pfx)
+"  let buflist = GetBufferList()
+"  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+"    if bufwinnr(bufnum) != -1
+"      exec(a:pfx.'close')
+"      return
+"    endif
+"  endfor
+"  if a:pfx == 'l' && len(getloclist(0)) == 0
+"      echohl ErrorMsg
+"      echo "Location List is Empty."
+"      return
+"  endif
+"  let winnr = winnr()
+"  exec(a:pfx.'open')
+"  if winnr() != winnr
+"    wincmd p
+"  endif
+"endfunction
+"
+"function! g:Start_Termdebug(arg)
+"	if v:shell_error == 0
+"		execute "Termdebug " . a:arg
+"	endif
+"endfunction
+"function NewtabTerminal()
+"  tabnew
+"  execute("terminal")
+"endfunction
+"
+"autocmd BufEnter * call BufEnter()
+"hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+"hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+"autocmd TermOpen * call TermInit()
+"comm! -nargs=? -bang A CocCommand clangd.switchSourceHeader
+"comm! -nargs=? -bang AS CocCommand clangd.switchSourceHeader split
+"comm! -nargs=? -bang AV CocCommand clangd.switchSourceHeader vsplit
+"let g:VM_default_mappings = 0
+"let g:VM_leader = ','
+"let g:VM_maps = {}
+"let g:VM_custom_remaps = {'s' : 'l', ',d' : 'k', ',-' : 'j', '<c-a>' : '<leader>A', 'b':'c'}
+"
+"let g:VM_maps['Find Under']                  = '<c-l>'
+"let g:VM_maps['Find Subword Under']          = '<c-l>'
+"let g:VM_maps["Select All"]                  = '<leader>A' 
+"let g:VM_maps["Start Regex Search"]          = '\/'
+"let g:VM_maps["Add Cursor Down"]             = '<C-Down>'
+"let g:VM_maps["Add Cursor Up"]               = '<C-Up>'
+"let g:VM_maps["Add Cursor At Pos"]           = '\\'
+"
+"let g:VM_maps["Visual Regex"]                = '\/'
+"let g:VM_maps["Visual All"]                  = '\A' 
+"let g:VM_maps["Visual Add"]                  = '\a'
+"let g:VM_maps["Visual Find"]                 = '\f'
+"let g:VM_maps["Visual Cursors"]              = '\c'
+"let g:VM_maps["Select Cursor Down"]          = '<M-C-Down>'
+"let g:VM_maps["Select Cursor Up"]            = '<M-C-Up>'
+"
+"let g:VM_maps["Erase Regions"]               = '\gr'
+"
+"let g:VM_maps["Mouse Cursor"]                = '<C-LeftMouse>'
+"let g:VM_maps["Mouse Word"]                  = '<C-RightMouse>'
+"let g:VM_maps["Mouse Column"]                = '<M-C-RightMouse>'
+"let g:VM_maps["Switch Mode"]                 = '<Tab>'
+"
+"let g:VM_maps["Find Next"]                   = ']'
+"let g:VM_maps["Find Prev"]                   = '['
+"let g:VM_maps["Goto Next"]                   = '}'
+"
+"let g:VM_maps["Goto Prev"]                   = '{'
+"let g:VM_maps["Seek Next"]                   = '<C-f>'
+"let g:VM_maps["Seek Prev"]                   = '<C-b>'
+"let g:VM_maps["Skip Region"]                 = 'q'
+"let g:VM_maps["Remove Region"]               = 'Q'
+"let g:VM_maps["Invert Direction"]            = 'o'
+"let g:VM_maps["Find Operator"]               = "m"
+"let g:VM_maps["Surround"]                    = 'S'
+"let g:VM_maps["Replace Pattern"]             = 'R'
+"
+"let g:VM_maps["Tools Menu"]                  = '\`'
+"let g:VM_maps["Show Registers"]              = '\"'
+"let g:VM_maps["Case Setting"]                = '\c'
+"let g:VM_maps["Toggle Whole Word"]           = '\w'
+""let g:VM_maps["Transpose"]                   = '\t'
+"let g:VM_maps["Align"]                       = '\a'
+"let g:VM_maps["Duplicate"]                   = '\d'
+"let g:VM_maps["Rewrite Last Search"]         = '\r'
+"let g:VM_maps["Merge Regions"]               = '\m'
+"let g:VM_maps["Split Regions"]               = '\s'
+"let g:VM_maps["Remove Last Region"]          = '\q'
+"let g:VM_maps["Visual Subtract"]             = '\s'
+"let g:VM_maps["Case Conversion Menu"]        = '\C'
+"let g:VM_maps["Search Menu"]                 = '\S'
+"
+"let g:VM_maps["Run Normal"]                  = '\z'
+"let g:VM_maps["Run Last Normal"]             = '\Z'
+"let g:VM_maps["Run Visual"]                  = '\v'
+"let g:VM_maps["Run Last Visual"]             = '\V'
+"let g:VM_maps["Run Ex"]                      = '\'
+"let g:VM_maps["Run Last Ex"]                 = '\'
+"let g:VM_maps["Run Macro"]                   = '\@'
+"let g:VM_maps["Align Char"]                  = '\<'
+"let g:VM_maps["Align Regex"]                 = '\>'
+"let g:VM_maps["Numbers"]                     = '\n'
+"let g:VM_maps["Numbers Append"]              = '\N'
+"let g:VM_maps["Zero Numbers"]                = '\0n'
+"let g:VM_maps["Zero Numbers Append"]         = '\0N'
+"let g:VM_maps["Shrink"]                      = "\-"
+"let g:VM_maps["Enlarge"]                     = "\+"
+"
+"let g:VM_maps["Toggle Block"]                = '\<BS>'
+"let g:VM_maps["Toggle Single Region"]        = '\<CR>'
+"let g:VM_maps["Toggle Multiline"]            = '\M'
+"
+"""" Customize pmenu colors
+"hi Pmenu ctermfg=white ctermbg=black guibg=DarkGrey
+"
+""***********************************
+"" coc-ecdict
+""***********************************
+"comm! -nargs=? -bang WordDict  call CocActionAsync('doHover')
+"
+""***********************************
+"" common
+""***********************************
+"
+"comm! -nargs=? -bang Terminal call NewtabTerminal()
+"comm! -nargs=? -bang T Terminal
+""au TermClose * :q
+"
+""***********************************
+"" coc-ecdict
+""***********************************
+"let nvimgdb_config_override = {}
+"let nvimgdb_disable_start_keymaps = 1
+"
+"lua require("09map")
