@@ -84,8 +84,10 @@ nnoremap b c
 nnoremap r :bnext<CR>
 xnoremap b c
 xnoremap r :bnext<CR>
-nmap r <Plug>AirlineSelectNextTab
-nmap c <Plug>AirlineSelectPrevTab
+nmap r :bn<CR>
+nmap c :bp<CR>
+nmap R gt
+nmap C gT
 nmap <leader>b :set buflisted<CR>c:sp<CR>r:bd<cr>
 
 nnoremap <ScrollWheelUp> <C-Y><C-Y><C-Y><C-Y>
@@ -484,7 +486,7 @@ autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <F5> :lua require'
 autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <CR> :lua require'dap'.toggle_breakpoint()<CR>
 autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <F10> :lua require'dap'.step_over()<CR>
 autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <F11> :lua require'dap'.step_into()<CR>
-autocmd FileType c,cpp,javascript,python,java,go,php nnoremap CTRL-F11 :lua require'dap'.step_out()<CR>
+autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <F9> :lua require'dap'.step_out()<CR>
 comm! -nargs=? Dclose lua require('dapui').close(); require('dap').terminate(); require('dap').repl.close(); require('dap').disconnect();
 
 "***********************************

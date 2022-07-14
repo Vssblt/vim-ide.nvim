@@ -84,51 +84,9 @@ let g:interestingWordsTermColors = ['154', '121', '211', '137', '214', '222', '1
 let g:ranger_map_keys = 0
 
 """"""""""""""""""""""""""""""
-" vim-devicons settings
-""""""""""""""""""""""""""""""`
-"adding to vim-airline's tabline
-let g:webdevicons_enable_airline_tabline = 1
-
-"adding to vim-airline's statusline
-let g:webdevicons_enable_airline_statusline = 1
-
-"set highlight cached
-let g:airline_highlighting_cache = 1
-
-
-""""""""""""""""""""""""""""""
-" airline settings
-""""""""""""""""""""""""""""""
-let g:airline#extensions#tabline#buffer_idx_format = {
-       \ '0': '0 ',
-       \ '1': '1 ',
-       \ '2': '2 ',
-       \ '3': '3 ',
-       \ '4': '4 ',
-       \ '5': '5 ',
-       \ '6': '6 ',
-       \ '7': '7 ',
-       \ '8': '8 ',
-       \ '9': '9 '
-       \}
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-let g:airline_powerline_fonts=1
-let g:airline_symbols.linenr = "CL" " current line
-let g:airline_symbols.whitespace = '|'
-let g:airline_symbols.maxlinenr = 'Ml' "maxline
-let g:airline_symbols.branch = 'BR'
-let g:airline_symbols.readonly = "RO"
-let g:airline_symbols.dirty = "DT"
-let g:airline_symbols.crypt = "CR"
-"let g:airline_extensions = []
-
-""""""""""""""""""""""""""""""
 " coc settings
 """"""""""""""""""""""""""""""
 "autocmd CursorHold * silent call CocActionAsync('highlight')
-
 
 """"""""""""""""""""""""""""""
 " other settings
