@@ -49,7 +49,6 @@ let g:coc_global_extensions = [
     \ 'coc-clangd',
     \ 'coc-cmake',
     \ 'coc-vimlsp',
-    \ 'coc-highlight',
     \ 'coc-html',
     \ 'coc-yank',
     \ 'coc-ecdict',
@@ -129,4 +128,6 @@ let g:doge_doc_standard_cpp='doxygen_javadoc'
 """"""""""""""""""""""""""""""
 " dap
 """"""""""""""""""""""""""""""
-let g:dap_cpp_adapter='lldb'
+let g:dap_cpp_adapter='cppdbg'
+"let g:dap_cpp_adapter='lldb'
+

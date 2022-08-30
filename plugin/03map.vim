@@ -16,14 +16,16 @@
 
 noremap <C-d> <C-\><C-n>
 
-nnoremap <C-n> 3j
-nnoremap <C-t> 3k
-nnoremap <c-h> 3h
-nnoremap <c-s> 3l
-xnoremap <c-h> 3h
-xnoremap <c-s> 3l
-xnoremap <c-n> 3j
-xnoremap <c-t> 3k
+nnoremap <C-n> jjj
+nnoremap <C-t> kkk
+nnoremap <c-h> hhh
+nnoremap <c-s> lll
+
+"Couldn't redraw in x mode
+xnoremap <c-h> hhh
+xnoremap <c-s> lll
+xnoremap <c-n> jjj
+xnoremap <c-t> kkk
 
 nnoremap h h
 nnoremap t k
@@ -89,6 +91,7 @@ nmap c :bp<CR>
 nmap R gt
 nmap C gT
 nmap <leader>b :set buflisted<CR>c:sp<CR>r:bd<cr>
+nmap <leader>B :bufdo bd<CR>
 
 nnoremap <ScrollWheelUp> <C-Y><C-Y><C-Y><C-Y>
 nnoremap <ScrollWheelDown> <C-E><C-E><C-E><C-E>
@@ -107,6 +110,7 @@ nnoremap d<leader>- d$
 nnoremap d<leader>d d^
 
 nnoremap <tab><tab> <Esc>/\(\(\[TODO\:\)\\|\(<+\)\).*\(\(\]\)\\|\(+>\)\)<CR>:nohlsearch<CR>"_cgn
+nnoremap <tab><tab> <Esc>/<++><CR>:nohlsearch<CR>"_cgn
 
 " toggle
 nnoremap <tab>t za  
@@ -289,19 +293,22 @@ xmap <leader><leader>o :GFiles?<CR>
 nnoremap <space>y :<C-u>CocList -A --normal yank<cr>
 xnoremap <space>y :<C-u>CocList -A --normal yank<cr>
 
-function! s:check_back_space() abort
+function! CheckBackspace() abort
   let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <silent><expr> <NUL> coc#refresh()
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
+
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 nnoremap <leader><Tab> :call CocAction('jumpDefinition', 'drop')<CR>
 xnoremap <leader><Tab> :call CocAction('jumpDefinition', 'drop')<CR>
@@ -319,6 +326,8 @@ nmap ga= <Plug>(coc-format)
 nmap gr <Plug>(coc-rename)
 nmap gf <Plug>(coc-fix-current)
 nmap g<space> :<C-u>CocFzfList<CR>
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
 comm! -nargs=? -bang A CocCommand clangd.switchSourceHeader
 comm! -nargs=? -bang AS CocCommand clangd.switchSourceHeader split
 comm! -nargs=? -bang AV CocCommand clangd.switchSourceHeader vsplit
@@ -476,7 +485,7 @@ function! g:Start_Termdebug(arg)
 		execute "Termdebug " . a:arg
 	endif
 endfunction
-nnoremap <F6> :!make -j `nproc`<CR>:call g:Start_Termdebug("")<CR>
+nnoremap <F6> :!Make -j `nproc`<CR>:call g:Start_Termdebug("")<CR>
 
 
 "***********************************
@@ -624,6 +633,7 @@ nmap <space>nh<space> 97n
 nmap <space>nt<space> 98n
 nmap <space>nn<space> 99n
 
+nmap <space>ass<space> 100n
 nmap <space>asa<space> 101n
 nmap <space>aso<space> 102n
 nmap <space>ase<space> 103n
@@ -733,6 +743,7 @@ nmap <space>anh<space> 197n
 nmap <space>ant<space> 198n
 nmap <space>ann<space> 199n
 
+nmap <space>oss<space> 200n
 nmap <space>osa<space> 201n
 nmap <space>oso<space> 202n
 nmap <space>ose<space> 203n
@@ -957,6 +968,7 @@ nmap <space><space>nh<space> 97t
 nmap <space><space>nt<space> 98t
 nmap <space><space>nn<space> 99t
 
+nmap <space><space>ass<space> 100t
 nmap <space><space>asa<space> 101t
 nmap <space><space>aso<space> 102t
 nmap <space><space>ase<space> 103t
@@ -1066,6 +1078,7 @@ nmap <space><space>anh<space> 197t
 nmap <space><space>ant<space> 198t
 nmap <space><space>ann<space> 199t
 
+nmap <space><space>oss<space> 200t
 nmap <space><space>osa<space> 201t
 nmap <space><space>oso<space> 202t
 nmap <space><space>ose<space> 203t
@@ -1284,6 +1297,7 @@ xmap <space>nh<space> 97n
 xmap <space>nt<space> 98n
 xmap <space>nn<space> 99n
 
+xmap <space>ass<space> 100n
 xmap <space>asa<space> 101n
 xmap <space>aso<space> 102n
 xmap <space>ase<space> 103n
@@ -1393,15 +1407,16 @@ xmap <space>anh<space> 197n
 xmap <space>ant<space> 198n
 xmap <space>ann<space> 199n
 
-xmap <space>asa<space> 201n
-xmap <space>aso<space> 202n
-xmap <space>ase<space> 203n
-xmap <space>asu<space> 204n
-xmap <space>asi<space> 205n
-xmap <space>asd<space> 206n
-xmap <space>ash<space> 207n
-xmap <space>ast<space> 208n
-xmap <space>asn<space> 209n
+xmap <space>oss<space> 200n
+xmap <space>osa<space> 201n
+xmap <space>oso<space> 202n
+xmap <space>ose<space> 203n
+xmap <space>osu<space> 204n
+xmap <space>osi<space> 205n
+xmap <space>osd<space> 206n
+xmap <space>osh<space> 207n
+xmap <space>ost<space> 208n
+xmap <space>osn<space> 209n
 
 xmap <space>oas<space> 210n
 xmap <space>oaa<space> 211n
@@ -1617,6 +1632,7 @@ xmap <space><space>nh<space> 97t
 xmap <space><space>nt<space> 98t
 xmap <space><space>nn<space> 99t
 
+xmap <space><space>ass<space> 100t
 xmap <space><space>asa<space> 101t
 xmap <space><space>aso<space> 102t
 xmap <space><space>ase<space> 103t
@@ -1726,15 +1742,16 @@ xmap <space><space>anh<space> 197t
 xmap <space><space>ant<space> 198t
 xmap <space><space>ann<space> 199t
 
-xmap <space><space>asa<space> 201t
-xmap <space><space>aso<space> 202t
-xmap <space><space>ase<space> 203t
-xmap <space><space>asu<space> 204t
-xmap <space><space>asi<space> 205t
-xmap <space><space>asd<space> 206t
-xmap <space><space>ash<space> 207t
-xmap <space><space>ast<space> 208t
-xmap <space><space>asn<space> 209t
+xmap <space><space>oss<space> 200t
+xmap <space><space>osa<space> 201t
+xmap <space><space>oso<space> 202t
+xmap <space><space>ose<space> 203t
+xmap <space><space>osu<space> 204t
+xmap <space><space>osi<space> 205t
+xmap <space><space>osd<space> 206t
+xmap <space><space>osh<space> 207t
+xmap <space><space>ost<space> 208t
+xmap <space><space>osn<space> 209t
 
 xmap <space><space>oas<space> 210t
 xmap <space><space>oaa<space> 211t

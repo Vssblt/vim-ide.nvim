@@ -1,5 +1,11 @@
 local dap = require('dap')
 
+-- 这个是 cpp 的配置
+-- 我没有配 nodejs，这需要你自己配
+-- 你需要在 vim 中创建变量： g:dap_cpp_adapter 来控制调试器类型，值可以是 cppdbg 或者 lldb，如果值为空，则使用 cppdbg。
+
+-- This file only work on cpp.
+-- You should set g:dap_cpp_adapter in the vim script files. 
 if (type(vim.g.dap_cpp_adapter) == nil or vim.g.dap_cpp_adapter == "cppdbg")
 then
   dap.adapters.cppdbg = {
@@ -58,7 +64,7 @@ then
         end,
       },
       {
-        name = 'Attach to gdbserver :1234',
+        name = 'Attach to gdbserver on port :1234',
         type = 'cppdbg',
         request = 'launch',
         MIMode = 'gdb',
