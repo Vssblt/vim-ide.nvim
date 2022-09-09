@@ -100,7 +100,7 @@ xnoremap <ScrollWheelDown> <C-E><C-E><C-E><C-E>
 inoremap <ScrollWheelUp> <C-Y><C-Y><C-Y><C-Y>
 inoremap <ScrollWheelDown> <C-E><C-E><C-E><C-E>
 
-"nnoremap <C-e> <C-i>
+nnoremap <C-e> <C-i>
 
 nnoremap <leader>- $
 nnoremap <leader>d ^
@@ -462,7 +462,7 @@ function! ToggleList(bufname, pfx)
   let buflist = GetBufferList()
   for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
     if bufwinnr(bufnum) != -1
-      exec(a:pfx.'close')
+        exec(a:pfx.'close')
       return
     endif
   endfor
@@ -472,7 +472,11 @@ function! ToggleList(bufname, pfx)
       return
   endif
   let winnr = winnr()
-  exec(a:pfx.'open')
+  if (a:pfx == "c")
+    exec('Copen')
+  else
+    exec(a:pfx.'open')
+  endif
   if winnr() != winnr
     wincmd p
   endif
@@ -491,12 +495,74 @@ nnoremap <F6> :!Make -j `nproc`<CR>:call g:Start_Termdebug("")<CR>
 "***********************************
 " debugger
 "***********************************
-autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <F5> :lua require'dap'.continue()<CR>
-autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <CR> :lua require'dap'.toggle_breakpoint()<CR>
-autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <F10> :lua require'dap'.step_over()<CR>
-autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <F11> :lua require'dap'.step_into()<CR>
-autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <F9> :lua require'dap'.step_out()<CR>
-comm! -nargs=? Dclose lua require('dapui').close(); require('dap').terminate(); require('dap').repl.close(); require('dap').disconnect();
+"augroup Debugger
+  "autocmd!
+  "autocmd FileType c,cpp,javascript,python,java,go,php nnoremap gs :lua require("dapui").float_element('scope', {enter: true})<CR>
+  "autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <F5> :lua require'dap'.continue()<CR>
+  "autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <CR> :lua require'dap'.toggle_breakpoint()<CR>
+  "autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <F10> :lua require'dap'.step_over()<CR>
+  "autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <F11> :lua require'dap'.step_into()<CR>
+  "autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <F9> :lua require'dap'.step_out()<CR>
+  "comm! -nargs=? Dclose silent lua require('dapui').close(); require('dap').terminate(); require('dap').repl.close(); require('dap').disconnect();
+"augroup END
+
+augroup Debugger
+ autocmd!
+ autocmd FileType * nnoremap <CR> :lua require('breakpoint').toggle()<CR>
+ autocmd FileType * nnoremap <F5> :lua require('window').open_terminal(nil, { app_path = vim.g.cpp_executable_program, pos = "bottom", size = 24}) <CR>
+augroup END
+
+augroup autoHideBuf
+  autocmd!
+  autocmd BufReadPost,BufFilePost * call HideBuf(["[dap-repl]"], ["quickfix"]) 
+augroup END
+
+function HideBuf(name_list, type_list)
+  call HideBufByName(a:name_list)
+  call HideBufByType(a:type_list)
+endfunc
+
+function HideBufByName(list)
+  for l:buf_name in a:list
+    if (l:buf_name == bufname("%"))
+      exec 'setlocal nobuflisted'
+    endif
+  endfor
+endfunction
+
+function HideBufByType(list)
+  for l:buf_type in a:list
+    if (l:buf_type == &buftype)
+      exec 'setlocal nobuflisted'
+    endif
+  endfor
+endfunction
+
+autocmd BufRead,BufNewFile quickfix setlocal nomodifiable
+
+augroup QuickFixWinVar
+  autocmd!
+  autocmd FileType qf map <silent><buffer> r r
+  autocmd FileType qf map <silent><buffer> c c
+augroup END
+
+augroup HelpWinVar
+  autocmd!
+  autocmd FileType help map <silent><buffer> r r
+  autocmd FileType help map <silent><buffer> c c
+augroup END
+
+augroup AerialWinVar
+  autocmd!
+  autocmd FileType aerial map <silent><buffer> r r
+  autocmd FileType aerial map <silent><buffer> c c
+augroup END
+
+"augroup ResetDapUi
+"  autocmd!
+"  autocmd VimResized * lua require('dapui').open({reset=true})
+"  autocmd VimResized * lua require('dapui').open({reset=true})
+"augroup END
 
 "***********************************
 " coc-ecdict
@@ -1852,3 +1918,7 @@ xmap <space><space>onh<space> 297t
 xmap <space><space>ont<space> 298t
 xmap <space><space>onn<space> 299t
 
+
+func Send(text) 
+  call chansend(5, ["ls", ""]) 
+endfunc

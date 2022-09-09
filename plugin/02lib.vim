@@ -33,6 +33,7 @@ set hidden
 set synmaxcol=180    " Normally, the column count will not overtake 180.
 set matchpairs+=
 set noequalalways
+set signcolumn=yes
 let g:localvimrc_ask=0
 "let g:localvimrc_persistent=2
 let g:localvimrc_sandbox=0
@@ -44,8 +45,6 @@ aug QFClose
   au!
   au WinEnter * if winnr('$') == 1 && &buftype == "quickfix"|q|endif
 aug END
-
-au BufEnter * call execute("setlocal winbar=\"" . expand('%:t') . "\"")
 
 function NoFileCheck()
   if (&buftype == 'nofile')

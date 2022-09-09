@@ -80,7 +80,6 @@ let g:coc_global_extensions = [
 execute ":colorscheme sonokai"
 highlight LineNr term=bold cterm=NONE ctermfg=darkgray ctermbg=NONE gui=NONE guifg=darkgray guibg=NONE
 highlight FloatermBorder ctermfg=green cterm=bold
-highlight WinBar ctermfg=250 ctermbg=237 guifg=#e2e2e3 guibg=#3b3e48
 
 """"""""""""""""""""""""""""""
 " vim-glaive settings

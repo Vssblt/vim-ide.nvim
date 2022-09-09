@@ -111,3 +111,67 @@ require('dap/dap')
 require('dap/ft-dap-cpp')
 require('dap/dap-ui')
 require('dap/dap-virtual-text')
+
+-- nvim-gps
+require("nvim-gps").setup()
+
+-- winbar
+require('winbar').setup(
+{
+    enabled = true,
+
+    show_file_path = true,
+    show_symbols = true,
+
+    colors = {
+        path = '',
+        file_name = '',
+        symbols = '',
+    },
+
+    icons = {
+        file_icon_default = '',
+        seperator = '>',
+        editor_state = '●',
+        lock_icon = '',
+    },
+
+    exclude_filetype = {
+        'help',
+        'startify',
+        'dashboard',
+        'packer',
+        'neogitstatus',
+        'NvimTree',
+        'Trouble',
+        'alpha',
+        'lir',
+        'Outline',
+        'spectre_panel',
+        'toggleterm',
+        'qf',
+        'dap-repl',
+        'dapui_console',
+        'dapui_stacks',
+        'dapui_scopes',
+        'dapui_breakpoints',
+        'dapui_watches',
+    }
+}
+)
+
+-- bufresize.nvim
+require("bufresize").setup(
+  {
+      register = {
+          keys = {
+          },
+          trigger_events = { "WinNew", "BufWinEnter", "WinClosed" ,"WinEnter" ,"WinLeave" ,"WinScrolled" },
+      },
+      resize = {
+          keys = {},
+          trigger_events = { "VimResized" },
+          increment = 1,
+      },
+  }
+)

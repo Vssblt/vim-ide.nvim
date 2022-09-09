@@ -68,7 +68,7 @@ else
   require("dapui").setup({
     icons = { expanded = "▾", collapsed = "▸" },
     mappings = {
-      expand = { "<CR>", "<2-LeftMouse>", "<TAB>" },
+      expand = { "K", "<CR>", "<2-LeftMouse>", "<TAB>" },
       open = {"o", "<CR>", "<TAB>", "<2-LeftMouse>"},
       remove = "dd",
       edit = "a",
@@ -118,12 +118,10 @@ else
     dap.repl.close()
     dap.disconnect({ terminateDebuggee = true })
     dapui.close()
-    dapui.termination();
   end
   dap.listeners.before.event_exited["dapui_config"] = function()
     dap.repl.close()
     dap.disconnect({ terminateDebuggee = true })
     dapui.close()
-    dapui.termination();
   end
 end
