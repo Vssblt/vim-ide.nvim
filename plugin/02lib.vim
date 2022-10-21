@@ -30,9 +30,9 @@ set expandtab
 set smarttab
 set softtabstop=0
 set hidden
-set synmaxcol=180    " Normally, the column count will not overtake 180.
+set synmaxcol=320    " Normally, the column count will not overtake 180.
 set matchpairs+=
-set noequalalways
+"set noequalalways
 set signcolumn=yes
 let g:localvimrc_ask=0
 "let g:localvimrc_persistent=2
@@ -75,7 +75,7 @@ au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|
 """"""""""""""""""""""""""""""
 let g:interestingWordsDefaultMappings = 0
 let g:interestingWordsRandomiseColors = 1
-let g:interestingWordsTermColors = ['154', '121', '211', '137', '214', '222', '1', '2', '3', '4', '6', '64', '99']
+let g:interestingWordsTermColors = ['154', '121', '211', '137', '214', '222', '1', '2', '3', '4', '6', '64', '99' ]
 
 """"""""""""""""""""""""""""""
 " ranger settings

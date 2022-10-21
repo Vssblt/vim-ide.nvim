@@ -119,6 +119,7 @@ call rainbow#enable()
 """"""""""""""""""""""""""""""
 " vim-doge
 """"""""""""""""""""""""""""""
+let g:doge_enable_mappings=0
 let g:doge_mapping='gc'
 let g:doge_mapping_comment_jump_forward='<c-n>'
 let g:doge_mapping_comment_jump_backward='<c-t>'

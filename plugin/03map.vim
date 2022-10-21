@@ -498,7 +498,7 @@ nnoremap <F6> :!Make -j `nproc`<CR>:call g:Start_Termdebug("")<CR>
 "augroup Debugger
   "autocmd!
   "autocmd FileType c,cpp,javascript,python,java,go,php nnoremap gs :lua require("dapui").float_element('scope', {enter: true})<CR>
-  "autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <F5> :lua require'dap'.continue()<CR>
+  "autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <F5> :lua require'dap'.continue({reset=true})<CR>
   "autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <CR> :lua require'dap'.toggle_breakpoint()<CR>
   "autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <F10> :lua require'dap'.step_over()<CR>
   "autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <F11> :lua require'dap'.step_into()<CR>
@@ -507,10 +507,12 @@ nnoremap <F6> :!Make -j `nproc`<CR>:call g:Start_Termdebug("")<CR>
 "augroup END
 
 augroup Debugger
- autocmd!
- autocmd FileType * nnoremap <CR> :lua require('breakpoint').toggle()<CR>
- autocmd FileType * nnoremap <F5> :lua require('window').open_terminal(nil, { app_path = vim.g.cpp_executable_program, pos = "bottom", size = 24}) <CR>
+  autocmd!
+  autocmd FileType * nnoremap <CR> :lua require('gdb.breakpoint').toggle()<CR>
+  autocmd FileType * nnoremap <F5> :lua require('gdb').open_terminal(nil, { gdb_args = "-quiet -iex 'set pagination off' -iex 'set mi-async on' -ex 'echo startupdone\n'",app_path = vim.g.cpp_executable_program, pos = "bottom", size = 24})<CR>
+  "lua require('gdb').setup({ project = { gdb = "/usr/bin/gdb", app = "", args = "", }, layout = { { position = "bottom", window = { "console", "gdb" }, size = 25 }, { position = "right", window = { "scope", "breakpoints", "stack" }, size = 40 } }, log = "true", log_path = "/tmp/light-gdb.log", })
 augroup END
+comm! -nargs=? -bang L e ~/.local/share/nvim/site/pack/packer/start/light-gdb.nvim/lua/gdb/
 
 augroup autoHideBuf
   autocmd!
@@ -588,6 +590,20 @@ let nvimgdb_config_override = {}
 let nvimgdb_disable_start_keymaps = 1
 
 
+"***********************************
+" vgit.nvim
+"***********************************
+comm! -nargs=? -bang Gitcheckout lua require('vgit').checkout(<f-args>)
+
+comm! -nargs=? -bang Gitdiff lua require('vgit').buffer_diff_preview()
+comm! -nargs=? -bang Gitstatus lua require('vgit').project_diff_preview()
+
+comm! -nargs=? -bang Gitblameline lua require('vgit').buffer_blame_preview()
+comm! -nargs=? -bang Gitblamebuf lua require('vgit').buffer_gutter_blame_preview()
+
+comm! -nargs=? -bang Gitdiffhunk lua require('vgit').buffer_hunk_preview()
+comm! -nargs=? -bang Gitlog lua require('vgit').project_logs_preview()
+comm! -nargs=? -bang Gitlogall lua require('vgit').project_logs_preview('--all')
 
 """ custom
 nmap <space>a<space> 1n
