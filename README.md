@@ -2,48 +2,53 @@
 ```
 vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function()
-    use { 'wbthomason/packer.nvim', after = 'vim-ide.nvim' }
+    use { 'wbthomason/packer.nvim', after = 'vim-ide.nvim'}
     use { 'Vssblt/vim-ide.nvim' }
 
     --------------------------------------------------------------------------
     -- Those plugins take effect automatically.
 
-    use { 'Vssblt/vim-airline-cwd' }
+    -- use { 'Vssblt/vim-airline-cwd'  }
  
-    use { 'ryanoasis/vim-devicons' }
+    --use { 'ryanoasis/vim-devicons'  }
  
-    use { 'embear/vim-localvimrc' }
+    use { 'embear/vim-localvimrc'  }
  
-    use { 'kshenoy/vim-signature' }
+    --use { 'kshenoy/vim-signature'  }
  
-    use { 'vim-airline/vim-airline' }
-    use { 'vim-airline/vim-airline-themes', after = 'vim-airline' }
+    -- use { 'vim-airline/vim-airline'  }
+    -- use { 'vim-airline/vim-airline-themes', after = 'vim-airline' }
+    use {
+      'nvim-lualine/lualine.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    }
+
  
-    use { 'yianwillis/vimcdoc' }
+    use { 'yianwillis/vimcdoc'  }
     -- vim chinese doc
  
-    use { 'lilydjwg/fcitx.vim' }
+    use { 'lilydjwg/fcitx.vim'  }
     
-    use { 'plasticboy/vim-markdown' }
+    use { 'plasticboy/vim-markdown'  }
     -- markdown highlight
  
-    use { 'suan/vim-instant-markdown' }
+    use { 'suan/vim-instant-markdown'  }
     -- this plugin will automatically open web browser when you editing markdown files.
  
-    -- use { 'Vssblt/vim-cpp' }
+    -- use { 'Vssblt/vim-cpp'  }
     -- cpp syntax
  
-    use { 'mzlogin/vim-markdown-toc' }
+    use { 'mzlogin/vim-markdown-toc'  }
     -- this plugin open your browser when you open a markdown file
  
-    use { 'jackguo380/vim-lsp-cxx-highlight' }
+    use { 'jackguo380/vim-lsp-cxx-highlight'  }
     -- this plugin probely cause slow.
     
-    use { 'adi/vim-indent-rainbow' }
+    use { 'adi/vim-indent-rainbow'  }
  
-    use { 'unblevable/quick-scope' }
+    use { 'unblevable/quick-scope'  }
     --------------------------------------------------------------------------
-    use { 'lambdalisue/suda.vim' }
+    use { 'lambdalisue/suda.vim'  }
     -- Re-open a current file with sudo
     -- :SudaRead
     
@@ -56,7 +61,7 @@ return require('packer').startup(function()
     -- Write contents to /etc/profile
     -- :SudaWrite /etc/profile
  
-    use { 'lfv89/vim-interestingwords' }
+    use { 'lfv89/vim-interestingwords'  }
     -- <leader>k
     -- highlight current word
     -- 
@@ -69,7 +74,7 @@ return require('packer').startup(function()
     -- L
     -- Navigate highlighted words
  
-    use { 'Vssblt/leetcode.vim' }
+    use { 'Vssblt/leetcode.vim'  }
     -- :LeetCodeList
     -- Open Leetcode index
     -- 
@@ -85,7 +90,7 @@ return require('packer').startup(function()
     -- :LeetCodeSubmit
     -- Submit the code
  
-    use { 'preservim/nerdcommenter' }
+    use { 'preservim/nerdcommenter'  }
     -- [count]<leader>cc |NERDCommenterComment|
     -- Comment out the current line or text selected in visual mode.
     -- 
@@ -125,12 +130,12 @@ return require('packer').startup(function()
     -- [count]<leader>cu |NERDCommenterUncomment|
     -- Uncomments the selected line(s).
  
-    use { 'dhruvasagar/vim-table-mode' }
+    use { 'dhruvasagar/vim-table-mode'  }
     -- use <leader>tm open table mode
     -- use | <text> | to create table unit.
     -- use || to create |+++++++++|
  
-    use { 'easymotion/vim-easymotion' }
+    use { 'easymotion/vim-easymotion'  }
     -- <leader>.
     -- search one chara
     -- 
@@ -146,9 +151,9 @@ return require('packer').startup(function()
     -- <leader>uh/<leader>ut/<leader>un/<leader>us
     -- go somewhere
  
-    use { 'Vssblt/vim-choosewin' }
+    use { 'Vssblt/vim-choosewin'  }
     -- type . to switch window
-    use { 'mg979/vim-visual-multi' }
+    use { 'mg979/vim-visual-multi'  }
     -- ctrl + n
     -- select current word and create a cursor
     -- 
@@ -167,7 +172,7 @@ return require('packer').startup(function()
     -- Q
     -- delete current cursor
 
-    use { 'yssl/QFEnter' }
+    use { 'yssl/QFEnter'  }
     -- if in quickfix window:
     -- <Enter>, <2-LeftMouse>
     -- open
@@ -181,7 +186,7 @@ return require('packer').startup(function()
     -- <Leader><Tab>
     -- open in new tab
 
-    use { 'voldikss/vim-floaterm' }
+    use { 'voldikss/vim-floaterm'  }
     -- :FloatermNew
     -- <leader><leader>n
     -- open a new floaterm popup window
@@ -209,10 +214,10 @@ return require('packer').startup(function()
     -- <C-D>
     -- close current floaterm window
 
-    use { 'flazz/vim-colorschemes' }
+    use { 'flazz/vim-colorschemes'  }
     --:colorscheme [color theme]
 
-    use { 'francoiscabrol/ranger.vim' }
+    use { 'francoiscabrol/ranger.vim'  }
     -- <leader>o
     -- open a file in new tab.
 
@@ -233,10 +238,10 @@ return require('packer').startup(function()
     -- update coc plugin
     --  
 
-    use { 'voldikss/vim-translator' }
+    use { 'voldikss/vim-translator'  }
     --:Translate/TranslateX/TranslateW/TranslateH/TranslateL/TranslateR
     
-    use { 'wellle/targets.vim' }
+    use { 'wellle/targets.vim'  }
     -- Targets.vim is a Vim plugin that adds various text objects to give 
     -- you more targets to operate on. It expands on the idea of simple 
     -- commands like di' (delete inside the single quotes around the cursor) 
@@ -247,62 +252,65 @@ return require('packer').startup(function()
     -- [ydc]i[",[]{}().<>']
     -- copy, delete or change text between the characters.
     
-    use { 'kkoomen/vim-doge' }
-    -- gc 
+    use { 'kkoomen/vim-doge', after = {"vim-ide.nvim"}}
+    -- gc
     -- Add doxygen document on class, function or the other definitions.
     -- <c-n> 
     -- Jump forward position.
     -- <c-t>
     -- Jump backward position.
     
-    use { 'tpope/vim-surround' }
+    use { 'tpope/vim-surround'  }
     -- ydc s iw 
     --------------------------------------------------------------------------
     --Other pluins.
  
-    use { 'sainnhe/sonokai' }
+    use { 'sainnhe/sonokai'  }
     --colorscheme
-    use { 'morhetz/gruvbox' }
+    use { 'morhetz/gruvbox'  }
     --colorscheme
  
-    use { 'srstevenson/vim-picker' }
+    use { 'srstevenson/vim-picker'  }
  
-    use { 'google/vim-maktaba' }
-    use { 'google/vim-glaive', after = 'vim-maktaba' }
-    use { 'google/vim-codefmt', after = 'vim-glaive' }
+    use { 'google/vim-maktaba'  }
+    use { 'google/vim-glaive', after = {'vim-maktaba'} }
+    use { 'google/vim-codefmt', after = {'vim-glaive'} }
  
-    use { 'artoj/qmake-syntax-vim' }
+    use { 'artoj/qmake-syntax-vim'  }
  
-    use { 'junegunn/vim-easy-align' }
+    use { 'junegunn/vim-easy-align'  }
  
-    use { 'brooth/far.vim' }
+    use { 'brooth/far.vim'  }
  
-    use { 'vim-scripts/genutils' }
+    use { 'vim-scripts/genutils'  }
  
-    use { 'godlygeek/tabular' }
+    use { 'godlygeek/tabular'  }
     --highlight
  
-    use { 'tpope/vim-dispatch' }
+    use { 'tpope/vim-dispatch'  }
  
-    use { 'aperezdc/vim-template' }
+    use { 'aperezdc/vim-template'  }
  
     use { 'junegunn/fzf', run = 'cd ~/.fzf && ./install --all' }
  
-    use { 'junegunn/fzf.vim' } 
+    use { 'junegunn/fzf.vim'  } 
 
-    use { 'antoinemadec/coc-fzf' }
+    use { 'antoinemadec/coc-fzf'  }
  
-    use { 'honza/vim-snippets' }
+    use { 'honza/vim-snippets'  }
 
     use {
         'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
+        run = ':TSUpdate',
     }
 
     use {
       'Vssblt/aerial.nvim',
-      after = 'nvim-treesitter', 
-      config = function() require('aerial').setup() end
+      config = function() require('aerial').setup() end,
+    }
+
+    use {
+      'kyazdani42/nvim-web-devicons'
     }
 
     use {
@@ -310,17 +318,92 @@ return require('packer').startup(function()
       requires = {
         'kyazdani42/nvim-web-devicons', -- optional, for file icons
       },
-      tag = 'nightly' -- optional, updated every week. (see issue #1193)
+      tag = 'nightly', -- optional, updated every week. (see issue #1193)
     }
 
+    use 'sindrets/winshift.nvim'
+
+    use {
+	    "SmiteshP/nvim-gps",
+	    requires = "nvim-treesitter/nvim-treesitter"
+    }
+
+    use {
+      'fgheng/winbar.nvim',
+      requires = {
+        'kyazdani42/nvim-web-devicons',
+        'SmiteshP/nvim-gps',
+      },
+    }
+
+    use {
+      "kwkarlwang/bufresize.nvim",
+    }
+
+    -- Lua
+    use {
+      "folke/trouble.nvim",
+      requires = "kyazdani42/nvim-web-devicons",
+      config = function()
+        require("trouble").setup {
+        {
+          position = "bottom", -- position of the list can be: bottom, top, left, right
+          height = 10, -- height of the trouble list when position is top or bottom
+          width = 50, -- width of the list when position is left or right
+          icons = true, -- use devicons for filenames
+          mode = "workspace_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
+          fold_open = "", -- icon used for open folds
+          fold_closed = "", -- icon used for closed folds
+          group = true, -- group results by file
+          padding = true, -- add an extra new line on top of the list
+          action_keys = { -- key mappings for actions in the trouble list
+              -- map to {} to remove a mapping, for example:
+              -- close = {},
+              close = "q", -- close the list
+              cancel = "<esc>", -- cancel the preview and get back to your last window / buffer / cursor
+              refresh = "r", -- manually refresh
+              jump = {"<cr>", "<tab>"}, -- jump to the diagnostic or open / close folds
+              open_split = { "<c-x>" }, -- open buffer in new split
+              open_vsplit = { "<c-v>" }, -- open buffer in new vsplit
+              open_tab = { "<c-t>" }, -- open buffer in new tab
+              jump_close = {"o"}, -- jump to the diagnostic and close the list
+              toggle_mode = "m", -- toggle between "workspace" and "document" diagnostics mode
+              toggle_preview = "P", -- toggle auto_preview
+              hover = "K", -- opens a small popup with the full multiline message
+              preview = "p", -- preview the diagnostic location
+              close_folds = {"zM", "zm"}, -- close all folds
+              open_folds = {"zR", "zr"}, -- open all folds
+              toggle_fold = {"zA", "za"}, -- toggle fold of current file
+              previous = "k", -- preview item
+              next = "j" -- next item
+          },
+          indent_lines = true, -- add an indent guide below the fold icons
+          auto_open = false, -- automatically open the list when you have diagnostics
+          auto_close = false, -- automatically close the list when you have no diagnostics
+          auto_preview = true, -- automatically preview the location of the diagnostic. <esc> to close preview and go back to last window
+          auto_fold = false, -- automatically fold a file trouble list at creation
+          auto_jump = {"lsp_definitions"}, -- for the given modes, automatically jump if there is only a single result
+          signs = {
+              -- icons / text used for a diagnostic
+              error = "",
+              warning = "",
+              hint = "",
+              information = "",
+              other = "﫠"
+          },
+          use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
+        }
+        }
+      end
+    }
 
     -- debugger
     --------------------------------------------------------------------------
     use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 
-    use { 'ravenxrz/DAPInstall.nvim', requires = {"mfussenegger/nvim-dap"}  }
+    use { 'ravenxrz/DAPInstall.nvim', requires = {"mfussenegger/nvim-dap"} }
 
-    use { 'theHamsta/nvim-dap-virtual-text', requires = {"mfussenegger/nvim-dap"}  }
+    use { 'theHamsta/nvim-dap-virtual-text', requires = {"mfussenegger/nvim-dap"}   }
     --------------------------------------------------------------------------
 
 end)
