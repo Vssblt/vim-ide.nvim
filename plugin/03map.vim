@@ -509,7 +509,7 @@ nnoremap <F6> :!Make -j `nproc`<CR>:call g:Start_Termdebug("")<CR>
 augroup Debugger
   autocmd!
   autocmd FileType * nnoremap <CR> :lua require('gdb.breakpoint').toggle()<CR>
-  autocmd FileType * nnoremap <F5> :lua require('gdb').open_terminal(nil, { gdb_args = "-quiet -iex 'set pagination off' -iex 'set mi-async on' -ex 'echo startupdone\n'",app_path = vim.g.cpp_executable_program, pos = "bottom", size = 24})<CR>
+  "autocmd FileType * nnoremap <F5> :lua require('gdb').open_terminal(nil, { gdb_args = "-quiet -iex 'set pagination off' -iex 'set mi-async on' -ex 'echo startupdone\n'",app_path = vim.g.cpp_executable_program, pos = "bottom", size = 24})<CR>
   "lua require('gdb').setup({ project = { gdb = "/usr/bin/gdb", app = "", args = "", }, layout = { { position = "bottom", window = { "console", "gdb" }, size = 25 }, { position = "right", window = { "scope", "breakpoints", "stack" }, size = 40 } }, log = "true", log_path = "/tmp/light-gdb.log", })
 augroup END
 comm! -nargs=? -bang L e ~/.local/share/nvim/site/pack/packer/start/light-gdb.nvim/lua/gdb/

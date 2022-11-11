@@ -86,7 +86,7 @@ highlight FloatermBorder ctermfg=green cterm=bold
 """"""""""""""""""""""""""""""
 call glaive#Install()
 Glaive codefmt clang_format_executable='clang-format'
-Glaive codefmt google_java_executable="java -jar /opt/google-java-format/google-java-format-1.10.0-all-deps.jar"
+Glaive codefmt google_java_executable="java -jar /opt/google-java-format/google-java-format-1.15.0-all-deps.jar"
 
 """"""""""""""""""""""""""""""
 " vim-codefmt settings
@@ -119,7 +119,7 @@ call rainbow#enable()
 """"""""""""""""""""""""""""""
 " vim-doge
 """"""""""""""""""""""""""""""
-let g:doge_enable_mappings=0
+"let g:doge_enable_mappings=0
 let g:doge_mapping='gc'
 let g:doge_mapping_comment_jump_forward='<c-n>'
 let g:doge_mapping_comment_jump_backward='<c-t>'
