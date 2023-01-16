@@ -43,6 +43,22 @@ xnoremap t k
 xnoremap n j
 xnoremap s l
 
+function! NetrwMapping()
+  nnoremap <buffer> t k
+  nnoremap <buffer> n j
+  nnoremap <buffer> s l
+  xnoremap <buffer> t k
+  xnoremap <buffer> n j
+  xnoremap <buffer> s l
+endfunction
+
+augroup netrw_mapping
+
+  autocmd! 
+  autocmd filetype netrw call NetrwMapping()
+
+augroup end
+
 nnoremap T <C-\><C-n>k
 nnoremap S <C-\><C-n>l
 nnoremap N <C-\><C-n>j

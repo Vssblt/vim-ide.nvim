@@ -45,12 +45,12 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 " Support languages: java javascript cpp/c html css vim markdown python cmake qmake go php
 " Other: auto pairs, highlight, yank, explorer, snippets
 " Don't supported: c#
+    "\ 'coc-yank',
 let g:coc_global_extensions = [
     \ 'coc-clangd',
     \ 'coc-cmake',
     \ 'coc-vimlsp',
     \ 'coc-html',
-    \ 'coc-yank',
     \ 'coc-ecdict',
     \ 'coc-pyright',
     \ 'coc-css',
@@ -72,6 +72,8 @@ let g:coc_global_extensions = [
     \ 'coc-lua',
     \ 'coc-tsserver',
     \ 'coc-vetur',
+    \ 'coc-highlight',
+    \ 'coc-pairs',
   \ ]
 
 """"""""""""""""""""""""""""""
@@ -130,4 +132,3 @@ let g:doge_doc_standard_cpp='doxygen_javadoc'
 """"""""""""""""""""""""""""""
 let g:dap_cpp_adapter='cppdbg'
 "let g:dap_cpp_adapter='lldb'
-

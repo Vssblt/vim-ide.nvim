@@ -11,6 +11,8 @@ require'nvim-treesitter.configs'.setup {
 -- nvim-tree
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
+  --disable_netrw = true,
+  hijack_netrw = true,
   view = {
     adaptive_size = true,
     mappings = {
@@ -393,3 +395,5 @@ require('vgit').setup({
     },
   }
 })
+
+require("nvim-surround").setup({ keymaps = { change = "bs" } })

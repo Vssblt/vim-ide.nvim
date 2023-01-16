@@ -32,6 +32,8 @@ set softtabstop=0
 set hidden
 set synmaxcol=320    " Normally, the column count will not overtake 180.
 set matchpairs+=
+"set foldlevel=0
+"set foldmethod=syntax
 "set noequalalways
 set signcolumn=yes
 let g:localvimrc_ask=0
