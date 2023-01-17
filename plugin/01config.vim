@@ -66,7 +66,6 @@ let g:coc_global_extensions = [
     \ 'coc-webpack',
     \ 'coc-sql',
     \ 'coc-docker',
-    \ 'coc-leetcode',
     \ 'coc-json',
     \ 'coc-clang-format-style-options',
     \ 'coc-lua',
@@ -132,3 +131,9 @@ let g:doge_doc_standard_cpp='doxygen_javadoc'
 """"""""""""""""""""""""""""""
 let g:dap_cpp_adapter='cppdbg'
 "let g:dap_cpp_adapter='lldb'
+
+
+""""""""""""""""""""""""""""""
+" leetcode.vim
+""""""""""""""""""""""""""""""
+let g:leetcode_browser = "firefox"

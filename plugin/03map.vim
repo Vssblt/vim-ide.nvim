@@ -12,7 +12,6 @@
 """"""""""""""""""""""""""""""
 " normal
 """"""""""""""""""""""""""""""
-"map \ <leader>
 
 noremap <C-d> <C-\><C-n>
 
@@ -524,8 +523,8 @@ nnoremap <F6> :!Make -j `nproc`<CR>:call g:Start_Termdebug("")<CR>
 
 augroup Debugger
   autocmd!
-  autocmd FileType * nnoremap <CR> :lua require('gdb.breakpoint').toggle()<CR>
-  "autocmd FileType * nnoremap <F5> :lua require('gdb').open_terminal(nil, { gdb_args = "-quiet -iex 'set pagination off' -iex 'set mi-async on' -ex 'echo startupdone\n'",app_path = vim.g.cpp_executable_program, pos = "bottom", size = 24})<CR>
+  autocmd FileType cpp,c nnoremap <CR> :lua require('gdb.breakpoint').toggle()<CR>
+  autocmd FileType cpp,c nnoremap <F5> :lua require('gdb').open_terminal(nil, { gdb_args = "-quiet -iex 'set pagination off' -iex 'set mi-async on' -ex 'echo startupdone\n'",app_path = vim.g.cpp_executable_program, pos = "bottom", size = 24})<CR>
   "lua require('gdb').setup({ project = { gdb = "/usr/bin/gdb", app = "", args = "", }, layout = { { position = "bottom", window = { "console", "gdb" }, size = 25 }, { position = "right", window = { "scope", "breakpoints", "stack" }, size = 40 } }, log = "true", log_path = "/tmp/light-gdb.log", })
 augroup END
 comm! -nargs=? -bang L e ~/.local/share/nvim/site/pack/packer/start/light-gdb.nvim/lua/gdb/
@@ -575,6 +574,15 @@ augroup AerialWinVar
   autocmd FileType aerial map <silent><buffer> r r
   autocmd FileType aerial map <silent><buffer> c c
 augroup END
+
+augroup LtWinVar
+  autocmd!
+  autocmd FileType ltlist map <silent><buffer> r r
+  autocmd FileType ltlist map <silent><buffer> c c
+  autocmd FileType ltdesc map <silent><buffer> r r
+  autocmd FileType ltdesc map <silent><buffer> c c
+augroup END
+
 
 "augroup ResetDapUi
 "  autocmd!
