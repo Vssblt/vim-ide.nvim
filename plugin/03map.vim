@@ -341,7 +341,17 @@ nmap ga= <Plug>(coc-format)
 nmap gr <Plug>(coc-rename)
 nmap gf <Plug>(coc-fix-current)
 nmap g<space> :<C-u>CocFzfList<CR>
-nnoremap <silent> K :call ShowDocumentation()<CR>
+
+function! s:ShowDocumentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+nnoremap <silent> K :call <SID>ShowDocumentation()<CR>
+"autocmd CursorHold * silent call <SID>ShowDocumentation()
 
 comm! -nargs=? -bang A CocCommand clangd.switchSourceHeader
 comm! -nargs=? -bang AS CocCommand clangd.switchSourceHeader split
@@ -523,7 +533,7 @@ nnoremap <F6> :!Make -j `nproc`<CR>:call g:Start_Termdebug("")<CR>
 
 augroup Debugger
   autocmd!
-  autocmd FileType cpp,c nnoremap <CR> :lua require('gdb.breakpoint').toggle()<CR>
+  autocmd FileType cpp,c nnoremap <CR> :lua require'nvim-gdb/breakpoint'.toggle(vim.fn.bufname('%'), vim.fn.line('.'))<CR>
   autocmd FileType cpp,c nnoremap <F5> :lua require('gdb').open_terminal(nil, { gdb_args = "-quiet -iex 'set pagination off' -iex 'set mi-async on' -ex 'echo startupdone\n'",app_path = vim.g.cpp_executable_program, pos = "bottom", size = 24})<CR>
   "lua require('gdb').setup({ project = { gdb = "/usr/bin/gdb", app = "", args = "", }, layout = { { position = "bottom", window = { "console", "gdb" }, size = 25 }, { position = "right", window = { "scope", "breakpoints", "stack" }, size = 40 } }, log = "true", log_path = "/tmp/light-gdb.log", })
 augroup END
