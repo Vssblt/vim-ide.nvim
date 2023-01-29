@@ -58,6 +58,15 @@ augroup netrw_mapping
 
 augroup end
 
+nnoremap <C-w>t <C-\><C-n>:WinShift up<CR>
+nnoremap <C-w>s <C-\><C-n>:WinShift right<CR>
+nnoremap <C-w>n <C-\><C-n>:WinShift down<CR>
+nnoremap <C-w>h <C-\><C-n>:WinShift left<CR>
+xnoremap <C-w>t <C-\><C-n>:WinShift up<CR>
+xnoremap <C-w>s <C-\><C-n>:WinShift right<CR>
+xnoremap <C-w>n <C-\><C-n>:WinShift down<CR>
+xnoremap <C-w>h <C-\><C-n>:WinShift left<CR>
+
 nnoremap T <C-\><C-n>k
 nnoremap S <C-\><C-n>l
 nnoremap N <C-\><C-n>j
