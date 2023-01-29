@@ -43,7 +43,7 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 """"""""""""""""""""""""""""""
 
 " Support languages: java javascript cpp/c html css vim markdown python cmake qmake go php
-" Other: auto pairs, highlight, yank, explorer, snippets
+" Other: highlight, yank, explorer, snippets
 " Don't supported: c#
     "\ 'coc-yank',
 let g:coc_global_extensions = [
@@ -72,7 +72,6 @@ let g:coc_global_extensions = [
     \ 'coc-tsserver',
     \ 'coc-vetur',
     \ 'coc-highlight',
-    \ 'coc-pairs',
   \ ]
 
 """"""""""""""""""""""""""""""
