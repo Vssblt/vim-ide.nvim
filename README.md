@@ -1,5 +1,3 @@
-# vim-ide.nvim
-``` lua
 _G.__luacache_config = {
   chunks = {
     enable = true,
@@ -492,4 +490,3 @@ return require('packer').startup(function()
     use { 'Vssblt/nvim-gdb.lua' }
 
 end)
-```
