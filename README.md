@@ -59,6 +59,10 @@ return require('packer').startup(function()
 
     use { 'unblevable/quick-scope'  }
     -- Quick move in current line.
+
+    use { "LunarWatcher/auto-pairs", config = function()
+      end
+    }
     --------------------------------------------------------------------------
 
     use { 'chentoast/marks.nvim' }
