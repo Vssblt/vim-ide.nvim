@@ -434,7 +434,23 @@ require'marks'.setup {
   }
 }
 
-G = require'nvim-gdb.init'
-G.buf.fn.create_all()
-G.buf.fn.send_mi_command("-break-info breakpoint")
+G = require'nvim-gdb'
+G.setup({
+  logfile = "/tmp/nvim-gdb-lua.log",
+  gdb_cli_prompt = '(gdb) ',
+  gdb_exec_path = '/usr/bin/gdb',
+  gdb_options = {'./main'},
+  gdb_break_enabled_sign = '🔴',
+  gdb_break_disabled_sign = '🚫',
+  keymap = {
+    debug = {
+      break_insert = "<CR>",
+    },
+    breakpoint = {
+      open = "<CR>",
+      disable = "dd",
+      delete = "D"
+    },
+  }
+})
 
