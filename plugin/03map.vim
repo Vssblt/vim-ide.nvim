@@ -654,6 +654,8 @@ comm! -nargs=? -bang Gitdiffhunk lua require('vgit').buffer_hunk_preview()
 comm! -nargs=? -bang Gitlog lua require('vgit').project_logs_preview()
 comm! -nargs=? -bang Gitlogall lua require('vgit').project_logs_preview('--all')
 
+map <space><esc> <Nop>
+
 """ custom
 nmap <space>a<space> 1n
 nmap <space>o<space> 2n
@@ -1984,6 +1986,1334 @@ xmap <space><space>ont<space> 298t
 xmap <space><space>onn<space> 299t
 
 
-func Send(text) 
-  call chansend(5, ["ls", ""]) 
-endfunc
+" Cancel
+nmap <space>a<esc> <Nop>
+nmap <space>o<esc> <Nop>
+nmap <space>e<esc> <Nop>
+nmap <space>u<esc> <Nop>
+nmap <space>i<esc> <Nop>
+nmap <space>d<esc> <Nop>
+nmap <space>h<esc> <Nop>
+nmap <space>t<esc> <Nop>
+nmap <space>n<esc> <Nop>
+
+nmap <space>as<esc> <Nop>
+nmap <space>aa<esc> <Nop>
+nmap <space>ao<esc> <Nop>
+nmap <space>ae<esc> <Nop>
+nmap <space>au<esc> <Nop>
+nmap <space>ai<esc> <Nop>
+nmap <space>ad<esc> <Nop>
+nmap <space>ah<esc> <Nop>
+nmap <space>at<esc> <Nop>
+nmap <space>an<esc> <Nop>
+
+nmap <space>os<esc> <Nop>
+nmap <space>oa<esc> <Nop>
+nmap <space>oo<esc> <Nop>
+nmap <space>oe<esc> <Nop>
+nmap <space>ou<esc> <Nop>
+nmap <space>oi<esc> <Nop>
+nmap <space>od<esc> <Nop>
+nmap <space>oh<esc> <Nop>
+nmap <space>ot<esc> <Nop>
+nmap <space>on<esc> <Nop>
+
+nmap <space>es<esc> <Nop>
+nmap <space>ea<esc> <Nop>
+nmap <space>eo<esc> <Nop>
+nmap <space>ee<esc> <Nop>
+nmap <space>eu<esc> <Nop>
+nmap <space>ei<esc> <Nop>
+nmap <space>ed<esc> <Nop>
+nmap <space>eh<esc> <Nop>
+nmap <space>et<esc> <Nop>
+nmap <space>en<esc> <Nop>
+
+nmap <space>us<esc> <Nop>
+nmap <space>ua<esc> <Nop>
+nmap <space>uo<esc> <Nop>
+nmap <space>ue<esc> <Nop>
+nmap <space>uu<esc> <Nop>
+nmap <space>ui<esc> <Nop>
+nmap <space>ud<esc> <Nop>
+nmap <space>uh<esc> <Nop>
+nmap <space>ut<esc> <Nop>
+nmap <space>un<esc> <Nop>
+
+nmap <space>is<esc> <Nop>
+nmap <space>ia<esc> <Nop>
+nmap <space>io<esc> <Nop>
+nmap <space>ie<esc> <Nop>
+nmap <space>iu<esc> <Nop>
+nmap <space>ii<esc> <Nop>
+nmap <space>id<esc> <Nop>
+nmap <space>ih<esc> <Nop>
+nmap <space>it<esc> <Nop>
+nmap <space>in<esc> <Nop>
+
+nmap <space>ds<esc> <Nop>
+nmap <space>da<esc> <Nop>
+nmap <space>do<esc> <Nop>
+nmap <space>de<esc> <Nop>
+nmap <space>du<esc> <Nop>
+nmap <space>di<esc> <Nop>
+nmap <space>dd<esc> <Nop>
+nmap <space>dh<esc> <Nop>
+nmap <space>dt<esc> <Nop>
+nmap <space>dn<esc> <Nop>
+
+nmap <space>hs<esc> <Nop>
+nmap <space>ha<esc> <Nop>
+nmap <space>ho<esc> <Nop>
+nmap <space>he<esc> <Nop>
+nmap <space>hu<esc> <Nop>
+nmap <space>hi<esc> <Nop>
+nmap <space>hd<esc> <Nop>
+nmap <space>hh<esc> <Nop>
+nmap <space>ht<esc> <Nop>
+nmap <space>hn<esc> <Nop>
+
+nmap <space>ts<esc> <Nop>
+nmap <space>ta<esc> <Nop>
+nmap <space>to<esc> <Nop>
+nmap <space>te<esc> <Nop>
+nmap <space>tu<esc> <Nop>
+nmap <space>ti<esc> <Nop>
+nmap <space>td<esc> <Nop>
+nmap <space>th<esc> <Nop>
+nmap <space>tt<esc> <Nop>
+nmap <space>tn<esc> <Nop>
+
+nmap <space>ns<esc> <Nop>
+nmap <space>na<esc> <Nop>
+nmap <space>no<esc> <Nop>
+nmap <space>ne<esc> <Nop>
+nmap <space>nu<esc> <Nop>
+nmap <space>ni<esc> <Nop>
+nmap <space>nd<esc> <Nop>
+nmap <space>nh<esc> <Nop>
+nmap <space>nt<esc> <Nop>
+nmap <space>nn<esc> <Nop>
+
+nmap <space>ass<esc> <Nop>
+nmap <space>asa<esc> <Nop>
+nmap <space>aso<esc> <Nop>
+nmap <space>ase<esc> <Nop>
+nmap <space>asu<esc> <Nop>
+nmap <space>asi<esc> <Nop>
+nmap <space>asd<esc> <Nop>
+nmap <space>ash<esc> <Nop>
+nmap <space>ast<esc> <Nop>
+nmap <space>asn<esc> <Nop>
+
+nmap <space>aas<esc> <Nop>
+nmap <space>aaa<esc> <Nop>
+nmap <space>aao<esc> <Nop>
+nmap <space>aae<esc> <Nop>
+nmap <space>aau<esc> <Nop>
+nmap <space>aai<esc> <Nop>
+nmap <space>aad<esc> <Nop>
+nmap <space>aah<esc> <Nop>
+nmap <space>aat<esc> <Nop>
+nmap <space>aan<esc> <Nop>
+
+nmap <space>aos<esc> <Nop>
+nmap <space>aoa<esc> <Nop>
+nmap <space>aoo<esc> <Nop>
+nmap <space>aoe<esc> <Nop>
+nmap <space>aou<esc> <Nop>
+nmap <space>aoi<esc> <Nop>
+nmap <space>aod<esc> <Nop>
+nmap <space>aoh<esc> <Nop>
+nmap <space>aot<esc> <Nop>
+nmap <space>aon<esc> <Nop>
+
+nmap <space>aes<esc> <Nop>
+nmap <space>aea<esc> <Nop>
+nmap <space>aeo<esc> <Nop>
+nmap <space>aee<esc> <Nop>
+nmap <space>aeu<esc> <Nop>
+nmap <space>aei<esc> <Nop>
+nmap <space>aed<esc> <Nop>
+nmap <space>aeh<esc> <Nop>
+nmap <space>aet<esc> <Nop>
+nmap <space>aen<esc> <Nop>
+
+nmap <space>aus<esc> <Nop>
+nmap <space>aua<esc> <Nop>
+nmap <space>auo<esc> <Nop>
+nmap <space>aue<esc> <Nop>
+nmap <space>auu<esc> <Nop>
+nmap <space>aui<esc> <Nop>
+nmap <space>aud<esc> <Nop>
+nmap <space>auh<esc> <Nop>
+nmap <space>aut<esc> <Nop>
+nmap <space>aun<esc> <Nop>
+
+nmap <space>ais<esc> <Nop>
+nmap <space>aia<esc> <Nop>
+nmap <space>aio<esc> <Nop>
+nmap <space>aie<esc> <Nop>
+nmap <space>aiu<esc> <Nop>
+nmap <space>aii<esc> <Nop>
+nmap <space>aid<esc> <Nop>
+nmap <space>aih<esc> <Nop>
+nmap <space>ait<esc> <Nop>
+nmap <space>ain<esc> <Nop>
+
+nmap <space>ads<esc> <Nop>
+nmap <space>ada<esc> <Nop>
+nmap <space>ado<esc> <Nop>
+nmap <space>ade<esc> <Nop>
+nmap <space>adu<esc> <Nop>
+nmap <space>adi<esc> <Nop>
+nmap <space>add<esc> <Nop>
+nmap <space>adh<esc> <Nop>
+nmap <space>adt<esc> <Nop>
+nmap <space>adn<esc> <Nop>
+
+nmap <space>ahs<esc> <Nop>
+nmap <space>aha<esc> <Nop>
+nmap <space>aho<esc> <Nop>
+nmap <space>ahe<esc> <Nop>
+nmap <space>ahu<esc> <Nop>
+nmap <space>ahi<esc> <Nop>
+nmap <space>ahd<esc> <Nop>
+nmap <space>ahh<esc> <Nop>
+nmap <space>aht<esc> <Nop>
+nmap <space>ahn<esc> <Nop>
+
+nmap <space>ats<esc> <Nop>
+nmap <space>ata<esc> <Nop>
+nmap <space>ato<esc> <Nop>
+nmap <space>ate<esc> <Nop>
+nmap <space>atu<esc> <Nop>
+nmap <space>ati<esc> <Nop>
+nmap <space>atd<esc> <Nop>
+nmap <space>ath<esc> <Nop>
+nmap <space>att<esc> <Nop>
+nmap <space>atn<esc> <Nop>
+
+nmap <space>ans<esc> <Nop>
+nmap <space>ana<esc> <Nop>
+nmap <space>ano<esc> <Nop>
+nmap <space>ane<esc> <Nop>
+nmap <space>anu<esc> <Nop>
+nmap <space>ani<esc> <Nop>
+nmap <space>and<esc> <Nop>
+nmap <space>anh<esc> <Nop>
+nmap <space>ant<esc> <Nop>
+nmap <space>ann<esc> <Nop>
+
+nmap <space>oss<esc> <Nop>
+nmap <space>osa<esc> <Nop>
+nmap <space>oso<esc> <Nop>
+nmap <space>ose<esc> <Nop>
+nmap <space>osu<esc> <Nop>
+nmap <space>osi<esc> <Nop>
+nmap <space>osd<esc> <Nop>
+nmap <space>osh<esc> <Nop>
+nmap <space>ost<esc> <Nop>
+nmap <space>osn<esc> <Nop>
+
+nmap <space>oas<esc> <Nop>
+nmap <space>oaa<esc> <Nop>
+nmap <space>oao<esc> <Nop>
+nmap <space>oae<esc> <Nop>
+nmap <space>oau<esc> <Nop>
+nmap <space>oai<esc> <Nop>
+nmap <space>oad<esc> <Nop>
+nmap <space>oah<esc> <Nop>
+nmap <space>oat<esc> <Nop>
+nmap <space>oan<esc> <Nop>
+
+nmap <space>oos<esc> <Nop>
+nmap <space>ooa<esc> <Nop>
+nmap <space>ooo<esc> <Nop>
+nmap <space>ooe<esc> <Nop>
+nmap <space>oou<esc> <Nop>
+nmap <space>ooi<esc> <Nop>
+nmap <space>ood<esc> <Nop>
+nmap <space>ooh<esc> <Nop>
+nmap <space>oot<esc> <Nop>
+nmap <space>oon<esc> <Nop>
+
+nmap <space>oes<esc> <Nop>
+nmap <space>oea<esc> <Nop>
+nmap <space>oeo<esc> <Nop>
+nmap <space>oee<esc> <Nop>
+nmap <space>oeu<esc> <Nop>
+nmap <space>oei<esc> <Nop>
+nmap <space>oed<esc> <Nop>
+nmap <space>oeh<esc> <Nop>
+nmap <space>oet<esc> <Nop>
+nmap <space>oen<esc> <Nop>
+
+nmap <space>ous<esc> <Nop>
+nmap <space>oua<esc> <Nop>
+nmap <space>ouo<esc> <Nop>
+nmap <space>oue<esc> <Nop>
+nmap <space>ouu<esc> <Nop>
+nmap <space>oui<esc> <Nop>
+nmap <space>oud<esc> <Nop>
+nmap <space>ouh<esc> <Nop>
+nmap <space>out<esc> <Nop>
+nmap <space>oun<esc> <Nop>
+
+nmap <space>ois<esc> <Nop>
+nmap <space>oia<esc> <Nop>
+nmap <space>oio<esc> <Nop>
+nmap <space>oie<esc> <Nop>
+nmap <space>oiu<esc> <Nop>
+nmap <space>oii<esc> <Nop>
+nmap <space>oid<esc> <Nop>
+nmap <space>oih<esc> <Nop>
+nmap <space>oit<esc> <Nop>
+nmap <space>oin<esc> <Nop>
+
+nmap <space>ods<esc> <Nop>
+nmap <space>oda<esc> <Nop>
+nmap <space>odo<esc> <Nop>
+nmap <space>ode<esc> <Nop>
+nmap <space>odu<esc> <Nop>
+nmap <space>odi<esc> <Nop>
+nmap <space>odd<esc> <Nop>
+nmap <space>odh<esc> <Nop>
+nmap <space>odt<esc> <Nop>
+nmap <space>odn<esc> <Nop>
+
+nmap <space>ohs<esc> <Nop>
+nmap <space>oha<esc> <Nop>
+nmap <space>oho<esc> <Nop>
+nmap <space>ohe<esc> <Nop>
+nmap <space>ohu<esc> <Nop>
+nmap <space>ohi<esc> <Nop>
+nmap <space>ohd<esc> <Nop>
+nmap <space>ohh<esc> <Nop>
+nmap <space>oht<esc> <Nop>
+nmap <space>ohn<esc> <Nop>
+
+nmap <space>ots<esc> <Nop>
+nmap <space>ota<esc> <Nop>
+nmap <space>oto<esc> <Nop>
+nmap <space>ote<esc> <Nop>
+nmap <space>otu<esc> <Nop>
+nmap <space>oti<esc> <Nop>
+nmap <space>otd<esc> <Nop>
+nmap <space>oth<esc> <Nop>
+nmap <space>ott<esc> <Nop>
+nmap <space>otn<esc> <Nop>
+
+nmap <space>ons<esc> <Nop>
+nmap <space>ona<esc> <Nop>
+nmap <space>ono<esc> <Nop>
+nmap <space>one<esc> <Nop>
+nmap <space>onu<esc> <Nop>
+nmap <space>oni<esc> <Nop>
+nmap <space>ond<esc> <Nop>
+nmap <space>onh<esc> <Nop>
+nmap <space>ont<esc> <Nop>
+nmap <space>onn<esc> <Nop>
+
+
+
+
+
+
+
+nmap <space><space><esc> <Nop>
+nmap <space><space>a<esc> <Nop>
+nmap <space><space>o<esc> <Nop>
+nmap <space><space>e<esc> <Nop>
+nmap <space><space>u<esc> <Nop>
+nmap <space><space>i<esc> <Nop>
+nmap <space><space>d<esc> <Nop>
+nmap <space><space>h<esc> <Nop>
+nmap <space><space>t<esc> <Nop>
+nmap <space><space>n<esc> <Nop>
+
+nmap <space><space>as<esc> <Nop>
+nmap <space><space>aa<esc> <Nop>
+nmap <space><space>ao<esc> <Nop>
+nmap <space><space>ae<esc> <Nop>
+nmap <space><space>au<esc> <Nop>
+nmap <space><space>ai<esc> <Nop>
+nmap <space><space>ad<esc> <Nop>
+nmap <space><space>ah<esc> <Nop>
+nmap <space><space>at<esc> <Nop>
+nmap <space><space>an<esc> <Nop>
+
+nmap <space><space>os<esc> <Nop>
+nmap <space><space>oa<esc> <Nop>
+nmap <space><space>oo<esc> <Nop>
+nmap <space><space>oe<esc> <Nop>
+nmap <space><space>ou<esc> <Nop>
+nmap <space><space>oi<esc> <Nop>
+nmap <space><space>od<esc> <Nop>
+nmap <space><space>oh<esc> <Nop>
+nmap <space><space>ot<esc> <Nop>
+nmap <space><space>on<esc> <Nop>
+
+nmap <space><space>es<esc> <Nop>
+nmap <space><space>ea<esc> <Nop>
+nmap <space><space>eo<esc> <Nop>
+nmap <space><space>ee<esc> <Nop>
+nmap <space><space>eu<esc> <Nop>
+nmap <space><space>ei<esc> <Nop>
+nmap <space><space>ed<esc> <Nop>
+nmap <space><space>eh<esc> <Nop>
+nmap <space><space>et<esc> <Nop>
+nmap <space><space>en<esc> <Nop>
+
+nmap <space><space>us<esc> <Nop>
+nmap <space><space>ua<esc> <Nop>
+nmap <space><space>uo<esc> <Nop>
+nmap <space><space>ue<esc> <Nop>
+nmap <space><space>uu<esc> <Nop>
+nmap <space><space>ui<esc> <Nop>
+nmap <space><space>ud<esc> <Nop>
+nmap <space><space>uh<esc> <Nop>
+nmap <space><space>ut<esc> <Nop>
+nmap <space><space>un<esc> <Nop>
+
+nmap <space><space>is<esc> <Nop>
+nmap <space><space>ia<esc> <Nop>
+nmap <space><space>io<esc> <Nop>
+nmap <space><space>ie<esc> <Nop>
+nmap <space><space>iu<esc> <Nop>
+nmap <space><space>ii<esc> <Nop>
+nmap <space><space>id<esc> <Nop>
+nmap <space><space>ih<esc> <Nop>
+nmap <space><space>it<esc> <Nop>
+nmap <space><space>in<esc> <Nop>
+
+nmap <space><space>ds<esc> <Nop>
+nmap <space><space>da<esc> <Nop>
+nmap <space><space>do<esc> <Nop>
+nmap <space><space>de<esc> <Nop>
+nmap <space><space>du<esc> <Nop>
+nmap <space><space>di<esc> <Nop>
+nmap <space><space>dd<esc> <Nop>
+nmap <space><space>dh<esc> <Nop>
+nmap <space><space>dt<esc> <Nop>
+nmap <space><space>dn<esc> <Nop>
+
+nmap <space><space>hs<esc> <Nop>
+nmap <space><space>ha<esc> <Nop>
+nmap <space><space>ho<esc> <Nop>
+nmap <space><space>he<esc> <Nop>
+nmap <space><space>hu<esc> <Nop>
+nmap <space><space>hi<esc> <Nop>
+nmap <space><space>hd<esc> <Nop>
+nmap <space><space>hh<esc> <Nop>
+nmap <space><space>ht<esc> <Nop>
+nmap <space><space>hn<esc> <Nop>
+
+nmap <space><space>ts<esc> <Nop>
+nmap <space><space>ta<esc> <Nop>
+nmap <space><space>to<esc> <Nop>
+nmap <space><space>te<esc> <Nop>
+nmap <space><space>tu<esc> <Nop>
+nmap <space><space>ti<esc> <Nop>
+nmap <space><space>td<esc> <Nop>
+nmap <space><space>th<esc> <Nop>
+nmap <space><space>tt<esc> <Nop>
+nmap <space><space>tn<esc> <Nop>
+
+nmap <space><space>ns<esc> <Nop>
+nmap <space><space>na<esc> <Nop>
+nmap <space><space>no<esc> <Nop>
+nmap <space><space>ne<esc> <Nop>
+nmap <space><space>nu<esc> <Nop>
+nmap <space><space>ni<esc> <Nop>
+nmap <space><space>nd<esc> <Nop>
+nmap <space><space>nh<esc> <Nop>
+nmap <space><space>nt<esc> <Nop>
+nmap <space><space>nn<esc> <Nop>
+
+nmap <space><space>ass<esc> <Nop>
+nmap <space><space>asa<esc> <Nop>
+nmap <space><space>aso<esc> <Nop>
+nmap <space><space>ase<esc> <Nop>
+nmap <space><space>asu<esc> <Nop>
+nmap <space><space>asi<esc> <Nop>
+nmap <space><space>asd<esc> <Nop>
+nmap <space><space>ash<esc> <Nop>
+nmap <space><space>ast<esc> <Nop>
+nmap <space><space>asn<esc> <Nop>
+
+nmap <space><space>aas<esc> <Nop>
+nmap <space><space>aaa<esc> <Nop>
+nmap <space><space>aao<esc> <Nop>
+nmap <space><space>aae<esc> <Nop>
+nmap <space><space>aau<esc> <Nop>
+nmap <space><space>aai<esc> <Nop>
+nmap <space><space>aad<esc> <Nop>
+nmap <space><space>aah<esc> <Nop>
+nmap <space><space>aat<esc> <Nop>
+nmap <space><space>aan<esc> <Nop>
+
+nmap <space><space>aos<esc> <Nop>
+nmap <space><space>aoa<esc> <Nop>
+nmap <space><space>aoo<esc> <Nop>
+nmap <space><space>aoe<esc> <Nop>
+nmap <space><space>aou<esc> <Nop>
+nmap <space><space>aoi<esc> <Nop>
+nmap <space><space>aod<esc> <Nop>
+nmap <space><space>aoh<esc> <Nop>
+nmap <space><space>aot<esc> <Nop>
+nmap <space><space>aon<esc> <Nop>
+
+nmap <space><space>aes<esc> <Nop>
+nmap <space><space>aea<esc> <Nop>
+nmap <space><space>aeo<esc> <Nop>
+nmap <space><space>aee<esc> <Nop>
+nmap <space><space>aeu<esc> <Nop>
+nmap <space><space>aei<esc> <Nop>
+nmap <space><space>aed<esc> <Nop>
+nmap <space><space>aeh<esc> <Nop>
+nmap <space><space>aet<esc> <Nop>
+nmap <space><space>aen<esc> <Nop>
+
+nmap <space><space>aus<esc> <Nop>
+nmap <space><space>aua<esc> <Nop>
+nmap <space><space>auo<esc> <Nop>
+nmap <space><space>aue<esc> <Nop>
+nmap <space><space>auu<esc> <Nop>
+nmap <space><space>aui<esc> <Nop>
+nmap <space><space>aud<esc> <Nop>
+nmap <space><space>auh<esc> <Nop>
+nmap <space><space>aut<esc> <Nop>
+nmap <space><space>aun<esc> <Nop>
+
+nmap <space><space>ais<esc> <Nop>
+nmap <space><space>aia<esc> <Nop>
+nmap <space><space>aio<esc> <Nop>
+nmap <space><space>aie<esc> <Nop>
+nmap <space><space>aiu<esc> <Nop>
+nmap <space><space>aii<esc> <Nop>
+nmap <space><space>aid<esc> <Nop>
+nmap <space><space>aih<esc> <Nop>
+nmap <space><space>ait<esc> <Nop>
+nmap <space><space>ain<esc> <Nop>
+
+nmap <space><space>ads<esc> <Nop>
+nmap <space><space>ada<esc> <Nop>
+nmap <space><space>ado<esc> <Nop>
+nmap <space><space>ade<esc> <Nop>
+nmap <space><space>adu<esc> <Nop>
+nmap <space><space>adi<esc> <Nop>
+nmap <space><space>add<esc> <Nop>
+nmap <space><space>adh<esc> <Nop>
+nmap <space><space>adt<esc> <Nop>
+nmap <space><space>adn<esc> <Nop>
+
+nmap <space><space>ahs<esc> <Nop>
+nmap <space><space>aha<esc> <Nop>
+nmap <space><space>aho<esc> <Nop>
+nmap <space><space>ahe<esc> <Nop>
+nmap <space><space>ahu<esc> <Nop>
+nmap <space><space>ahi<esc> <Nop>
+nmap <space><space>ahd<esc> <Nop>
+nmap <space><space>ahh<esc> <Nop>
+nmap <space><space>aht<esc> <Nop>
+nmap <space><space>ahn<esc> <Nop>
+
+nmap <space><space>ats<esc> <Nop>
+nmap <space><space>ata<esc> <Nop>
+nmap <space><space>ato<esc> <Nop>
+nmap <space><space>ate<esc> <Nop>
+nmap <space><space>atu<esc> <Nop>
+nmap <space><space>ati<esc> <Nop>
+nmap <space><space>atd<esc> <Nop>
+nmap <space><space>ath<esc> <Nop>
+nmap <space><space>att<esc> <Nop>
+nmap <space><space>atn<esc> <Nop>
+
+nmap <space><space>ans<esc> <Nop>
+nmap <space><space>ana<esc> <Nop>
+nmap <space><space>ano<esc> <Nop>
+nmap <space><space>ane<esc> <Nop>
+nmap <space><space>anu<esc> <Nop>
+nmap <space><space>ani<esc> <Nop>
+nmap <space><space>and<esc> <Nop>
+nmap <space><space>anh<esc> <Nop>
+nmap <space><space>ant<esc> <Nop>
+nmap <space><space>ann<esc> <Nop>
+
+nmap <space><space>oss<esc> <Nop>
+nmap <space><space>osa<esc> <Nop>
+nmap <space><space>oso<esc> <Nop>
+nmap <space><space>ose<esc> <Nop>
+nmap <space><space>osu<esc> <Nop>
+nmap <space><space>osi<esc> <Nop>
+nmap <space><space>osd<esc> <Nop>
+nmap <space><space>osh<esc> <Nop>
+nmap <space><space>ost<esc> <Nop>
+nmap <space><space>osn<esc> <Nop>
+
+nmap <space><space>oas<esc> <Nop>
+nmap <space><space>oaa<esc> <Nop>
+nmap <space><space>oao<esc> <Nop>
+nmap <space><space>oae<esc> <Nop>
+nmap <space><space>oau<esc> <Nop>
+nmap <space><space>oai<esc> <Nop>
+nmap <space><space>oad<esc> <Nop>
+nmap <space><space>oah<esc> <Nop>
+nmap <space><space>oat<esc> <Nop>
+nmap <space><space>oan<esc> <Nop>
+
+nmap <space><space>oos<esc> <Nop>
+nmap <space><space>ooa<esc> <Nop>
+nmap <space><space>ooo<esc> <Nop>
+nmap <space><space>ooe<esc> <Nop>
+nmap <space><space>oou<esc> <Nop>
+nmap <space><space>ooi<esc> <Nop>
+nmap <space><space>ood<esc> <Nop>
+nmap <space><space>ooh<esc> <Nop>
+nmap <space><space>oot<esc> <Nop>
+nmap <space><space>oon<esc> <Nop>
+
+nmap <space><space>oes<esc> <Nop>
+nmap <space><space>oea<esc> <Nop>
+nmap <space><space>oeo<esc> <Nop>
+nmap <space><space>oee<esc> <Nop>
+nmap <space><space>oeu<esc> <Nop>
+nmap <space><space>oei<esc> <Nop>
+nmap <space><space>oed<esc> <Nop>
+nmap <space><space>oeh<esc> <Nop>
+nmap <space><space>oet<esc> <Nop>
+nmap <space><space>oen<esc> <Nop>
+
+nmap <space><space>ous<esc> <Nop>
+nmap <space><space>oua<esc> <Nop>
+nmap <space><space>ouo<esc> <Nop>
+nmap <space><space>oue<esc> <Nop>
+nmap <space><space>ouu<esc> <Nop>
+nmap <space><space>oui<esc> <Nop>
+nmap <space><space>oud<esc> <Nop>
+nmap <space><space>ouh<esc> <Nop>
+nmap <space><space>out<esc> <Nop>
+nmap <space><space>oun<esc> <Nop>
+
+nmap <space><space>ois<esc> <Nop>
+nmap <space><space>oia<esc> <Nop>
+nmap <space><space>oio<esc> <Nop>
+nmap <space><space>oie<esc> <Nop>
+nmap <space><space>oiu<esc> <Nop>
+nmap <space><space>oii<esc> <Nop>
+nmap <space><space>oid<esc> <Nop>
+nmap <space><space>oih<esc> <Nop>
+nmap <space><space>oit<esc> <Nop>
+nmap <space><space>oin<esc> <Nop>
+
+nmap <space><space>ods<esc> <Nop>
+nmap <space><space>oda<esc> <Nop>
+nmap <space><space>odo<esc> <Nop>
+nmap <space><space>ode<esc> <Nop>
+nmap <space><space>odu<esc> <Nop>
+nmap <space><space>odi<esc> <Nop>
+nmap <space><space>odd<esc> <Nop>
+nmap <space><space>odh<esc> <Nop>
+nmap <space><space>odt<esc> <Nop>
+nmap <space><space>odn<esc> <Nop>
+
+nmap <space><space>ohs<esc> <Nop>
+nmap <space><space>oha<esc> <Nop>
+nmap <space><space>oho<esc> <Nop>
+nmap <space><space>ohe<esc> <Nop>
+nmap <space><space>ohu<esc> <Nop>
+nmap <space><space>ohi<esc> <Nop>
+nmap <space><space>ohd<esc> <Nop>
+nmap <space><space>ohh<esc> <Nop>
+nmap <space><space>oht<esc> <Nop>
+nmap <space><space>ohn<esc> <Nop>
+
+nmap <space><space>ots<esc> <Nop>
+nmap <space><space>ota<esc> <Nop>
+nmap <space><space>oto<esc> <Nop>
+nmap <space><space>ote<esc> <Nop>
+nmap <space><space>otu<esc> <Nop>
+nmap <space><space>oti<esc> <Nop>
+nmap <space><space>otd<esc> <Nop>
+nmap <space><space>oth<esc> <Nop>
+nmap <space><space>ott<esc> <Nop>
+nmap <space><space>otn<esc> <Nop>
+
+nmap <space><space>ons<esc> <Nop>
+nmap <space><space>ona<esc> <Nop>
+nmap <space><space>ono<esc> <Nop>
+nmap <space><space>one<esc> <Nop>
+nmap <space><space>onu<esc> <Nop>
+nmap <space><space>oni<esc> <Nop>
+nmap <space><space>ond<esc> <Nop>
+nmap <space><space>onh<esc> <Nop>
+nmap <space><space>ont<esc> <Nop>
+nmap <space><space>onn<esc> <Nop>
+
+xmap <space>a<esc> <Nop>
+xmap <space>o<esc> <Nop>
+xmap <space>e<esc> <Nop>
+xmap <space>u<esc> <Nop>
+xmap <space>i<esc> <Nop>
+xmap <space>d<esc> <Nop>
+xmap <space>h<esc> <Nop>
+xmap <space>t<esc> <Nop>
+xmap <space>n<esc> <Nop>
+
+xmap <space>as<esc> <Nop>
+xmap <space>aa<esc> <Nop>
+xmap <space>ao<esc> <Nop>
+xmap <space>ae<esc> <Nop>
+xmap <space>au<esc> <Nop>
+xmap <space>ai<esc> <Nop>
+xmap <space>ad<esc> <Nop>
+xmap <space>ah<esc> <Nop>
+xmap <space>at<esc> <Nop>
+xmap <space>an<esc> <Nop>
+
+xmap <space>os<esc> <Nop>
+xmap <space>oa<esc> <Nop>
+xmap <space>oo<esc> <Nop>
+xmap <space>oe<esc> <Nop>
+xmap <space>ou<esc> <Nop>
+xmap <space>oi<esc> <Nop>
+xmap <space>od<esc> <Nop>
+xmap <space>oh<esc> <Nop>
+xmap <space>ot<esc> <Nop>
+xmap <space>on<esc> <Nop>
+
+xmap <space>es<esc> <Nop>
+xmap <space>ea<esc> <Nop>
+xmap <space>eo<esc> <Nop>
+xmap <space>ee<esc> <Nop>
+xmap <space>eu<esc> <Nop>
+xmap <space>ei<esc> <Nop>
+xmap <space>ed<esc> <Nop>
+xmap <space>eh<esc> <Nop>
+xmap <space>et<esc> <Nop>
+xmap <space>en<esc> <Nop>
+
+xmap <space>us<esc> <Nop>
+xmap <space>ua<esc> <Nop>
+xmap <space>uo<esc> <Nop>
+xmap <space>ue<esc> <Nop>
+xmap <space>uu<esc> <Nop>
+xmap <space>ui<esc> <Nop>
+xmap <space>ud<esc> <Nop>
+xmap <space>uh<esc> <Nop>
+xmap <space>ut<esc> <Nop>
+xmap <space>un<esc> <Nop>
+
+xmap <space>is<esc> <Nop>
+xmap <space>ia<esc> <Nop>
+xmap <space>io<esc> <Nop>
+xmap <space>ie<esc> <Nop>
+xmap <space>iu<esc> <Nop>
+xmap <space>ii<esc> <Nop>
+xmap <space>id<esc> <Nop>
+xmap <space>ih<esc> <Nop>
+xmap <space>it<esc> <Nop>
+xmap <space>in<esc> <Nop>
+
+xmap <space>ds<esc> <Nop>
+xmap <space>da<esc> <Nop>
+xmap <space>do<esc> <Nop>
+xmap <space>de<esc> <Nop>
+xmap <space>du<esc> <Nop>
+xmap <space>di<esc> <Nop>
+xmap <space>dd<esc> <Nop>
+xmap <space>dh<esc> <Nop>
+xmap <space>dt<esc> <Nop>
+xmap <space>dn<esc> <Nop>
+
+xmap <space>hs<esc> <Nop>
+xmap <space>ha<esc> <Nop>
+xmap <space>ho<esc> <Nop>
+xmap <space>he<esc> <Nop>
+xmap <space>hu<esc> <Nop>
+xmap <space>hi<esc> <Nop>
+xmap <space>hd<esc> <Nop>
+xmap <space>hh<esc> <Nop>
+xmap <space>ht<esc> <Nop>
+xmap <space>hn<esc> <Nop>
+
+xmap <space>ts<esc> <Nop>
+xmap <space>ta<esc> <Nop>
+xmap <space>to<esc> <Nop>
+xmap <space>te<esc> <Nop>
+xmap <space>tu<esc> <Nop>
+xmap <space>ti<esc> <Nop>
+xmap <space>td<esc> <Nop>
+xmap <space>th<esc> <Nop>
+xmap <space>tt<esc> <Nop>
+xmap <space>tn<esc> <Nop>
+
+xmap <space>ns<esc> <Nop>
+xmap <space>na<esc> <Nop>
+xmap <space>no<esc> <Nop>
+xmap <space>ne<esc> <Nop>
+xmap <space>nu<esc> <Nop>
+xmap <space>ni<esc> <Nop>
+xmap <space>nd<esc> <Nop>
+xmap <space>nh<esc> <Nop>
+xmap <space>nt<esc> <Nop>
+xmap <space>nn<esc> <Nop>
+
+xmap <space>ass<esc> <Nop>
+xmap <space>asa<esc> <Nop>
+xmap <space>aso<esc> <Nop>
+xmap <space>ase<esc> <Nop>
+xmap <space>asu<esc> <Nop>
+xmap <space>asi<esc> <Nop>
+xmap <space>asd<esc> <Nop>
+xmap <space>ash<esc> <Nop>
+xmap <space>ast<esc> <Nop>
+xmap <space>asn<esc> <Nop>
+
+xmap <space>aas<esc> <Nop>
+xmap <space>aaa<esc> <Nop>
+xmap <space>aao<esc> <Nop>
+xmap <space>aae<esc> <Nop>
+xmap <space>aau<esc> <Nop>
+xmap <space>aai<esc> <Nop>
+xmap <space>aad<esc> <Nop>
+xmap <space>aah<esc> <Nop>
+xmap <space>aat<esc> <Nop>
+xmap <space>aan<esc> <Nop>
+
+xmap <space>aos<esc> <Nop>
+xmap <space>aoa<esc> <Nop>
+xmap <space>aoo<esc> <Nop>
+xmap <space>aoe<esc> <Nop>
+xmap <space>aou<esc> <Nop>
+xmap <space>aoi<esc> <Nop>
+xmap <space>aod<esc> <Nop>
+xmap <space>aoh<esc> <Nop>
+xmap <space>aot<esc> <Nop>
+xmap <space>aon<esc> <Nop>
+
+xmap <space>aes<esc> <Nop>
+xmap <space>aea<esc> <Nop>
+xmap <space>aeo<esc> <Nop>
+xmap <space>aee<esc> <Nop>
+xmap <space>aeu<esc> <Nop>
+xmap <space>aei<esc> <Nop>
+xmap <space>aed<esc> <Nop>
+xmap <space>aeh<esc> <Nop>
+xmap <space>aet<esc> <Nop>
+xmap <space>aen<esc> <Nop>
+
+xmap <space>aus<esc> <Nop>
+xmap <space>aua<esc> <Nop>
+xmap <space>auo<esc> <Nop>
+xmap <space>aue<esc> <Nop>
+xmap <space>auu<esc> <Nop>
+xmap <space>aui<esc> <Nop>
+xmap <space>aud<esc> <Nop>
+xmap <space>auh<esc> <Nop>
+xmap <space>aut<esc> <Nop>
+xmap <space>aun<esc> <Nop>
+
+xmap <space>ais<esc> <Nop>
+xmap <space>aia<esc> <Nop>
+xmap <space>aio<esc> <Nop>
+xmap <space>aie<esc> <Nop>
+xmap <space>aiu<esc> <Nop>
+xmap <space>aii<esc> <Nop>
+xmap <space>aid<esc> <Nop>
+xmap <space>aih<esc> <Nop>
+xmap <space>ait<esc> <Nop>
+xmap <space>ain<esc> <Nop>
+
+xmap <space>ads<esc> <Nop>
+xmap <space>ada<esc> <Nop>
+xmap <space>ado<esc> <Nop>
+xmap <space>ade<esc> <Nop>
+xmap <space>adu<esc> <Nop>
+xmap <space>adi<esc> <Nop>
+xmap <space>add<esc> <Nop>
+xmap <space>adh<esc> <Nop>
+xmap <space>adt<esc> <Nop>
+xmap <space>adn<esc> <Nop>
+
+xmap <space>ahs<esc> <Nop>
+xmap <space>aha<esc> <Nop>
+xmap <space>aho<esc> <Nop>
+xmap <space>ahe<esc> <Nop>
+xmap <space>ahu<esc> <Nop>
+xmap <space>ahi<esc> <Nop>
+xmap <space>ahd<esc> <Nop>
+xmap <space>ahh<esc> <Nop>
+xmap <space>aht<esc> <Nop>
+xmap <space>ahn<esc> <Nop>
+
+xmap <space>ats<esc> <Nop>
+xmap <space>ata<esc> <Nop>
+xmap <space>ato<esc> <Nop>
+xmap <space>ate<esc> <Nop>
+xmap <space>atu<esc> <Nop>
+xmap <space>ati<esc> <Nop>
+xmap <space>atd<esc> <Nop>
+xmap <space>ath<esc> <Nop>
+xmap <space>att<esc> <Nop>
+xmap <space>atn<esc> <Nop>
+
+xmap <space>ans<esc> <Nop>
+xmap <space>ana<esc> <Nop>
+xmap <space>ano<esc> <Nop>
+xmap <space>ane<esc> <Nop>
+xmap <space>anu<esc> <Nop>
+xmap <space>ani<esc> <Nop>
+xmap <space>and<esc> <Nop>
+xmap <space>anh<esc> <Nop>
+xmap <space>ant<esc> <Nop>
+xmap <space>ann<esc> <Nop>
+
+xmap <space>oss<esc> <Nop>
+xmap <space>osa<esc> <Nop>
+xmap <space>oso<esc> <Nop>
+xmap <space>ose<esc> <Nop>
+xmap <space>osu<esc> <Nop>
+xmap <space>osi<esc> <Nop>
+xmap <space>osd<esc> <Nop>
+xmap <space>osh<esc> <Nop>
+xmap <space>ost<esc> <Nop>
+xmap <space>osn<esc> <Nop>
+
+xmap <space>oas<esc> <Nop>
+xmap <space>oaa<esc> <Nop>
+xmap <space>oao<esc> <Nop>
+xmap <space>oae<esc> <Nop>
+xmap <space>oau<esc> <Nop>
+xmap <space>oai<esc> <Nop>
+xmap <space>oad<esc> <Nop>
+xmap <space>oah<esc> <Nop>
+xmap <space>oat<esc> <Nop>
+xmap <space>oan<esc> <Nop>
+
+xmap <space>oos<esc> <Nop>
+xmap <space>ooa<esc> <Nop>
+xmap <space>ooo<esc> <Nop>
+xmap <space>ooe<esc> <Nop>
+xmap <space>oou<esc> <Nop>
+xmap <space>ooi<esc> <Nop>
+xmap <space>ood<esc> <Nop>
+xmap <space>ooh<esc> <Nop>
+xmap <space>oot<esc> <Nop>
+xmap <space>oon<esc> <Nop>
+
+xmap <space>oes<esc> <Nop>
+xmap <space>oea<esc> <Nop>
+xmap <space>oeo<esc> <Nop>
+xmap <space>oee<esc> <Nop>
+xmap <space>oeu<esc> <Nop>
+xmap <space>oei<esc> <Nop>
+xmap <space>oed<esc> <Nop>
+xmap <space>oeh<esc> <Nop>
+xmap <space>oet<esc> <Nop>
+xmap <space>oen<esc> <Nop>
+
+xmap <space>ous<esc> <Nop>
+xmap <space>oua<esc> <Nop>
+xmap <space>ouo<esc> <Nop>
+xmap <space>oue<esc> <Nop>
+xmap <space>ouu<esc> <Nop>
+xmap <space>oui<esc> <Nop>
+xmap <space>oud<esc> <Nop>
+xmap <space>ouh<esc> <Nop>
+xmap <space>out<esc> <Nop>
+xmap <space>oun<esc> <Nop>
+
+xmap <space>ois<esc> <Nop>
+xmap <space>oia<esc> <Nop>
+xmap <space>oio<esc> <Nop>
+xmap <space>oie<esc> <Nop>
+xmap <space>oiu<esc> <Nop>
+xmap <space>oii<esc> <Nop>
+xmap <space>oid<esc> <Nop>
+xmap <space>oih<esc> <Nop>
+xmap <space>oit<esc> <Nop>
+xmap <space>oin<esc> <Nop>
+
+xmap <space>ods<esc> <Nop>
+xmap <space>oda<esc> <Nop>
+xmap <space>odo<esc> <Nop>
+xmap <space>ode<esc> <Nop>
+xmap <space>odu<esc> <Nop>
+xmap <space>odi<esc> <Nop>
+xmap <space>odd<esc> <Nop>
+xmap <space>odh<esc> <Nop>
+xmap <space>odt<esc> <Nop>
+xmap <space>odn<esc> <Nop>
+
+xmap <space>ohs<esc> <Nop>
+xmap <space>oha<esc> <Nop>
+xmap <space>oho<esc> <Nop>
+xmap <space>ohe<esc> <Nop>
+xmap <space>ohu<esc> <Nop>
+xmap <space>ohi<esc> <Nop>
+xmap <space>ohd<esc> <Nop>
+xmap <space>ohh<esc> <Nop>
+xmap <space>oht<esc> <Nop>
+xmap <space>ohn<esc> <Nop>
+
+xmap <space>ots<esc> <Nop>
+xmap <space>ota<esc> <Nop>
+xmap <space>oto<esc> <Nop>
+xmap <space>ote<esc> <Nop>
+xmap <space>otu<esc> <Nop>
+xmap <space>oti<esc> <Nop>
+xmap <space>otd<esc> <Nop>
+xmap <space>oth<esc> <Nop>
+xmap <space>ott<esc> <Nop>
+xmap <space>otn<esc> <Nop>
+
+xmap <space>ons<esc> <Nop>
+xmap <space>ona<esc> <Nop>
+xmap <space>ono<esc> <Nop>
+xmap <space>one<esc> <Nop>
+xmap <space>onu<esc> <Nop>
+xmap <space>oni<esc> <Nop>
+xmap <space>ond<esc> <Nop>
+xmap <space>onh<esc> <Nop>
+xmap <space>ont<esc> <Nop>
+xmap <space>onn<esc> <Nop>
+
+
+
+
+
+
+
+xmap <space><space><esc> <Nop>
+xmap <space><space>a<esc> <Nop>
+xmap <space><space>o<esc> <Nop>
+xmap <space><space>e<esc> <Nop>
+xmap <space><space>u<esc> <Nop>
+xmap <space><space>i<esc> <Nop>
+xmap <space><space>d<esc> <Nop>
+xmap <space><space>h<esc> <Nop>
+xmap <space><space>t<esc> <Nop>
+xmap <space><space>n<esc> <Nop>
+
+xmap <space><space>as<esc> <Nop>
+xmap <space><space>aa<esc> <Nop>
+xmap <space><space>ao<esc> <Nop>
+xmap <space><space>ae<esc> <Nop>
+xmap <space><space>au<esc> <Nop>
+xmap <space><space>ai<esc> <Nop>
+xmap <space><space>ad<esc> <Nop>
+xmap <space><space>ah<esc> <Nop>
+xmap <space><space>at<esc> <Nop>
+xmap <space><space>an<esc> <Nop>
+
+xmap <space><space>os<esc> <Nop>
+xmap <space><space>oa<esc> <Nop>
+xmap <space><space>oo<esc> <Nop>
+xmap <space><space>oe<esc> <Nop>
+xmap <space><space>ou<esc> <Nop>
+xmap <space><space>oi<esc> <Nop>
+xmap <space><space>od<esc> <Nop>
+xmap <space><space>oh<esc> <Nop>
+xmap <space><space>ot<esc> <Nop>
+xmap <space><space>on<esc> <Nop>
+
+xmap <space><space>es<esc> <Nop>
+xmap <space><space>ea<esc> <Nop>
+xmap <space><space>eo<esc> <Nop>
+xmap <space><space>ee<esc> <Nop>
+xmap <space><space>eu<esc> <Nop>
+xmap <space><space>ei<esc> <Nop>
+xmap <space><space>ed<esc> <Nop>
+xmap <space><space>eh<esc> <Nop>
+xmap <space><space>et<esc> <Nop>
+xmap <space><space>en<esc> <Nop>
+
+xmap <space><space>us<esc> <Nop>
+xmap <space><space>ua<esc> <Nop>
+xmap <space><space>uo<esc> <Nop>
+xmap <space><space>ue<esc> <Nop>
+xmap <space><space>uu<esc> <Nop>
+xmap <space><space>ui<esc> <Nop>
+xmap <space><space>ud<esc> <Nop>
+xmap <space><space>uh<esc> <Nop>
+xmap <space><space>ut<esc> <Nop>
+xmap <space><space>un<esc> <Nop>
+
+xmap <space><space>is<esc> <Nop>
+xmap <space><space>ia<esc> <Nop>
+xmap <space><space>io<esc> <Nop>
+xmap <space><space>ie<esc> <Nop>
+xmap <space><space>iu<esc> <Nop>
+xmap <space><space>ii<esc> <Nop>
+xmap <space><space>id<esc> <Nop>
+xmap <space><space>ih<esc> <Nop>
+xmap <space><space>it<esc> <Nop>
+xmap <space><space>in<esc> <Nop>
+
+xmap <space><space>ds<esc> <Nop>
+xmap <space><space>da<esc> <Nop>
+xmap <space><space>do<esc> <Nop>
+xmap <space><space>de<esc> <Nop>
+xmap <space><space>du<esc> <Nop>
+xmap <space><space>di<esc> <Nop>
+xmap <space><space>dd<esc> <Nop>
+xmap <space><space>dh<esc> <Nop>
+xmap <space><space>dt<esc> <Nop>
+xmap <space><space>dn<esc> <Nop>
+
+xmap <space><space>hs<esc> <Nop>
+xmap <space><space>ha<esc> <Nop>
+xmap <space><space>ho<esc> <Nop>
+xmap <space><space>he<esc> <Nop>
+xmap <space><space>hu<esc> <Nop>
+xmap <space><space>hi<esc> <Nop>
+xmap <space><space>hd<esc> <Nop>
+xmap <space><space>hh<esc> <Nop>
+xmap <space><space>ht<esc> <Nop>
+xmap <space><space>hn<esc> <Nop>
+
+xmap <space><space>ts<esc> <Nop>
+xmap <space><space>ta<esc> <Nop>
+xmap <space><space>to<esc> <Nop>
+xmap <space><space>te<esc> <Nop>
+xmap <space><space>tu<esc> <Nop>
+xmap <space><space>ti<esc> <Nop>
+xmap <space><space>td<esc> <Nop>
+xmap <space><space>th<esc> <Nop>
+xmap <space><space>tt<esc> <Nop>
+xmap <space><space>tn<esc> <Nop>
+
+xmap <space><space>ns<esc> <Nop>
+xmap <space><space>na<esc> <Nop>
+xmap <space><space>no<esc> <Nop>
+xmap <space><space>ne<esc> <Nop>
+xmap <space><space>nu<esc> <Nop>
+xmap <space><space>ni<esc> <Nop>
+xmap <space><space>nd<esc> <Nop>
+xmap <space><space>nh<esc> <Nop>
+xmap <space><space>nt<esc> <Nop>
+xmap <space><space>nn<esc> <Nop>
+
+xmap <space><space>ass<esc> <Nop>
+xmap <space><space>asa<esc> <Nop>
+xmap <space><space>aso<esc> <Nop>
+xmap <space><space>ase<esc> <Nop>
+xmap <space><space>asu<esc> <Nop>
+xmap <space><space>asi<esc> <Nop>
+xmap <space><space>asd<esc> <Nop>
+xmap <space><space>ash<esc> <Nop>
+xmap <space><space>ast<esc> <Nop>
+xmap <space><space>asn<esc> <Nop>
+
+xmap <space><space>aas<esc> <Nop>
+xmap <space><space>aaa<esc> <Nop>
+xmap <space><space>aao<esc> <Nop>
+xmap <space><space>aae<esc> <Nop>
+xmap <space><space>aau<esc> <Nop>
+xmap <space><space>aai<esc> <Nop>
+xmap <space><space>aad<esc> <Nop>
+xmap <space><space>aah<esc> <Nop>
+xmap <space><space>aat<esc> <Nop>
+xmap <space><space>aan<esc> <Nop>
+
+xmap <space><space>aos<esc> <Nop>
+xmap <space><space>aoa<esc> <Nop>
+xmap <space><space>aoo<esc> <Nop>
+xmap <space><space>aoe<esc> <Nop>
+xmap <space><space>aou<esc> <Nop>
+xmap <space><space>aoi<esc> <Nop>
+xmap <space><space>aod<esc> <Nop>
+xmap <space><space>aoh<esc> <Nop>
+xmap <space><space>aot<esc> <Nop>
+xmap <space><space>aon<esc> <Nop>
+
+xmap <space><space>aes<esc> <Nop>
+xmap <space><space>aea<esc> <Nop>
+xmap <space><space>aeo<esc> <Nop>
+xmap <space><space>aee<esc> <Nop>
+xmap <space><space>aeu<esc> <Nop>
+xmap <space><space>aei<esc> <Nop>
+xmap <space><space>aed<esc> <Nop>
+xmap <space><space>aeh<esc> <Nop>
+xmap <space><space>aet<esc> <Nop>
+xmap <space><space>aen<esc> <Nop>
+
+xmap <space><space>aus<esc> <Nop>
+xmap <space><space>aua<esc> <Nop>
+xmap <space><space>auo<esc> <Nop>
+xmap <space><space>aue<esc> <Nop>
+xmap <space><space>auu<esc> <Nop>
+xmap <space><space>aui<esc> <Nop>
+xmap <space><space>aud<esc> <Nop>
+xmap <space><space>auh<esc> <Nop>
+xmap <space><space>aut<esc> <Nop>
+xmap <space><space>aun<esc> <Nop>
+
+xmap <space><space>ais<esc> <Nop>
+xmap <space><space>aia<esc> <Nop>
+xmap <space><space>aio<esc> <Nop>
+xmap <space><space>aie<esc> <Nop>
+xmap <space><space>aiu<esc> <Nop>
+xmap <space><space>aii<esc> <Nop>
+xmap <space><space>aid<esc> <Nop>
+xmap <space><space>aih<esc> <Nop>
+xmap <space><space>ait<esc> <Nop>
+xmap <space><space>ain<esc> <Nop>
+
+xmap <space><space>ads<esc> <Nop>
+xmap <space><space>ada<esc> <Nop>
+xmap <space><space>ado<esc> <Nop>
+xmap <space><space>ade<esc> <Nop>
+xmap <space><space>adu<esc> <Nop>
+xmap <space><space>adi<esc> <Nop>
+xmap <space><space>add<esc> <Nop>
+xmap <space><space>adh<esc> <Nop>
+xmap <space><space>adt<esc> <Nop>
+xmap <space><space>adn<esc> <Nop>
+
+xmap <space><space>ahs<esc> <Nop>
+xmap <space><space>aha<esc> <Nop>
+xmap <space><space>aho<esc> <Nop>
+xmap <space><space>ahe<esc> <Nop>
+xmap <space><space>ahu<esc> <Nop>
+xmap <space><space>ahi<esc> <Nop>
+xmap <space><space>ahd<esc> <Nop>
+xmap <space><space>ahh<esc> <Nop>
+xmap <space><space>aht<esc> <Nop>
+xmap <space><space>ahn<esc> <Nop>
+
+xmap <space><space>ats<esc> <Nop>
+xmap <space><space>ata<esc> <Nop>
+xmap <space><space>ato<esc> <Nop>
+xmap <space><space>ate<esc> <Nop>
+xmap <space><space>atu<esc> <Nop>
+xmap <space><space>ati<esc> <Nop>
+xmap <space><space>atd<esc> <Nop>
+xmap <space><space>ath<esc> <Nop>
+xmap <space><space>att<esc> <Nop>
+xmap <space><space>atn<esc> <Nop>
+
+xmap <space><space>ans<esc> <Nop>
+xmap <space><space>ana<esc> <Nop>
+xmap <space><space>ano<esc> <Nop>
+xmap <space><space>ane<esc> <Nop>
+xmap <space><space>anu<esc> <Nop>
+xmap <space><space>ani<esc> <Nop>
+xmap <space><space>and<esc> <Nop>
+xmap <space><space>anh<esc> <Nop>
+xmap <space><space>ant<esc> <Nop>
+xmap <space><space>ann<esc> <Nop>
+
+xmap <space><space>oss<esc> <Nop>
+xmap <space><space>osa<esc> <Nop>
+xmap <space><space>oso<esc> <Nop>
+xmap <space><space>ose<esc> <Nop>
+xmap <space><space>osu<esc> <Nop>
+xmap <space><space>osi<esc> <Nop>
+xmap <space><space>osd<esc> <Nop>
+xmap <space><space>osh<esc> <Nop>
+xmap <space><space>ost<esc> <Nop>
+xmap <space><space>osn<esc> <Nop>
+
+xmap <space><space>oas<esc> <Nop>
+xmap <space><space>oaa<esc> <Nop>
+xmap <space><space>oao<esc> <Nop>
+xmap <space><space>oae<esc> <Nop>
+xmap <space><space>oau<esc> <Nop>
+xmap <space><space>oai<esc> <Nop>
+xmap <space><space>oad<esc> <Nop>
+xmap <space><space>oah<esc> <Nop>
+xmap <space><space>oat<esc> <Nop>
+xmap <space><space>oan<esc> <Nop>
+
+xmap <space><space>oos<esc> <Nop>
+xmap <space><space>ooa<esc> <Nop>
+xmap <space><space>ooo<esc> <Nop>
+xmap <space><space>ooe<esc> <Nop>
+xmap <space><space>oou<esc> <Nop>
+xmap <space><space>ooi<esc> <Nop>
+xmap <space><space>ood<esc> <Nop>
+xmap <space><space>ooh<esc> <Nop>
+xmap <space><space>oot<esc> <Nop>
+xmap <space><space>oon<esc> <Nop>
+
+xmap <space><space>oes<esc> <Nop>
+xmap <space><space>oea<esc> <Nop>
+xmap <space><space>oeo<esc> <Nop>
+xmap <space><space>oee<esc> <Nop>
+xmap <space><space>oeu<esc> <Nop>
+xmap <space><space>oei<esc> <Nop>
+xmap <space><space>oed<esc> <Nop>
+xmap <space><space>oeh<esc> <Nop>
+xmap <space><space>oet<esc> <Nop>
+xmap <space><space>oen<esc> <Nop>
+
+xmap <space><space>ous<esc> <Nop>
+xmap <space><space>oua<esc> <Nop>
+xmap <space><space>ouo<esc> <Nop>
+xmap <space><space>oue<esc> <Nop>
+xmap <space><space>ouu<esc> <Nop>
+xmap <space><space>oui<esc> <Nop>
+xmap <space><space>oud<esc> <Nop>
+xmap <space><space>ouh<esc> <Nop>
+xmap <space><space>out<esc> <Nop>
+xmap <space><space>oun<esc> <Nop>
+
+xmap <space><space>ois<esc> <Nop>
+xmap <space><space>oia<esc> <Nop>
+xmap <space><space>oio<esc> <Nop>
+xmap <space><space>oie<esc> <Nop>
+xmap <space><space>oiu<esc> <Nop>
+xmap <space><space>oii<esc> <Nop>
+xmap <space><space>oid<esc> <Nop>
+xmap <space><space>oih<esc> <Nop>
+xmap <space><space>oit<esc> <Nop>
+xmap <space><space>oin<esc> <Nop>
+
+xmap <space><space>ods<esc> <Nop>
+xmap <space><space>oda<esc> <Nop>
+xmap <space><space>odo<esc> <Nop>
+xmap <space><space>ode<esc> <Nop>
+xmap <space><space>odu<esc> <Nop>
+xmap <space><space>odi<esc> <Nop>
+xmap <space><space>odd<esc> <Nop>
+xmap <space><space>odh<esc> <Nop>
+xmap <space><space>odt<esc> <Nop>
+xmap <space><space>odn<esc> <Nop>
+
+xmap <space><space>ohs<esc> <Nop>
+xmap <space><space>oha<esc> <Nop>
+xmap <space><space>oho<esc> <Nop>
+xmap <space><space>ohe<esc> <Nop>
+xmap <space><space>ohu<esc> <Nop>
+xmap <space><space>ohi<esc> <Nop>
+xmap <space><space>ohd<esc> <Nop>
+xmap <space><space>ohh<esc> <Nop>
+xmap <space><space>oht<esc> <Nop>
+xmap <space><space>ohn<esc> <Nop>
+
+xmap <space><space>ots<esc> <Nop>
+xmap <space><space>ota<esc> <Nop>
+xmap <space><space>oto<esc> <Nop>
+xmap <space><space>ote<esc> <Nop>
+xmap <space><space>otu<esc> <Nop>
+xmap <space><space>oti<esc> <Nop>
+xmap <space><space>otd<esc> <Nop>
+xmap <space><space>oth<esc> <Nop>
+xmap <space><space>ott<esc> <Nop>
+xmap <space><space>otn<esc> <Nop>
+
+xmap <space><space>ons<esc> <Nop>
+xmap <space><space>ona<esc> <Nop>
+xmap <space><space>ono<esc> <Nop>
+xmap <space><space>one<esc> <Nop>
+xmap <space><space>onu<esc> <Nop>
+xmap <space><space>oni<esc> <Nop>
+xmap <space><space>ond<esc> <Nop>
+xmap <space><space>onh<esc> <Nop>
+xmap <space><space>ont<esc> <Nop>
+xmap <space><space>onn<esc> <Nop>
+
