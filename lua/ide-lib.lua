@@ -434,17 +434,22 @@ require'marks'.setup {
   }
 }
 
-G = require'nvim-gdb'
-G.setup({
+require'nvim-gdb'.setup({
   logfile = "/tmp/nvim-gdb-lua.log",
   gdb_cli_prompt = '(gdb) ',
-  gdb_exec_path = '/usr/bin/gdb',
-  gdb_options = {'./main'},
-  gdb_break_enabled_sign = '🔴',
-  gdb_break_disabled_sign = '🚫',
+  gdb_path = '/usr/bin/gdb',
+  gdb_options = {'./test2'},
+  break_enabled_sign = '🔴',
+  break_disabled_sign = '🚫',
   keymap = {
     debug = {
       break_insert = "<CR>",
+      run = "<F5>",
+      next = "<F10>",
+      step = "<F11>",
+      finish = "<leader><F11>",
+      abort = "<leader><F5>",
+      continue = "<F6>",
     },
     breakpoint = {
       open = "<CR>",

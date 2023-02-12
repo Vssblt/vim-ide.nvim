@@ -540,18 +540,16 @@ nnoremap <F6> :!Make -j `nproc`<CR>:call g:Start_Termdebug("")<CR>
   "comm! -nargs=? Dclose silent lua require('dapui').close(); require('dap').terminate(); require('dap').repl.close(); require('dap').disconnect();
 "augroup END
 
-augroup Debugger
-  autocmd!
-  autocmd FileType cpp,c nnoremap <CR> :lua require'nvim-gdb.init'.toggle_breakpoint()<CR>
-  autocmd FileType cpp,c nnoremap <F5> :lua require'nvim-gdb.init'.run()<CR>
-  autocmd FileType cpp,c nnoremap <F10> :lua require'nvim-gdb.init'.next()<CR>
-  autocmd FileType cpp,c nnoremap <F11> :lua require'nvim-gdb.init'.step()<CR>
-  autocmd FileType cpp,c nnoremap <leader><F11> :lua require'nvim-gdb.init'.finish()<CR>
-  autocmd FileType cpp,c nnoremap <leader><F5> :lua require'nvim-gdb.init'.abort()<CR>
-  autocmd FileType cpp,c nnoremap <F6> :lua require'nvim-gdb.init'.continue()<CR>
-  "autocmd FileType cpp,c nnoremap <F5> :lua require('gdb').open_terminal(nil, { gdb_args = "-quiet -iex 'set pagination off' -iex 'set mi-async on' -ex 'echo startupdone\n'",app_path = vim.g.cpp_executable_program, pos = "bottom", size = 24})<CR>
-  "lua require('gdb').setup({ project = { gdb = "/usr/bin/gdb", app = "", args = "", }, layout = { { position = "bottom", window = { "console", "gdb" }, size = 25 }, { position = "right", window = { "scope", "breakpoints", "stack" }, size = 40 } }, log = "true", log_path = "/tmp/light-gdb.log", })
-augroup END
+"augroup Debugger
+  "autocmd!
+  "autocmd FileType cpp,c nnoremap <buffer> <CR> :lua require'nvim-gdb.init'.toggle_breakpoint()<CR>
+  "autocmd FileType cpp,c nnoremap <buffer> <F5> :lua require'nvim-gdb.init'.run()<CR>
+  "autocmd FileType cpp,c nnoremap <buffer> <F10> :lua require'nvim-gdb.init'.next()<CR>
+  "autocmd FileType cpp,c nnoremap <buffer> <F11> :lua require'nvim-gdb.init'.step()<CR>
+  "autocmd FileType cpp,c nnoremap <buffer> <leader><F11> :lua require'nvim-gdb.init'.finish()<CR>
+  "autocmd FileType cpp,c nnoremap <buffer> <leader><F5> :lua require'nvim-gdb.init'.abort()<CR>
+  "autocmd FileType cpp,c nnoremap <buffer> <F6> :lua require'nvim-gdb.init'.continue()<CR>
+"augroup END
 comm! -nargs=? -bang L e ~/.local/share/nvim/site/pack/packer/start/light-gdb.nvim/lua/gdb/
 
 augroup autoHideBuf
