@@ -98,7 +98,7 @@ require('lualine').setup {
     lualine_z = {}
   },
   tabline = {
-    lualine_a = {'buffers'},
+    lualine_a = {{'buffers', max_length = vim.o.columns}},
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},
