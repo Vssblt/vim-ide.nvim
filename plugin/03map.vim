@@ -17,6 +17,10 @@ nnoremap O Ox<BS>
 
 noremap <C-d> <C-\><C-n>
 
+noremap yi<space> yiW
+noremap ci<space> ciW
+noremap di<space> diW
+
 nnoremap <C-n> jjj
 nnoremap <C-t> kkk
 nnoremap <c-h> hhh

@@ -28,6 +28,7 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set smarttab
+set smartcase
 set softtabstop=0
 set hidden
 set synmaxcol=320    " Normally, the column count will not overtake 180.
@@ -90,7 +91,7 @@ let g:ranger_map_keys = 0
 """"""""""""""""""""""""""""""
 " coc settings
 """"""""""""""""""""""""""""""
-"let g:coc_current_word_highlight_delay = 1000
+let g:coc_current_word_highlight_delay = 300
 
 """"""""""""""""""""""""""""""
 " other settings
