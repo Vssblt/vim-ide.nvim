@@ -110,10 +110,11 @@ let g:termdebug_disasm_window = 0
 let g:termdebug_new_tab = 1
 
 """"""""""""""""""""""""""""""
-" vim-indent-rainbow settings
+" Yggdroot/indentLine
 """"""""""""""""""""""""""""""
-let g:rainbow_colors_black = [236, 235] 
-call rainbow#enable()
+"let g:rainbow_colors_black = [236, 235] 
+"call rainbow#enable()
+let g:indentLine_char = '┊'
 
 
 """"""""""""""""""""""""""""""

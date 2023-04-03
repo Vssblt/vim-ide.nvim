@@ -17,7 +17,7 @@ set timeoutlen=10000
 set ttimeoutlen=10
 set updatetime=0
 set clipboard^=unnamed,unnamedplus
-set mouse=v
+set mouse=a
 set t_Co=256
 set fillchars=stl:\ 
 set backspace=indent,eol,start
@@ -32,6 +32,7 @@ set softtabstop=0
 set hidden
 set synmaxcol=320    " Normally, the column count will not overtake 180.
 set matchpairs+=
+set updatetime=300
 "set foldlevel=0
 "set foldmethod=syntax
 "set noequalalways
@@ -40,8 +41,10 @@ let g:localvimrc_ask=0
 "let g:localvimrc_persistent=2
 let g:localvimrc_sandbox=0
 
+autocmd FileType qf wincmd J
+
 set undofile
-hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
+hi MatchParen cterm=bold ctermbg=none ctermfg=magenta ctermfg=lightblue
 
 aug QFClose
   au!
@@ -87,7 +90,7 @@ let g:ranger_map_keys = 0
 """"""""""""""""""""""""""""""
 " coc settings
 """"""""""""""""""""""""""""""
-"autocmd CursorHold * silent call CocActionAsync('highlight')
+"let g:coc_current_word_highlight_delay = 1000
 
 """"""""""""""""""""""""""""""
 " other settings
@@ -206,10 +209,13 @@ let g:clockn_to_right = 1
 """"""""""""""""""""""""""""""
 " quick-scope settings
 """"""""""""""""""""""""""""""
+highlight QuickScopePrimary guifg='#afff5f' gui=NONE ctermfg=155 ctermbg=NONE cterm=NONE
+highlight QuickScopeSecondary guifg='#5fffff' gui=NONE ctermfg=81 ctermbg=NONE cterm=NONE
+
 augroup qs_colors
   autocmd!
-  autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
-  autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+  autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' ctermfg=155 ctermbg=235
+  autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' ctermfg=81 ctermbg=235
 augroup END
 let g:qs_hi_priority = 2
 let g:qs_max_chars=160
@@ -251,7 +257,7 @@ autocmd VimEnter * call LoadTreeSitterSettings()
 " aerial.nvim
 """"""""""""""""""""""""""""""
 function LoadAerialSettings()
-lua require("aerial").setup({ backends = { "treesitter", "lsp", "markdown" }, close_behavior = "auto", default_bindings = true, default_direction = "prefer_left", disable_max_lines = 10000, disable_max_size = 2000000, filter_kind = { "Class", "Constructor", "Enum", "Function", "Interface", "Module", "Method", "Struct", }, highlight_mode = "split_width", highlight_closest = true, highlight_on_hover = false, highlight_on_jump = 300, icons = {}, ignore = { unlisted_buffers = true, filetypes = {}, buftypes = "special", wintypes = "special", }, link_folds_to_tree = false, link_tree_to_folds = true, manage_folds = false, max_width = { 40, 0.2 }, width = nil, min_width = 20, nerd_font = "auto", on_attach = nil, on_first_symbols = nil, open_automatic = false, placement_editor_edge = false, post_jump_cmd = "normal! zz", close_on_select = false, show_guides = false, update_events = "TextChanged,InsertLeave", guides = { mid_item = "├─", last_item = "└─", nested_top = "│ ", whitespace = "  ", }, float = { border = "rounded", relative = "cursor", max_height = 0.9, height = nil, min_height = { 8, 0.1 }, override = function(conf) return conf end, }, lsp = { diagnostics_trigger_update = true, update_when_errors = true, update_delay = 300, }, treesitter = { update_delay = 300, }, markdown = { update_delay = 300, }, })
+lua require("aerial").setup({ backends = { "treesitter", "lsp", "markdown" }, close_behavior = "auto", default_bindings = true, default_direction = "prefer_right", disable_max_lines = 10000, disable_max_size = 2000000, filter_kind = { "Class", "Constructor", "Enum", "Function", "Interface", "Module", "Method", "Struct", }, highlight_mode = "split_width", highlight_closest = true, highlight_on_hover = false, highlight_on_jump = 300, icons = {}, ignore = { unlisted_buffers = true, filetypes = {}, buftypes = "special", wintypes = "special", }, link_folds_to_tree = false, link_tree_to_folds = true, manage_folds = false, max_width = { 40, 0.2 }, width = nil, min_width = 20, nerd_font = "auto", on_attach = nil, on_first_symbols = nil, open_automatic = false, placement_editor_edge = false, post_jump_cmd = "normal! zz", close_on_select = false, show_guides = false, update_events = "TextChanged,InsertLeave", guides = { mid_item = "├─", last_item = "└─", nested_top = "│ ", whitespace = "  ", }, float = { border = "rounded", relative = "cursor", max_height = 0.9, height = nil, min_height = { 8, 0.1 }, override = function(conf) return conf end, }, lsp = { diagnostics_trigger_update = true, update_when_errors = true, update_delay = 300, }, treesitter = { update_delay = 300, }, markdown = { update_delay = 300, }, })
 endfunction
 
 autocmd VimEnter * call LoadAerialSettings()

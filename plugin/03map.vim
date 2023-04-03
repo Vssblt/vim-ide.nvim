@@ -12,6 +12,8 @@
 """"""""""""""""""""""""""""""
 " normal
 """"""""""""""""""""""""""""""
+nnoremap o ox<BS>
+nnoremap O Ox<BS>
 
 noremap <C-d> <C-\><C-n>
 
@@ -80,8 +82,8 @@ imap <c-t> <c-k>
 smap <c-n> <c-j>
 smap <c-t> <c-k>
 
-nnoremap - -
-nnoremap + +
+"nnoremap - -
+"nnoremap + +
 
 nnoremap <silent> <leader>k :call InterestingWords('n')<cr>
 xnoremap <silent> <leader>k :call InterestingWords('v')<cr>
@@ -256,23 +258,6 @@ func TermInit()
   startinsert
 endfunc
 
-autocmd TermEnter * call TermEnter()
-func TermEnter()
-  call rainbow#disable()
-  if g:qs_enable == 1
-    call quick_scope#Toggle()
-  endif
-  startinsert
-endfunc
-
-autocmd TermLeave * call TermLeave()
-func TermLeave()
-  call rainbow#enable()
-  if g:qs_enable == 0
-    call quick_scope#Toggle()
-  endif
-endfunc
-
 autocmd BufEnter * call BufEnter()
 func BufEnter()
   let l:bufname=bufname("%")
@@ -288,12 +273,9 @@ func BufEnter()
     else
       setlocal norelativenumber
     endif
-    call rainbow#disable()
   endif
 endfunc
 
-"autocmd BufWinEnter,WinEnter term://* call rainbow#disable()
-"nmap <leader>a :Ranger<CR><C-h>:setlocal nonu<CR>:setlocal norelativenumber<CR>:call rainbow#disable()<CR>i
 nmap <leader>a :Ranger<CR>
 omap <leader>a :Ranger<CR>
 xmap <leader>a :Ranger<CR>
@@ -540,16 +522,13 @@ nnoremap <F6> :!Make -j `nproc`<CR>:call g:Start_Termdebug("")<CR>
   "comm! -nargs=? Dclose silent lua require('dapui').close(); require('dap').terminate(); require('dap').repl.close(); require('dap').disconnect();
 "augroup END
 
-"augroup Debugger
-  "autocmd!
-  "autocmd FileType cpp,c nnoremap <buffer> <CR> :lua require'nvim-gdb.init'.toggle_breakpoint()<CR>
-  "autocmd FileType cpp,c nnoremap <buffer> <F5> :lua require'nvim-gdb.init'.run()<CR>
-  "autocmd FileType cpp,c nnoremap <buffer> <F10> :lua require'nvim-gdb.init'.next()<CR>
-  "autocmd FileType cpp,c nnoremap <buffer> <F11> :lua require'nvim-gdb.init'.step()<CR>
-  "autocmd FileType cpp,c nnoremap <buffer> <leader><F11> :lua require'nvim-gdb.init'.finish()<CR>
-  "autocmd FileType cpp,c nnoremap <buffer> <leader><F5> :lua require'nvim-gdb.init'.abort()<CR>
-  "autocmd FileType cpp,c nnoremap <buffer> <F6> :lua require'nvim-gdb.init'.continue()<CR>
-"augroup END
+augroup Debugger
+  autocmd!
+  "autocmd FileType cpp,c nnoremap <buffer> <F5> :lua require'nvim-gdb'.open()<CR>
+augroup END
+"noremap <F5> :lua require'nvim-gdb'.run()<CR><ESC>:SplitGDBTerm<CR>i
+noremap <F5> :lua require'nvim-gdb'.open_layout()<CR><ESC>
+
 comm! -nargs=? -bang L e ~/.local/share/nvim/site/pack/packer/start/light-gdb.nvim/lua/gdb/
 
 augroup autoHideBuf

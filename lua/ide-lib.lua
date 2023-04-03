@@ -108,94 +108,11 @@ require('lualine').setup {
   extensions = {}
 }
 
--- dap debugger
-require('dap/dap')
-require('dap/ft-dap-cpp')
-require('dap/dap-ui')
-require('dap/dap-virtual-text')
-
--- nvim-gps
-require("nvim-gps").setup()
-
--- winbar
-require('winbar').setup(
-{
-    enabled = true,
-
-    show_file_path = true,
-    show_symbols = true,
-
-    colors = {
-        path = '',
-        file_name = '',
-        symbols = '',
-    },
-
-    icons = {
-        file_icon_default = '',
-        seperator = '>',
-        editor_state = '●',
-        lock_icon = '',
-    },
-
-    exclude_filetype = {
-        'help',
-        'startify',
-        'dashboard',
-        'packer',
-        'neogitstatus',
-        'NvimTree',
-        'Trouble',
-        'alpha',
-        'lir',
-        'Outline',
-        'spectre_panel',
-        'toggleterm',
-        'qf',
-        'dap-repl',
-        'dapui_console',
-        'dapui_stacks',
-        'dapui_scopes',
-        'dapui_breakpoints',
-        'dapui_watches',
-    }
-}
-)
-
--- bufresize.nvim
-require("bufresize").setup(
-  {
-      register = {
-          keys = {
-          },
-          trigger_events = { "WinNew", "BufWinEnter", "WinClosed" ,"WinEnter" ,"WinLeave" ,"WinScrolled" },
-      },
-      resize = {
-          keys = {},
-          trigger_events = { "VimResized" },
-          increment = 1,
-      },
-  }
-)
-
  --vgit.nvim
 require('vgit').setup({
   keymaps = {
     ['n <C-j>'] = function() require('vgit').hunk_up() end,
     ['n <C-k>'] = function() require('vgit').hunk_down() end,
-    --['n <leader>gs'] = function() require('vgit').buffer_hunk_stage() end,
-    --['n <leader>gr'] = function() require('vgit').buffer_hunk_reset() end,
-    --['n <leader>gp'] = function() require('vgit').buffer_hunk_preview() end,
-    --['n <leader>gb'] = function() require('vgit').buffer_blame_preview() end,
-    --['n <leader>gf'] = function() require('vgit').buffer_diff_preview() end,
-    --['n <leader>gh'] = function() require('vgit').buffer_history_preview() end,
-    --['n <leader>gu'] = function() require('vgit').buffer_reset() end,
-    --['n <leader>gg'] = function() require('vgit').buffer_gutter_blame_preview() end,
-    --['n <leader>glu'] = function() require('vgit').buffer_hunks_preview() end,
-    --['n <leader>gls'] = function() require('vgit').project_hunks_staged_preview() end,
-    --['n <leader>gd'] = function() require('vgit').project_diff_preview() end,
-    --['n <leader>gq'] = function() require('vgit').project_hunks_qf() end,
-    --['n <leader>gx'] = function() require('vgit').toggle_diff_preference() end,
   },
   settings = {
     git = {
@@ -254,7 +171,7 @@ require('vgit').setup({
       },
     },
     live_blame = {
-      enabled = true,
+      enabled = false,
       format = function(blame, git_config)
         local config_author = git_config['user.name']
         local author = blame.author
@@ -438,13 +355,16 @@ require'nvim-gdb'.setup({
   logfile = "/tmp/nvim-gdb-lua.log",
   gdb_cli_prompt = '(gdb) ',
   gdb_path = '/usr/bin/gdb',
-  gdb_options = {'./test2'},
+  gdb_options = {'./main'},
   break_enabled_sign = '🔴',
   break_disabled_sign = '🚫',
   keymap = {
+    terminal = {
+      exit_to_normal = "<ESC>"
+    },
     debug = {
       break_insert = "<CR>",
-      run = "<F5>",
+      run = "<NOP>",
       next = "<F10>",
       step = "<F11>",
       finish = "<leader><F11>",
@@ -458,4 +378,3 @@ require'nvim-gdb'.setup({
     },
   }
 })
-
