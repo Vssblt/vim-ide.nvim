@@ -77,7 +77,10 @@ let g:coc_global_extensions = [
 """"""""""""""""""""""""""""""
 " other settings
 """"""""""""""""""""""""""""""
+let g:sonokai_style = 'shusia'
+let g:sonokai_better_performance = 1
 execute ":colorscheme sonokai"
+
 highlight LineNr term=bold cterm=NONE ctermfg=darkgray ctermbg=NONE gui=NONE guifg=darkgray guibg=NONE
 highlight FloatermBorder ctermfg=green cterm=bold
 

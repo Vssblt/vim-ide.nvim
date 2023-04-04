@@ -34,47 +34,30 @@ set hidden
 set synmaxcol=320    " Normally, the column count will not overtake 180.
 set matchpairs+=
 set updatetime=300
-"set foldlevel=0
-"set foldmethod=syntax
-"set noequalalways
+set cursorline
+if has('termguicolors')
+  set termguicolors
+endif
 set signcolumn=yes
 let g:localvimrc_ask=0
-"let g:localvimrc_persistent=2
 let g:localvimrc_sandbox=0
-
 autocmd FileType qf wincmd J
-
 set undofile
-hi MatchParen cterm=bold ctermbg=none ctermfg=magenta ctermfg=lightblue
-
 aug QFClose
   au!
   au WinEnter * if winnr('$') == 1 && &buftype == "quickfix"|q|endif
 aug END
-
 function NoFileCheck()
   if (&buftype == 'nofile')
     setlocal nobuflisted
   endif
 endfunction
-
 au BufCreate * call NoFileCheck()
-
 let g:last_buffer = []
-
-"if !isdirectory(g:undoDirPath)
-"    call mkdir(g:undoDirPath, "p")
-"endif
-"
-"let &undodir=g:undoDirPath
-"
-"You can use [Ctrl + x] to complate the code. 
 filetype plugin indent on
 set completeopt=longest,menu
-
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
-"packadd termdebug
-"autocmd filetype cpp nnoremap <F5> :Termdebug<CR> <c-w>2j<c-w>L
+hi MatchParen cterm=bold ctermbg=none ctermfg=magenta ctermfg=lightblue guifg=#505080 guibg=#C06060
 
 """"""""""""""""""""""""""""""
 " vim-interestingwords settings
@@ -82,6 +65,8 @@ au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|
 let g:interestingWordsDefaultMappings = 0
 let g:interestingWordsRandomiseColors = 1
 let g:interestingWordsTermColors = ['154', '121', '211', '137', '214', '222', '1', '2', '3', '4', '6', '64', '99' ]
+let g:interestingWordsGUIColors = ['#f85e84', '#ef9062', '#e5c463', '#9ecd6f', '#7accd7', '#ab9df2' ]
+
 
 """"""""""""""""""""""""""""""
 " ranger settings
@@ -91,7 +76,8 @@ let g:ranger_map_keys = 0
 """"""""""""""""""""""""""""""
 " coc settings
 """"""""""""""""""""""""""""""
-let g:coc_current_word_highlight_delay = 300
+let g:coc_current_word_highlight_delay = 150
+hi CurrentWord ctermfg=None ctermbg=237 guifg=None guibg=#505050
 
 """"""""""""""""""""""""""""""
 " other settings
@@ -198,7 +184,7 @@ let g:myplugin_weirdmode = 'm'
 """"""""""""""""""""""""""""""
 " fzf.vim settings
 """"""""""""""""""""""""""""""
-let g:fzf_preview_window = ['up:80%:hidden', 'ctrl-/']
+let g:fzf_preview_window = ['right,50%,<70(up,40%)', 'ctrl-/']
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.75 } } 
 let g:clockn_enable = 1
 let g:clockn_color = '#000000'

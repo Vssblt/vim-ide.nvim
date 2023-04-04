@@ -17,9 +17,9 @@ nnoremap O Ox<BS>
 
 noremap <C-d> <C-\><C-n>
 
-noremap yi<space> yiW
-noremap ci<space> ciW
-noremap di<space> diW
+nnoremap yi<space> yiW
+nnoremap bi<space> ciW
+nnoremap di<space> diW
 
 nnoremap <C-n> jjj
 nnoremap <C-t> kkk
@@ -176,20 +176,14 @@ nmap <leader>uh <Plug>(easymotion-linebackward)
 nmap <leader>ut <Plug>(easymotion-k)
 nmap <leader>un <Plug>(easymotion-j)
 nmap <leader>us <Plug>(easymotion-lineforward)
-nmap <leader><leader>. <Plug>(easymotion-s)
-nmap <leader>. <Plug>(easymotion-sn)
 xmap <leader>uh <Plug>(easymotion-linebackward)
 xmap <leader>ut <Plug>(easymotion-k)
 xmap <leader>un <Plug>(easymotion-j)
 xmap <leader>us <Plug>(easymotion-lineforward)
-xmap <leader><leader>. <Plug>(easymotion-s)
-xmap <leader>. <Plug>(easymotion-sn)
 omap <leader>uh <Plug>(easymotion-linebackward)
 omap <leader>ut <Plug>(easymotion-k)
 omap <leader>un <Plug>(easymotion-j)
 omap <leader>us <Plug>(easymotion-lineforward)
-omap <leader><leader>. <Plug>(easymotion-s)
-omap <leader>. <Plug>(easymotion-sn)
 
 nnoremap <leader>; :AerialToggle<CR>
 nnoremap <leader>q :NvimTreeToggle<CR>
@@ -221,11 +215,6 @@ nnoremap <leader>yy :call CopyAppend()<CR>
 xnoremap <leader>yy :call CopyAppend()<CR>
 nnoremap <leader>yd :call CutAppend()<CR>
 xnoremap <leader>yd :call CutAppend()<CR>
-
-hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-
-nnoremap <Leader>C :set cursorline! cursorcolumn!<CR>
 
 nnoremap <leader>/ VHoL<Esc>``/\%V
 nnoremap <leader>* VHoL<Esc>``/\%V<C-r><C-w><CR>
@@ -448,23 +437,20 @@ let g:VM_maps["Toggle Block"]                = '\<BS>'
 let g:VM_maps["Toggle Single Region"]        = '\<CR>'
 let g:VM_maps["Toggle Multiline"]            = '\M'
 
-""" Customize pmenu colors
-hi Pmenu ctermfg=white ctermbg=black guibg=DarkGrey
-
 """"""""""""""""""""""""""""""
 " picker
 """"""""""""""""""""""""""""""
 
-nmap <leader>pe <Plug>(PickerEdit)
-nmap <leader>ps <Plug>(PickerSplit)
-nmap <leader>pt <Plug>(PickerTabedit)
-nmap <leader>pd <Plug>(PickerTabdrop)
-nmap <leader>pv <Plug>(PickerVsplit)
-nmap <leader>pb <Plug>(PickerBuffer)
-nmap <leader>p] <Plug>(PickerTag)
-nmap <leader>pw <Plug>(PickerStag)
-nmap <leader>po <Plug>(PickerBufferTag)
-nmap <leader>ph <Plug>(PickerHelp)
+nmap <leader>.e <Plug>(PickerEdit)
+nmap <leader>.s <Plug>(PickerSplit)
+nmap <leader>.t <Plug>(PickerTabedit)
+nmap <leader>.d <Plug>(PickerTabdrop)
+nmap <leader>.v <Plug>(PickerVsplit)
+nmap <leader>.b <Plug>(PickerBuffer)
+nmap <leader>.] <Plug>(PickerTag)
+nmap <leader>.w <Plug>(PickerStag)
+nmap <leader>.o <Plug>(PickerBufferTag)
+nmap <leader>.h <Plug>(PickerHelp)
 
 """"""""""""""""""""""""""""""
 " make 
