@@ -21,16 +21,16 @@ nnoremap yi<space> yiW
 nnoremap bi<space> ciW
 nnoremap di<space> diW
 
-nnoremap <C-n> jjj
-nnoremap <C-t> kkk
-nnoremap <c-h> hhh
-nnoremap <c-s> lll
+nnoremap <C-n> jjjj
+nnoremap <C-t> kkkk
+nnoremap <c-h> hhhh
+nnoremap <c-s> llll
 
 "Couldn't redraw in x mode
-xnoremap <c-h> hhh
-xnoremap <c-s> lll
-xnoremap <c-n> jjj
-xnoremap <c-t> kkk
+xnoremap <c-h> hhhh
+xnoremap <c-s> llll
+xnoremap <c-n> jjjj
+xnoremap <c-t> kkkk
 
 nnoremap h h
 nnoremap t k
@@ -269,6 +269,7 @@ func BufEnter()
   endif
 endfunc
 
+" fzf.vim
 nmap <leader>a :Ranger<CR>
 omap <leader>a :Ranger<CR>
 xmap <leader>a :Ranger<CR>
@@ -277,6 +278,8 @@ omap <leader>e :Files<CR>
 xmap <leader>e :Files<CR>
 nnoremap B :Buffer<CR>
 nnoremap M :Marks<CR>
+autocmd FileType fzf tnoremap <buffer> <C-n> <Down>
+autocmd FileType fzf tnoremap <buffer> <C-t> <Up>
 
 nmap <leader>o :GFiles<CR>
 omap <leader>o :GFiles<CR>
@@ -622,6 +625,9 @@ comm! -nargs=? -bang Gitlog lua require('vgit').project_logs_preview()
 comm! -nargs=? -bang Gitlogall lua require('vgit').project_logs_preview('--all')
 
 map <space><esc> <Nop>
+map <leader>c<esc> <Nop>
+map <leader>r<esc> <Nop>
+map <leader><esc> <Nop>
 
 """ custom
 nmap <space>a<space> 1n

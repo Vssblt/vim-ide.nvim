@@ -21,7 +21,6 @@ set mouse=a
 set t_Co=256
 set fillchars=stl:\ 
 set backspace=indent,eol,start
-set signcolumn=number
 set numberwidth=1
 set scrolloff=8
 set tabstop=2
@@ -42,6 +41,7 @@ set signcolumn=yes
 let g:localvimrc_ask=0
 let g:localvimrc_sandbox=0
 autocmd FileType qf wincmd J
+autocmd FileType fzf setlocal signcolumn=no
 set undofile
 aug QFClose
   au!
@@ -65,7 +65,7 @@ hi MatchParen cterm=bold ctermbg=none ctermfg=magenta ctermfg=lightblue guifg=#5
 let g:interestingWordsDefaultMappings = 0
 let g:interestingWordsRandomiseColors = 1
 let g:interestingWordsTermColors = ['154', '121', '211', '137', '214', '222', '1', '2', '3', '4', '6', '64', '99' ]
-let g:interestingWordsGUIColors = ['#f85e84', '#ef9062', '#e5c463', '#9ecd6f', '#7accd7', '#ab9df2' ]
+let g:interestingWordsGUIColors = ['#f85e84', '#ef9062', '#e5c463', '#7accd7', '#ab9df2' ]
 
 
 """"""""""""""""""""""""""""""
@@ -182,10 +182,8 @@ let g:myplugin_defaultdir = $HOME
 let g:myplugin_weirdmode = 'm'
 
 """"""""""""""""""""""""""""""
-" fzf.vim settings
+" clock settings
 """"""""""""""""""""""""""""""
-let g:fzf_preview_window = ['right,50%,<70(up,40%)', 'ctrl-/']
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.75 } } 
 let g:clockn_enable = 1
 let g:clockn_color = '#000000'
 let g:clockn_winblend = 100
@@ -196,16 +194,17 @@ let g:clockn_to_right = 1
 """"""""""""""""""""""""""""""
 " quick-scope settings
 """"""""""""""""""""""""""""""
-highlight QuickScopePrimary guifg='#afff5f' gui=NONE ctermfg=155 ctermbg=NONE cterm=NONE
-highlight QuickScopeSecondary guifg='#5fffff' gui=NONE ctermfg=81 ctermbg=NONE cterm=NONE
+highlight QuickScopePrimary guifg=#afff5f ctermfg=155 ctermbg=235
+highlight QuickScopeSecondary guifg=#5fffff ctermfg=81 ctermbg=235
 
 augroup qs_colors
   autocmd!
-  autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' ctermfg=155 ctermbg=235
-  autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' ctermfg=81 ctermbg=235
+  autocmd ColorScheme * highlight QuickScopePrimary guifg=#afff5f ctermfg=155 ctermbg=235
+  autocmd ColorScheme * highlight QuickScopeSecondary guifg=#5fffff ctermfg=81 ctermbg=235
 augroup END
 let g:qs_hi_priority = 2
 let g:qs_max_chars=160
+let g:qs_lazy_highlight = 1
 let g:qs_delay = 40
 
 """"""""""""""""""""""""""""""
@@ -219,38 +218,231 @@ let g:termdebug_useFloatingHover=1
 
 
 """"""""""""""""""""""""""""""
-" vim-lsp-cxx-highlight
+" vim-diff-enhanced
 """"""""""""""""""""""""""""""
-au BufEnter * call HightlightCheck()
-function HightlightCheck()
-  if (line('$') > 2000)
-    execute('LspCxxHighlightDisable')
-  else
-    execute('LspCxxHighlight')
-  endif
-endfunction
+" started In Diff-Mode set diffexpr (plugin not loaded yet)
+if &diff
+    let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
+endif
 
 """"""""""""""""""""""""""""""
-" nvim-treesitter
+" vim-template
+" Requires: sudo apt install ruby-licensee
 """"""""""""""""""""""""""""""
-function LoadTreeSitterSettings()
-  lua require("ide-lib")
-endfunction
-
-autocmd VimEnter * call LoadTreeSitterSettings()
+let g:email = "sunruiyangcp01@gmail.com"
+let g:username = "Vincent Sun"
+let g:templates_detect_git = 1
 
 
 """"""""""""""""""""""""""""""
 " aerial.nvim
 """"""""""""""""""""""""""""""
-function LoadAerialSettings()
-lua require("aerial").setup({ backends = { "treesitter", "lsp", "markdown" }, close_behavior = "auto", default_bindings = true, default_direction = "prefer_right", disable_max_lines = 10000, disable_max_size = 2000000, filter_kind = { "Class", "Constructor", "Enum", "Function", "Interface", "Module", "Method", "Struct", }, highlight_mode = "split_width", highlight_closest = true, highlight_on_hover = false, highlight_on_jump = 300, icons = {}, ignore = { unlisted_buffers = true, filetypes = {}, buftypes = "special", wintypes = "special", }, link_folds_to_tree = false, link_tree_to_folds = true, manage_folds = false, max_width = { 40, 0.2 }, width = nil, min_width = 20, nerd_font = "auto", on_attach = nil, on_first_symbols = nil, open_automatic = false, placement_editor_edge = false, post_jump_cmd = "normal! zz", close_on_select = false, show_guides = false, update_events = "TextChanged,InsertLeave", guides = { mid_item = "├─", last_item = "└─", nested_top = "│ ", whitespace = "  ", }, float = { border = "rounded", relative = "cursor", max_height = 0.9, height = nil, min_height = { 8, 0.1 }, override = function(conf) return conf end, }, lsp = { diagnostics_trigger_update = true, update_when_errors = true, update_delay = 300, }, treesitter = { update_delay = 300, }, markdown = { update_delay = 300, }, })
+hi link AerialLine QuickFixLine
+hi QuickFixLine guibg=#848089 guifg=black
+hi AerialLine guibg=#848089 guifg=black
+hi AerialLineNC guibg=#848089
+lua require("ide-lib")
+
+hi link AerialLine QuickFixLine
+hi QuickFixLine guibg=#848089 guifg=black
+hi AerialLine guibg=#848089 guifg=black
+hi AerialLineNC guibg=#848089
+
+
+""""""""""""""""""""""""""""""
+" mzlogin/vim-markdown-toc
+""""""""""""""""""""""""""""""
+autocmd FileType markdown command! TOC :GenTocGFM
+
+""""""""""""""""""""""""""""""
+" markdown-preview.nvim
+""""""""""""""""""""""""""""""
+" set to 1, nvim will open the preview window after entering the markdown buffer
+" default: 0
+let g:mkdp_auto_start = 1
+
+" set to 1, the nvim will auto close current preview window when change
+" from markdown buffer to another buffer
+" default: 1
+let g:mkdp_auto_close = 1
+
+" set to 1, the vim will refresh markdown when save the buffer or
+" leave from insert mode, default 0 is auto refresh markdown as you edit or
+" move the cursor
+" default: 0
+let g:mkdp_refresh_slow = 0
+
+" set to 1, the MarkdownPreview command can be use for all files,
+" by default it can be use in markdown file
+" default: 0
+let g:mkdp_command_for_global = 0
+
+" set to 1, preview server available to others in your network
+" by default, the server listens on localhost (127.0.0.1)
+" default: 0
+let g:mkdp_open_to_the_world = 0
+
+" use custom IP to open preview page
+" useful when you work in remote vim and preview on local browser
+" more detail see: https://github.com/iamcco/markdown-preview.nvim/pull/9
+" default empty
+let g:mkdp_open_ip = ''
+
+" specify browser to open preview page
+" for path with space
+" valid: `/path/with\ space/xxx`
+" invalid: `/path/with\\ space/xxx`
+" default: ''
+let g:mkdp_browser = ''
+
+" set to 1, echo preview page url in command line when open preview page
+" default is 0
+let g:mkdp_echo_preview_url = 0
+
+" a custom vim function name to open preview page
+" this function will receive url as param
+" default is empty
+let g:mkdp_browserfunc = ''
+
+" options for markdown render
+" mkit: markdown-it options for render
+" katex: katex options for math
+" uml: markdown-it-plantuml options
+" maid: mermaid options
+" disable_sync_scroll: if disable sync scroll, default 0
+" sync_scroll_type: 'middle', 'top' or 'relative', default value is 'middle'
+"   middle: mean the cursor position alway show at the middle of the preview page
+"   top: mean the vim top viewport alway show at the top of the preview page
+"   relative: mean the cursor position alway show at the relative positon of the preview page
+" hide_yaml_meta: if hide yaml metadata, default is 1
+" sequence_diagrams: js-sequence-diagrams options
+" content_editable: if enable content editable for preview page, default: v:false
+" disable_filename: if disable filename header for preview page, default: 0
+let g:mkdp_preview_options = {
+    \ 'mkit': {},
+    \ 'katex': {},
+    \ 'uml': {},
+    \ 'maid': {},
+    \ 'disable_sync_scroll': 0,
+    \ 'sync_scroll_type': 'middle',
+    \ 'hide_yaml_meta': 1,
+    \ 'sequence_diagrams': {},
+    \ 'flowchart_diagrams': {},
+    \ 'content_editable': v:false,
+    \ 'disable_filename': 0,
+    \ 'toc': {}
+    \ }
+
+" use a custom markdown style must be absolute path
+" like '/Users/username/markdown.css' or expand('~/markdown.css')
+let g:mkdp_markdown_css = ''
+
+" use a custom highlight style must absolute path
+" like '/Users/username/highlight.css' or expand('~/highlight.css')
+let g:mkdp_highlight_css = ''
+
+" use a custom port to start server or empty for random
+let g:mkdp_port = ''
+
+" preview page title
+" ${name} will be replace with the file name
+let g:mkdp_page_title = '「${name}」'
+
+" recognized filetypes
+" these filetypes will have MarkdownPreview... commands
+let g:mkdp_filetypes = ['markdown']
+
+" set default theme (dark or light)
+" By default the theme is define according to the preferences of the system
+let g:mkdp_theme = 'dark'
+
+
+""""""""""""""""""""""""""""""
+" coc.nvim
+""""""""""""""""""""""""""""""
+lua << EOF
+local coc_status_record = {}
+
+function coc_status_notify(msg, level)
+  local notify_opts = { title = "LSP Status", timeout = 500, hide_from_history = true, on_close = reset_coc_status_record }
+  -- if coc_status_record is not {} then add it to notify_opts to key called "replace"
+  if coc_status_record ~= {} then
+    notify_opts["replace"] = coc_status_record.id
+  end
+  coc_status_record = vim.notify(msg, level, notify_opts)
+end
+
+function reset_coc_status_record(window)
+  coc_status_record = {}
+end
+
+local coc_diag_record = {}
+
+function coc_diag_notify(msg, level)
+  local notify_opts = { title = "LSP Diagnostics", timeout = 500, on_close = reset_coc_diag_record }
+  -- if coc_diag_record is not {} then add it to notify_opts to key called "replace"
+  if coc_diag_record ~= {} then
+    notify_opts["replace"] = coc_diag_record.id
+  end
+  coc_diag_record = vim.notify(msg, level, notify_opts)
+end
+
+function reset_coc_diag_record(window)
+  coc_diag_record = {}
+end
+
+function coc_notify(msg, level)
+  local notify_opts = { title = "LSP Message", timeout = 500 }
+  vim.notify(msg, level, notify_opts)
+end
+EOF
+
+function! s:DiagnosticNotify() abort
+  let l:info = get(b:, 'coc_diagnostic_info', {})
+  if empty(l:info) | return '' | endif
+  let l:msgs = []
+  let l:level = 'info'
+   if get(l:info, 'warning', 0)
+    let l:level = 'warn'
+  endif
+  if get(l:info, 'error', 0)
+    let l:level = 'error'
+  endif
+ 
+  if get(l:info, 'error', 0)
+    call add(l:msgs, ' Errors: ' . l:info['error'])
+  endif
+  if get(l:info, 'warning', 0)
+    call add(l:msgs, ' Warnings: ' . l:info['warning'])
+  endif
+  if get(l:info, 'information', 0)
+    call add(l:msgs, ' Infos: ' . l:info['information'])
+  endif
+  if get(l:info, 'hint', 0)
+    call add(l:msgs, ' Hints: ' . l:info['hint'])
+  endif
+  let l:msg = join(l:msgs, "\n")
+  if empty(l:msg) | let l:msg = ' All OK' | endif
+  call v:lua.coc_diag_notify(l:msg, l:level)
 endfunction
 
-autocmd VimEnter * call LoadAerialSettings()
+function! s:StatusNotify() abort
+  let l:status = get(g:, 'coc_status', '')
+  let l:level = 'info'
+  if empty(l:status) | return '' | endif
+  call v:lua.coc_status_notify(l:status, l:level)
+endfunction
 
-""""""""""""""""""""""""""""""
-" vim-dap
-""""""""""""""""""""""""""""""
-comm! -nargs=? DC lua require('dapui').close(); require('dap').terminate(); require('dap').repl.close(); require('dap').disconnect();
-au FileType dap-repl lua require('dap.ext.autocompl').attach()
+function! s:InitCoc() abort
+  execute "lua vim.notify('Initialized coc.nvim for LSP support', 'info', { title = 'LSP Status' })"
+endfunction
+
+function! s:InitCoc() abort
+  runtime! autoload/ui.vim
+  execute "lua vim.notify('Initialized coc.nvim for LSP support', 'info', { title = 'LSP Status' })"
+endfunction
+
+" notifications "
+autocmd User CocNvimInit call s:InitCoc()
+autocmd User CocDiagnosticChange call s:DiagnosticNotify()
+autocmd User CocStatusChange call s:StatusNotify()
