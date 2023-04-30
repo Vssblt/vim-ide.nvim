@@ -1,3 +1,4 @@
+``` lua
 _G.__luacache_config = {
   chunks = {
     enable = true,
@@ -31,7 +32,11 @@ vim.cmd [[
 ]]
 
 return require('packer').startup(function()
-  use { 'Vssblt/vim-ide.nvim', after = { 'vim-maktaba', 'vim-glaive', 'vim-codefmt' } }
+  use { 
+    'Vssblt/vim-ide.nvim',
+    after = { 'vim-maktaba', 'vim-glaive', 'vim-codefmt' },
+    run = 'sudo apt install gem npm cpan && sudo npm -g install tree-sitter-cli neovim && sudo cpan install Neovim::Ext && sudo gem install neovim'
+  }
 
   use { 'wbthomason/packer.nvim' }
   -- For manage plugs.
@@ -436,3 +441,5 @@ return require('packer').startup(function()
   -- for enhance diff use this
   -- :EnhancedDiff histogram
 end)
+
+```
