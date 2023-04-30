@@ -210,7 +210,18 @@ let g:qs_delay = 40
 """"""""""""""""""""""""""""""
 " common settings
 """"""""""""""""""""""""""""""
-autocmd VimEnter * :highlight EndOfBuffer ctermfg=bg
+
+highlight Normal ctermfg=250 ctermbg=235 guifg=#d3d1d4 guibg=#282529
+highlight EndOfBuffer ctermfg=bg guifg=#282529 guibg=#282529
+
+augroup NrHighlight
+  autocmd!
+  autocmd WinEnter * :highlight Normal ctermfg=250 ctermbg=235 guifg=#d3d1d4 guibg=#282529
+  autocmd WinLeave * :highlight Normal ctermfg=250 ctermbg=235 guifg=#d3d1d4 guibg=#2d2a2e
+augroup END
+
+highlight CursorLine ctermbg=236 guibg=#352F35
+
 
 
 let g:fcitx5_remote='/usr/bin/fcitx5-remote'
