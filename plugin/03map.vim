@@ -290,56 +290,56 @@ xmap <leader>o :FzfLua git_files<CR>
 """"""""""""""""""""""""""""""
 " coc
 """"""""""""""""""""""""""""""
-nnoremap <space>y :<C-u>CocList -A --normal yank<cr>
-xnoremap <space>y :<C-u>CocList -A --normal yank<cr>
+"nnoremap <space>y :<C-u>CocList -A --normal yank<cr>
+"xnoremap <space>y :<C-u>CocList -A --normal yank<cr>
 
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+"function! CheckBackspace() abort
+  "let col = col('.') - 1
+  "return !col || getline('.')[col - 1]  =~# '\s'
+"endfunction
 
-inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <silent><expr> <NUL> coc#refresh()
+"inoremap <silent><expr> <c-space> coc#refresh()
+"inoremap <silent><expr> <NUL> coc#refresh()
 
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
+"inoremap <silent><expr> <TAB>
+      "\ coc#pum#visible() ? coc#pum#next(1) :
+      "\ CheckBackspace() ? "\<Tab>" :
+      "\ coc#refresh()
 
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+"inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+"inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              "\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-nnoremap <leader><Tab> :call CocAction('jumpDefinition', 'drop')<CR>
-xnoremap <leader><Tab> :call CocAction('jumpDefinition', 'drop')<CR>
+"nnoremap <leader><Tab> :call CocAction('jumpDefinition', 'drop')<CR>
+"xnoremap <leader><Tab> :call CocAction('jumpDefinition', 'drop')<CR>
 
-nnoremap <leader><CR> :call CocAction('jumpDefinition', 'split')<CR>
-xnoremap <leader><CR> :call CocAction('jumpDefinition', 'split')<CR>
-nmap <leader><space> <Plug>(coc-references)
+"nnoremap <leader><CR> :call CocAction('jumpDefinition', 'split')<CR>
+"xnoremap <leader><CR> :call CocAction('jumpDefinition', 'split')<CR>
+"nmap <leader><space> <Plug>(coc-references)
 
-nmap gn <Plug>(coc-diagnostic-next-error)
-nmap gp <Plug>(coc-diagnostic-prev-error)
-nmap gi <Plug>(coc-diagnostic-info)
-nmap g= <Plug>(coc-format-selected)
-xmap g= <Plug>(coc-format-selected)
-nmap ga= <Plug>(coc-format)
-nmap gr <Plug>(coc-rename)
-nmap gf <Plug>(coc-fix-current)
+"nmap gn <Plug>(coc-diagnostic-next-error)
+"nmap gp <Plug>(coc-diagnostic-prev-error)
+"nmap gi <Plug>(coc-diagnostic-info)
+"nmap g= <Plug>(coc-format-selected)
+"xmap g= <Plug>(coc-format-selected)
+"nmap ga= <Plug>(coc-format)
+"nmap gr <Plug>(coc-rename)
+"nmap gf <Plug>(coc-fix-current)
 
-function! s:ShowDocumentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
+"function! s:ShowDocumentation()
+  "if (index(['vim','help'], &filetype) >= 0)
+    "execute 'h '.expand('<cword>')
+  "else
+    "call CocAction('doHover')
+  "endif
+"endfunction
 
-nnoremap <silent> K :call <SID>ShowDocumentation()<CR>
-"autocmd CursorHold * silent call <SID>ShowDocumentation()
+"nnoremap <silent> K :call <SID>ShowDocumentation()<CR>
+""autocmd CursorHold * silent call <SID>ShowDocumentation()
 
-comm! -nargs=? -bang A CocCommand clangd.switchSourceHeader
-comm! -nargs=? -bang AS CocCommand clangd.switchSourceHeader split
-comm! -nargs=? -bang AV CocCommand clangd.switchSourceHeader vsplit
+"comm! -nargs=? -bang A CocCommand clangd.switchSourceHeader
+"comm! -nargs=? -bang AS CocCommand clangd.switchSourceHeader split
+"comm! -nargs=? -bang AV CocCommand clangd.switchSourceHeader vsplit
 
 """"""""""""""""""""""""""""""
 " vim-surround
@@ -585,7 +585,7 @@ augroup END
 "***********************************
 " coc-ecdict
 "***********************************
-comm! -nargs=? -bang WordDict  call CocActionAsync('doHover')
+"comm! -nargs=? -bang WordDict  call CocActionAsync('doHover')
 
 "***********************************
 " common
@@ -602,8 +602,8 @@ comm! -nargs=? -bang T Terminal
 "***********************************
 " coc-ecdict
 "***********************************
-let nvimgdb_config_override = {}
-let nvimgdb_disable_start_keymaps = 1
+"let nvimgdb_config_override = {}
+"let nvimgdb_disable_start_keymaps = 1
 
 
 "***********************************

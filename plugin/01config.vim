@@ -41,32 +41,32 @@ let g:floaterm_autoclose = 2
 " Other: highlight, yank, explorer, snippets
 " Don't supported: c#
     "\ 'coc-yank',
-let g:coc_global_extensions = [
-    \ 'coc-clangd',
-    \ 'coc-cmake',
-    \ 'coc-vimlsp',
-    \ 'coc-html',
-    \ 'coc-ecdict',
-    \ 'coc-pyright',
-    \ 'coc-css',
-    \ 'coc-java',
-    \ 'coc-phpls',
-    \ 'coc-go',
-    \ 'coc-snippets',
-    \ 'coc-marketplace',
-    \ 'coc-sh',
-    \ 'coc-word',
-    \ 'coc-yaml',
-    \ 'coc-xml',
-    \ 'coc-webpack',
-    \ 'coc-sql',
-    \ 'coc-docker',
-    \ 'coc-json',
-    \ 'coc-clang-format-style-options',
-    \ 'coc-lua',
-    \ 'coc-tsserver',
-    \ 'coc-vetur'
-  \ ]
+"let g:coc_global_extensions = [
+    "\ 'coc-clangd',
+    "\ 'coc-cmake',
+    "\ 'coc-vimlsp',
+    "\ 'coc-html',
+    "\ 'coc-ecdict',
+    "\ 'coc-pyright',
+    "\ 'coc-css',
+    "\ 'coc-java',
+    "\ 'coc-phpls',
+    "\ 'coc-go',
+    "\ 'coc-snippets',
+    "\ 'coc-marketplace',
+    "\ 'coc-sh',
+    "\ 'coc-word',
+    "\ 'coc-yaml',
+    "\ 'coc-xml',
+    "\ 'coc-webpack',
+    "\ 'coc-sql',
+    "\ 'coc-docker',
+    "\ 'coc-json',
+    "\ 'coc-clang-format-style-options',
+    "\ 'coc-lua',
+    "\ 'coc-tsserver',
+    "\ 'coc-vetur'
+  "\ ]
 
 """"""""""""""""""""""""""""""
 " other settings
