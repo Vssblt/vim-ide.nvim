@@ -88,7 +88,11 @@ return require('packer').startup(function()
 
   -- { 
   -- These plugins have poor performance!!!!
-    use { 'Yggdroot/indentLine'  }
+    use { "lukas-reineke/indent-blankline.nvim",
+      config = function()
+        require("indent_blankline").setup()
+      end
+    }
 
     use { 'unblevable/quick-scope'  }
     -- Quick move in current line.
@@ -366,9 +370,9 @@ return require('packer').startup(function()
 
   use { 'junegunn/fzf', run = 'cd ~/.fzf && ./install --all' }
 
-  use { 'junegunn/fzf.vim' }
-
-  use { 'antoinemadec/coc-fzf'  }
+  use { 'ibhagwan/fzf-lua',
+    requires = { 'nvim-tree/nvim-web-devicons' }
+  }
 
   use {
       'nvim-treesitter/nvim-treesitter',
@@ -414,6 +418,5 @@ return require('packer').startup(function()
   -- for enhance diff use this
   -- :EnhancedDiff histogram
 end)
-
 
 ```
