@@ -33,13 +33,6 @@ let g:floaterm_width = 0.9
 let g:floaterm_autoclose = 2
 
 """"""""""""""""""""""""""""""
-" vim-floaterm settings
-""""""""""""""""""""""""""""""
-"let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.75 } } 
-let g:fzf_preview_window = ['right,50%,<70(up,40%)', 'ctrl-/']
-
-""""""""""""""""""""""""""""""
 " coc plugin settings
 " 依赖 clangd
 """"""""""""""""""""""""""""""

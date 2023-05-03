@@ -273,21 +273,19 @@ endfunc
 nmap <leader>a :Ranger<CR>
 omap <leader>a :Ranger<CR>
 xmap <leader>a :Ranger<CR>
-nmap <leader>e :Files<CR>
-omap <leader>e :Files<CR>
-xmap <leader>e :Files<CR>
-nnoremap B :Buffer<CR>
-nnoremap M :Marks<CR>
+nmap <leader>e :FzfLua files<CR>
+omap <leader>e :FzfLua files<CR>
+xmap <leader>e :FzfLua files<CR>
+nnoremap B :FzfLua buffers<CR>
+nnoremap M :FzfLua marks<CR>
 autocmd FileType fzf tnoremap <buffer> <C-n> <Down>
 autocmd FileType fzf tnoremap <buffer> <C-t> <Up>
+autocmd FileType fzf IndentLinesDisable
+autocmd FileType fzf setl signcolumn=no
 
-nmap <leader>o :GFiles<CR>
-omap <leader>o :GFiles<CR>
-xmap <leader>o :GFiles<CR>
-
-nmap <leader><leader>o :GFiles?<CR>
-omap <leader><leader>o :GFiles?<CR>
-xmap <leader><leader>o :GFiles?<CR>
+nmap <leader>o :FzfLua git_files<CR>
+omap <leader>o :FzfLua git_files<CR>
+xmap <leader>o :FzfLua git_files<CR>
 
 """"""""""""""""""""""""""""""
 " coc
@@ -327,7 +325,6 @@ xmap g= <Plug>(coc-format-selected)
 nmap ga= <Plug>(coc-format)
 nmap gr <Plug>(coc-rename)
 nmap gf <Plug>(coc-fix-current)
-nmap g<space> :<C-u>CocFzfList<CR>
 
 function! s:ShowDocumentation()
   if (index(['vim','help'], &filetype) >= 0)

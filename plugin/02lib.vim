@@ -367,6 +367,7 @@ let g:mkdp_filetypes = ['markdown']
 " By default the theme is define according to the preferences of the system
 let g:mkdp_theme = 'dark'
 
+let g:vim_markdown_folding_disabled = 1
 
 """"""""""""""""""""""""""""""
 " coc.nvim
