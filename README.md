@@ -19,7 +19,7 @@ vim.g.matchparen_insert_timeout = 2
 
 -- ABOUT MATCHPAREN.VIM
 -- this plug is a part of the vim distribution.
--- It may casue serious lag!
+-- It may casue lag!
 vim.g.loaded_matchparen = 1
 
 vim.cmd [[packadd packer.nvim]]
@@ -396,34 +396,6 @@ return require('packer').startup(function()
     "Vssblt/light-gdb.nvim"
   }
 
-  --use({
-    --"kwkarlwang/bufresize.nvim",
-    --config = function()
-      --local opts = { noremap=true, silent=true }
-      --require("bufresize").setup({
-        --register = {
-          --keys = {
-            --{ "n", "<C-w><", "<C-w><", opts },
-            --{ "n", "<C-w>>", "<C-w>>", opts },
-            --{ "n", "+", "<C-w>+", opts },
-            --{ "n", "-", "<C-w>-", opts },
-            --{ "n", "<C-w>_", "<C-w>_", opts },
-            --{ "n", "<C-w>=", "<C-w>=", opts },
-            --{ "n", "<C-w>|", "<C-w>|", opts },
-            --{ "", "<LeftRelease>", "<LeftRelease>", opts },
-            --{ "i", "<LeftRelease>", "<LeftRelease><C-o>", opts },
-          --},
-          --trigger_events = { "BufWinEnter", "WinEnter" },
-        --},
-        --resize = {
-          --keys = {},
-          --trigger_events = { "VimResized" },
-          --increment = false,
-        --},
-      --})
-    --end,
-  --})
-
   use { 'nvim-lua/plenary.nvim' }
 
   use {
@@ -431,7 +403,8 @@ return require('packer').startup(function()
     requires = 'nvim-lua/plenary.nvim'
   }
 
-  use { 'Vssblt/nvim-gdb.lua' }
+  use { 'Vssblt/nvim-gdb.lua', requires = { 'stevearc/stickybuf.nvim', 'rcarriga/nvim-notify' } }
+  use { 'stevearc/stickybuf.nvim', config = function() require('stickybuf').setup() end }
   ---- for debug cpp project.
 
   use { 'tikhomirov/vim-glsl' }
@@ -441,5 +414,6 @@ return require('packer').startup(function()
   -- for enhance diff use this
   -- :EnhancedDiff histogram
 end)
+
 
 ```
