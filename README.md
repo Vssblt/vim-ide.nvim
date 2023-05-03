@@ -88,20 +88,28 @@ return require('packer').startup(function()
 
   -- { 
   -- These plugins have poor performance!!!!
-    use { 'Yggdroot/indentLine'  }
+    use { "lukas-reineke/indent-blankline.nvim",
+      config = function()
+        require("indent_blankline").setup()
+      end
+    }
 
     use { 'unblevable/quick-scope'  }
     -- Quick move in current line.
-
-    use {
-      "IngoMeyer441/coc_current_word"
-    }
 
     use { 'bfrg/vim-cpp-modern' }
   -- }
 
   use { 'rcarriga/nvim-notify' }
   --------------------------------------------------------------------------
+
+  use { 'hrsh7th/nvim-cmp' }
+  use { 'hrsh7th/cmp-buffer' }
+  use { 'hrsh7th/cmp-path' }
+  use { 'hrsh7th/cmp-cmdline' }
+  use { 'hrsh7th/cmp-nvim-lsp' }
+  use { 'f3fora/cmp-spell' }
+  use { 'neovim/nvim-lspconfig' }
 
   use { 'chentoast/marks.nvim' }
   -- Show signature in the left mark column.
@@ -304,23 +312,6 @@ return require('packer').startup(function()
   -- <leader>o
   -- open a file in new tab.
 
-  use { 'neoclide/coc.nvim', branch = 'release', run = 'yarn install' }
-  -- :CocInstall
-  -- install coc plugin
-  --
-  -- :CocConfig
-  -- config coc plugin
-  --
-  -- :CocCommand
-  -- run coc command
-  --
-  -- :CocDisable/CocEnable
-  -- disable or enable coc plugin
-  --
-  -- :CocUpdate
-  -- update coc plugin
-  --
-
   use { 'Vssblt/vim-translator'  }
   --:Translate/TranslateX/TranslateW/TranslateH/TranslateL/TranslateR
 
@@ -366,9 +357,9 @@ return require('packer').startup(function()
 
   use { 'junegunn/fzf', run = 'cd ~/.fzf && ./install --all' }
 
-  use { 'junegunn/fzf.vim' }
-
-  use { 'antoinemadec/coc-fzf'  }
+  use { 'ibhagwan/fzf-lua',
+    requires = { 'nvim-tree/nvim-web-devicons' }
+  }
 
   use {
       'nvim-treesitter/nvim-treesitter',
@@ -414,6 +405,5 @@ return require('packer').startup(function()
   -- for enhance diff use this
   -- :EnhancedDiff histogram
 end)
-
 
 ```
