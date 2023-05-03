@@ -212,11 +212,11 @@ let g:qs_delay = 40
 """"""""""""""""""""""""""""""
 
 highlight Normal ctermfg=250 ctermbg=235 guifg=#d3d1d4 guibg=#282529
-highlight EndOfBuffer ctermfg=bg guifg=#282529 guibg=#282529
+highlight EndOfBuffer ctermfg=bg guifg=#2d2a2e guibg=#2d2a2e
 
 augroup NrHighlight
   autocmd!
-  autocmd WinEnter * :highlight Normal ctermfg=250 ctermbg=235 guifg=#d3d1d4 guibg=#282529
+  autocmd WinEnter * :highlight Normal ctermfg=250 ctermbg=235 guifg=#d3d1d4 guibg=#252226
   autocmd WinLeave * :highlight Normal ctermfg=250 ctermbg=235 guifg=#d3d1d4 guibg=#2d2a2e
 augroup END
 
