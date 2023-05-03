@@ -280,7 +280,7 @@ nnoremap B :FzfLua buffers<CR>
 nnoremap M :FzfLua marks<CR>
 autocmd FileType fzf tnoremap <buffer> <C-n> <Down>
 autocmd FileType fzf tnoremap <buffer> <C-t> <Up>
-autocmd FileType fzf IndentLinesDisable
+autocmd FileType fzf IndentBlanklineDisable
 autocmd FileType fzf setl signcolumn=no
 
 nmap <leader>o :FzfLua git_files<CR>

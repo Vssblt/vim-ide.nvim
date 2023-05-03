@@ -111,7 +111,8 @@ let g:termdebug_new_tab = 1
 """"""""""""""""""""""""""""""
 "let g:rainbow_colors_black = [236, 235] 
 "call rainbow#enable()
-let g:indentLine_char = '┊'
+"let g:indentLine_char = '┊'
+let g:indent_blankline_char = '┊'
 
 
 """"""""""""""""""""""""""""""
