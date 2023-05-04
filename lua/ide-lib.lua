@@ -468,37 +468,33 @@ require("aerial").setup({
 local cmp = require'cmp'
 
 cmp.setup({
-  --snippet = {
-    ---- REQUIRED - you must specify a snippet engine
-    --expand = function(args)
-      --vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-      ---- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-      ---- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-      ---- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-    --end,
-  --},
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
   window = {
     completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
-    --['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    --['<C-f>'] = cmp.mapping.scroll_docs(4),
-    --['<C-Space>'] = cmp.mapping.complete(),
-    --['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ['<C-Space>'] = cmp.mapping.complete(),
+    --['<ESC>'] = cmp.mapping.abort(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
     ['<Tab>'] = function(fallback)
       if not cmp.select_next_item() then
-        if vim.bo.buftype ~= 'prompt' and has_words_before() then
+        if vim.bo.buftype ~= 'prompt' then
           cmp.complete()
         else
           fallback()
         end
       end
     end,
+    ['<C-n>'] = cmp.config.disable,
+    ['<C-t>'] = cmp.config.disable,
     ['<S-Tab>'] = function(fallback)
       if not cmp.select_prev_item() then
-        if vim.bo.buftype ~= 'prompt' and has_words_before() then
+        if vim.bo.buftype ~= 'prompt' then
           cmp.complete()
         else
           fallback()
@@ -508,10 +504,7 @@ cmp.setup({
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    -- { name = 'vsnip' }, -- For vsnip users.
-    -- { name = 'luasnip' }, -- For luasnip users.
-    -- { name = 'ultisnips' }, -- For ultisnips users.
-    -- { name = 'snippy' }, -- For snippy users.
+     { name = 'luasnip' }, -- For luasnip users.
   }, {
     { name = 'buffer' },
   })
@@ -520,7 +513,8 @@ cmp.setup({
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
   sources = cmp.config.sources({
-    { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+    -- You can specify the `cmp_git` source if you were installed it.
+    { name = 'cmp_git' },
   }, {
     { name = 'buffer' },
   })
@@ -549,3 +543,33 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 require('lspconfig')['clangd'].setup {
   capabilities = capabilities
 }
+
+-- Global mappings.
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+vim.keymap.set('n', 'gi', vim.diagnostic.open_float)
+vim.keymap.set('n', 'gt', vim.diagnostic.goto_prev)
+vim.keymap.set('n', 'gn', vim.diagnostic.goto_next)
+vim.keymap.set('n', 'gl', vim.diagnostic.setloclist)
+
+-- Use LspAttach autocommand to only map the following keys
+-- after the language server attaches to the current buffer
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+    -- Buffer local mappings.
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    local opts = { buffer = ev.buf }
+    vim.keymap.set('n', '<leader><TAB>', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', '<leader><CR>', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'gh', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', 'gk', vim.lsp.buf.signature_help, opts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.rename, opts)
+    vim.keymap.set({ 'n', 'v' }, 'gf', vim.lsp.buf.code_action, opts)
+    vim.keymap.set('n', 'g<space>', vim.lsp.buf.references, opts)
+    vim.keymap.set({'n', 'x'}, 'g=', function()
+      vim.lsp.buf.format { async = true }
+    end, opts)
+  end,
+})

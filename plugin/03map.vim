@@ -118,8 +118,8 @@ xnoremap b c
 xnoremap r :bnext<CR>
 nmap r :bn<CR>
 nmap c :bp<CR>
-nmap R gt
-nmap C gT
+nnoremap R gt
+nnoremap C gT
 nmap <leader>b :set buflisted<CR>c:sp<CR>r:bd<cr>
 nmap <leader>B :bufdo bd<CR>
 
@@ -141,36 +141,6 @@ nnoremap d<leader>d d^
 
 nnoremap <tab><tab> <Esc>/\(\(\[TODO\:\)\\|\(<+\)\).*\(\(\]\)\\|\(+>\)\)<CR>:nohlsearch<CR>"_cgn
 nnoremap <tab><tab> <Esc>/<++><CR>:nohlsearch<CR>"_cgn
-
-" toggle
-nnoremap <tab>t za  
-
-" create
-nnoremap <tab>c zf  
-
-" delete
-nnoremap <tab>d zd
-
-" next
-nnoremap <tab>k zj
-
-" prev
-nnoremap <tab>j zk
-
-" toggle
-xnoremap <tab>t za  
-
-" create
-xnoremap <tab>c zf  
-
-" delete
-xnoremap <tab>d zd
-
-" next
-xnoremap <tab>k zj
-
-" prev
-xnoremap <tab>j zk
 
 nmap <leader>uh <Plug>(easymotion-linebackward)
 nmap <leader>ut <Plug>(easymotion-k)
@@ -288,58 +258,18 @@ omap <leader>o :FzfLua git_files<CR>
 xmap <leader>o :FzfLua git_files<CR>
 
 """"""""""""""""""""""""""""""
-" coc
+" nvim-cmp and nvim-lspconfig
 """"""""""""""""""""""""""""""
-"nnoremap <space>y :<C-u>CocList -A --normal yank<cr>
-"xnoremap <space>y :<C-u>CocList -A --normal yank<cr>
 
-"function! CheckBackspace() abort
-  "let col = col('.') - 1
-  "return !col || getline('.')[col - 1]  =~# '\s'
-"endfunction
+" press <Tab> to expand or jump in a snippet. These can also be mapped separately
+" via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
+imap <silent><expr> <C-n> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
+inoremap <silent> <C-t> <cmd>lua require'luasnip'.jump(-1)<Cr>
 
-"inoremap <silent><expr> <c-space> coc#refresh()
-"inoremap <silent><expr> <NUL> coc#refresh()
+snoremap <silent> <C-n> <cmd>lua require('luasnip').jump(1)<Cr>
+snoremap <silent> <C-t> <cmd>lua require('luasnip').jump(-1)<Cr>
 
-"inoremap <silent><expr> <TAB>
-      "\ coc#pum#visible() ? coc#pum#next(1) :
-      "\ CheckBackspace() ? "\<Tab>" :
-      "\ coc#refresh()
-
-"inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-"inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              "\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-"nnoremap <leader><Tab> :call CocAction('jumpDefinition', 'drop')<CR>
-"xnoremap <leader><Tab> :call CocAction('jumpDefinition', 'drop')<CR>
-
-"nnoremap <leader><CR> :call CocAction('jumpDefinition', 'split')<CR>
-"xnoremap <leader><CR> :call CocAction('jumpDefinition', 'split')<CR>
-"nmap <leader><space> <Plug>(coc-references)
-
-"nmap gn <Plug>(coc-diagnostic-next-error)
-"nmap gp <Plug>(coc-diagnostic-prev-error)
-"nmap gi <Plug>(coc-diagnostic-info)
-"nmap g= <Plug>(coc-format-selected)
-"xmap g= <Plug>(coc-format-selected)
-"nmap ga= <Plug>(coc-format)
-"nmap gr <Plug>(coc-rename)
-"nmap gf <Plug>(coc-fix-current)
-
-"function! s:ShowDocumentation()
-  "if (index(['vim','help'], &filetype) >= 0)
-    "execute 'h '.expand('<cword>')
-  "else
-    "call CocAction('doHover')
-  "endif
-"endfunction
-
-"nnoremap <silent> K :call <SID>ShowDocumentation()<CR>
-""autocmd CursorHold * silent call <SID>ShowDocumentation()
-
-"comm! -nargs=? -bang A CocCommand clangd.switchSourceHeader
-"comm! -nargs=? -bang AS CocCommand clangd.switchSourceHeader split
-"comm! -nargs=? -bang AV CocCommand clangd.switchSourceHeader vsplit
+comm! -nargs=? -bang A ClangdSwitchSourceHeader
 
 """"""""""""""""""""""""""""""
 " vim-surround
