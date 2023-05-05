@@ -67,17 +67,10 @@ let g:interestingWordsRandomiseColors = 1
 let g:interestingWordsTermColors = ['154', '121', '211', '137', '214', '222', '1', '2', '3', '4', '6', '64', '99' ]
 let g:interestingWordsGUIColors = ['#f85e84', '#ef9062', '#e5c463', '#7accd7', '#ab9df2' ]
 
-
 """"""""""""""""""""""""""""""
 " ranger settings
 """"""""""""""""""""""""""""""
 let g:ranger_map_keys = 0
-
-""""""""""""""""""""""""""""""
-" coc settings
-""""""""""""""""""""""""""""""
-"let g:coc_current_word_highlight_delay = 150
-"hi CurrentWord ctermfg=None ctermbg=237 guifg=None guibg=#505050
 
 """"""""""""""""""""""""""""""
 " other settings
@@ -139,13 +132,6 @@ command! -nargs=0 FLast FloatermLast
 command! -nargs=0 FPrev FloatermPrev
 command! -nargs=0 FShow FloatermShow
 
-if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-"  set signcolumn=number
-else
-"  set signcolumn=yes
-endif
-
 """"""""""""""""""""""""""""""
 " vim-surround
 """"""""""""""""""""""""""""""
@@ -157,7 +143,6 @@ let g:surround_no_mappings = 1
 let g:dispatch_quickfix_height=20
 let g:dispatch_tmux_height=20
 
-
 """"""""""""""""""""""""""""""
 " LookupFile
 """"""""""""""""""""""""""""""
@@ -165,7 +150,6 @@ let g:LookupFile_MinPatLength = 2
 let g:LookupFile_PreservePatternHistory = 1
 let g:LookupFile_AlwaysAcceptFirst = 1
 let g:LookupFile_PreserveLastPattern = 0
-
 
 """"""""""""""""""""""""""""""
 " orther
@@ -222,11 +206,8 @@ augroup END
 
 highlight CursorLine ctermbg=236 guibg=#352F35
 
-
-
 let g:fcitx5_remote='/usr/bin/fcitx5-remote'
 let g:termdebug_useFloatingHover=1
-
 
 """"""""""""""""""""""""""""""
 " vim-diff-enhanced
@@ -244,7 +225,6 @@ let g:email = "sunruiyangcp01@gmail.com"
 let g:username = "Vincent Sun"
 let g:templates_detect_git = 1
 
-
 """"""""""""""""""""""""""""""
 " aerial.nvim
 """"""""""""""""""""""""""""""
@@ -258,7 +238,6 @@ hi link AerialLine QuickFixLine
 hi QuickFixLine guibg=#848089 guifg=black
 hi AerialLine guibg=#848089 guifg=black
 hi AerialLineNC guibg=#848089
-
 
 """"""""""""""""""""""""""""""
 " mzlogin/vim-markdown-toc

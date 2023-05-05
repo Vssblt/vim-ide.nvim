@@ -33,42 +33,6 @@ let g:floaterm_width = 0.9
 let g:floaterm_autoclose = 2
 
 """"""""""""""""""""""""""""""
-" coc plugin settings
-" 依赖 clangd
-""""""""""""""""""""""""""""""
-
-" Support languages: java javascript cpp/c html css vim markdown python cmake qmake go php
-" Other: highlight, yank, explorer, snippets
-" Don't supported: c#
-    "\ 'coc-yank',
-"let g:coc_global_extensions = [
-    "\ 'coc-clangd',
-    "\ 'coc-cmake',
-    "\ 'coc-vimlsp',
-    "\ 'coc-html',
-    "\ 'coc-ecdict',
-    "\ 'coc-pyright',
-    "\ 'coc-css',
-    "\ 'coc-java',
-    "\ 'coc-phpls',
-    "\ 'coc-go',
-    "\ 'coc-snippets',
-    "\ 'coc-marketplace',
-    "\ 'coc-sh',
-    "\ 'coc-word',
-    "\ 'coc-yaml',
-    "\ 'coc-xml',
-    "\ 'coc-webpack',
-    "\ 'coc-sql',
-    "\ 'coc-docker',
-    "\ 'coc-json',
-    "\ 'coc-clang-format-style-options',
-    "\ 'coc-lua',
-    "\ 'coc-tsserver',
-    "\ 'coc-vetur'
-  "\ ]
-
-""""""""""""""""""""""""""""""
 " other settings
 """"""""""""""""""""""""""""""
 let g:sonokai_style = 'shusia'
@@ -97,7 +61,6 @@ augroup autoformat_settings
   autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
   autocmd FileType java AutoFormatBuffer google-java-format
   autocmd FileType python AutoFormatBuffer yapf
-  " Alternative: autocmd FileType python AutoFormatBuffer autopep8
   autocmd FileType rust AutoFormatBuffer rustfmt
   autocmd FileType vue AutoFormatBuffer prettier
 augroup END
@@ -106,14 +69,10 @@ let g:termdebug_wide = 160
 let g:termdebug_disasm_window = 0
 let g:termdebug_new_tab = 1
 
-""""""""""""""""""""""""""""""
-" Yggdroot/indentLine
-""""""""""""""""""""""""""""""
-"let g:rainbow_colors_black = [236, 235] 
-"call rainbow#enable()
-"let g:indentLine_char = '┊'
+""""""""""""""""""""""""""""""""""""""""""
+" lukas-reineke/indent-blankline.nvim
+""""""""""""""""""""""""""""""""""""""""""
 let g:indent_blankline_char = '┊'
-
 
 """"""""""""""""""""""""""""""
 " vim-doge
@@ -123,13 +82,6 @@ let g:doge_mapping='gc'
 let g:doge_mapping_comment_jump_forward='<c-n>'
 let g:doge_mapping_comment_jump_backward='<c-t>'
 let g:doge_doc_standard_cpp='doxygen_javadoc'
-
-""""""""""""""""""""""""""""""
-" dap
-""""""""""""""""""""""""""""""
-let g:dap_cpp_adapter='cppdbg'
-"let g:dap_cpp_adapter='lldb'
-
 
 """"""""""""""""""""""""""""""
 " leetcode.vim

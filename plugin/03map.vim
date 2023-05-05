@@ -157,7 +157,6 @@ omap <leader>us <Plug>(easymotion-lineforward)
 
 nnoremap <leader>; :AerialToggle<CR>
 nnoremap <leader>q :NvimTreeToggle<CR>
-":lua require("dapui").open({reset=true})<CR>
 nnoremap <leader>j :GundoToggle<CR>
 
 nmap . <Plug>(choosewin)
@@ -260,9 +259,6 @@ xmap <leader>o :lua require('fzf-lua').git_files({winopts = { preview = { layout
 """"""""""""""""""""""""""""""
 " nvim-cmp and nvim-lspconfig
 """"""""""""""""""""""""""""""
-
-" press <Tab> to expand or jump in a snippet. These can also be mapped separately
-" via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
 imap <silent><expr> <C-n> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
 inoremap <silent> <C-t> <cmd>lua require'luasnip'.jump(-1)<Cr>
 
@@ -431,22 +427,6 @@ nnoremap <F6> :!Make -j `nproc`<CR>:call g:Start_Termdebug("")<CR>
 "***********************************
 " debugger
 "***********************************
-"augroup Debugger
-  "autocmd!
-  "autocmd FileType c,cpp,javascript,python,java,go,php nnoremap gs :lua require("dapui").float_element('scope', {enter: true})<CR>
-  "autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <F5> :lua require'dap'.continue({reset=true})<CR>
-  "autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <CR> :lua require'dap'.toggle_breakpoint()<CR>
-  "autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <F10> :lua require'dap'.step_over()<CR>
-  "autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <F11> :lua require'dap'.step_into()<CR>
-  "autocmd FileType c,cpp,javascript,python,java,go,php nnoremap <F9> :lua require'dap'.step_out()<CR>
-  "comm! -nargs=? Dclose silent lua require('dapui').close(); require('dap').terminate(); require('dap').repl.close(); require('dap').disconnect();
-"augroup END
-
-augroup Debugger
-  autocmd!
-  "autocmd FileType cpp,c nnoremap <buffer> <F5> :lua require'nvim-gdb'.open()<CR>
-augroup END
-"noremap <F5> :lua require'nvim-gdb'.run()<CR><ESC>:SplitGDBTerm<CR>i
 noremap <F5> :lua require'nvim-gdb'.open_layout()<CR><ESC>
 
 comm! -nargs=? -bang L e ~/.local/share/nvim/site/pack/packer/start/light-gdb.nvim/lua/gdb/
@@ -505,36 +485,15 @@ augroup LtWinVar
   autocmd FileType ltdesc map <silent><buffer> c c
 augroup END
 
-
-"augroup ResetDapUi
-"  autocmd!
-"  autocmd VimResized * lua require('dapui').open({reset=true})
-"  autocmd VimResized * lua require('dapui').open({reset=true})
-"augroup END
-
-"***********************************
-" coc-ecdict
-"***********************************
-"comm! -nargs=? -bang WordDict  call CocActionAsync('doHover')
-
 "***********************************
 " common
 "***********************************
-
 function NewtabTerminal()
   tabnew
   execute("terminal")
 endfunction
 comm! -nargs=? -bang Terminal call NewtabTerminal()
 comm! -nargs=? -bang T Terminal
-"au TermClose * :q
-
-"***********************************
-" coc-ecdict
-"***********************************
-"let nvimgdb_config_override = {}
-"let nvimgdb_disable_start_keymaps = 1
-
 
 "***********************************
 " vgit.nvim
