@@ -35,7 +35,7 @@ return require('packer').startup(function()
   use { 
     'Vssblt/vim-ide.nvim',
     after = { 'vim-maktaba', 'vim-glaive', 'vim-codefmt' },
-    run = 'sudo apt install gem npm cpan && sudo npm -g install tree-sitter-cli neovim && sudo cpan install Neovim::Ext App::cpanminus && sudo gem install neovim'
+    run = 'sudo apt install gem npm perl && sudo npm -g install tree-sitter-cli neovim && sudo cpan install Neovim::Ext App::cpanminus && sudo gem install neovim'
   }
 
   use { 'wbthomason/packer.nvim' }
