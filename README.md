@@ -101,6 +101,8 @@ return require('packer').startup(function()
   -- }
 
   use { 'rcarriga/nvim-notify' }
+  
+  use { 'dstein64/vim-startuptime' }
   --------------------------------------------------------------------------
 
   use { 'hrsh7th/nvim-cmp' }
@@ -110,6 +112,11 @@ return require('packer').startup(function()
   use { 'hrsh7th/cmp-nvim-lsp' }
   use { 'f3fora/cmp-spell' }
   use { 'neovim/nvim-lspconfig' }
+  use({
+	  "L3MON4D3/LuaSnip",
+	  run = "make install_jsregexp"
+  })
+  use { 'onsails/lspkind.nvim' }
 
   use { 'chentoast/marks.nvim' }
   -- Show signature in the left mark column.
@@ -405,5 +412,4 @@ return require('packer').startup(function()
   -- for enhance diff use this
   -- :EnhancedDiff histogram
 end)
-
 ```
