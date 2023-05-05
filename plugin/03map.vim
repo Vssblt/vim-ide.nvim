@@ -243,19 +243,19 @@ endfunc
 nmap <leader>a :Ranger<CR>
 omap <leader>a :Ranger<CR>
 xmap <leader>a :Ranger<CR>
-nmap <leader>e :FzfLua files<CR>
-omap <leader>e :FzfLua files<CR>
-xmap <leader>e :FzfLua files<CR>
-nnoremap B :FzfLua buffers<CR>
-nnoremap M :FzfLua marks<CR>
+nmap <leader>e :lua require('fzf-lua').files({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
+omap <leader>e :lua require('fzf-lua').files({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
+xmap <leader>e :lua require('fzf-lua').files({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
+nnoremap B :lua require('fzf-lua').buffers({winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
+nnoremap M :lua require('fzf-lua').marks({winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
 autocmd FileType fzf tnoremap <buffer> <C-n> <Down>
 autocmd FileType fzf tnoremap <buffer> <C-t> <Up>
 autocmd FileType fzf IndentBlanklineDisable
 autocmd FileType fzf setl signcolumn=no
 
-nmap <leader>o :FzfLua git_files<CR>
-omap <leader>o :FzfLua git_files<CR>
-xmap <leader>o :FzfLua git_files<CR>
+nmap <leader>o :lua require('fzf-lua').git_files({winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
+omap <leader>o :lua require('fzf-lua').git_files({winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
+xmap <leader>o :lua require('fzf-lua').git_files({winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
 
 """"""""""""""""""""""""""""""
 " nvim-cmp and nvim-lspconfig
