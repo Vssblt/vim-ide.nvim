@@ -616,6 +616,13 @@ require'lspconfig'.ltex.setup{
   capabilities = capabilities,
 }
 
+require'lspconfig'.cmake.setup{
+  capabilities = capabilities,
+}
+
+require'lspconfig'.rust_analyzer.setup{
+  capabilities = capabilities,
+}
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions

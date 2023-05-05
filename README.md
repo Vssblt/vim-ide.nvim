@@ -35,7 +35,7 @@ return require('packer').startup(function()
   use { 
     'Vssblt/vim-ide.nvim',
     after = { 'vim-maktaba', 'vim-glaive', 'vim-codefmt' },
-    run = 'sudo apt install gem npm perl && sudo npm -g install tree-sitter-cli neovim vim-language-server vscode-langservers-extracted stylelint-lsp typescript typescript-language-server && sudo cpan install Neovim::Ext App::cpanminus && sudo gem install neovim && pip install python-lsp-server'
+    run = 'sudo apt install gem npm perl cargo && sudo npm -g install tree-sitter-cli neovim vim-language-server vscode-langservers-extracted stylelint-lsp typescript typescript-language-server && sudo cpan install Neovim::Ext App::cpanminus && sudo gem install neovim && sudo pip install python-lsp-server cmake-language-server'
   }
 
   use { 'wbthomason/packer.nvim' }
@@ -116,8 +116,12 @@ return require('packer').startup(function()
 	  "L3MON4D3/LuaSnip",
 	  run = "make install_jsregexp"
   })
+  -- completion menu style
   use { 'onsails/lspkind.nvim' }
+  -- lua lsp
   use { 'luals/lua-language-server', run = "sudo apt install ninja-build && ./make.sh && sudo ln -s `pwd`/bin/lua-language-server /usr/bin/lua-language-server" }
+  -- rust lsp
+  use { 'rust-lang/rust-analyzer', run = "cargo xtask install --server" }
 
   use { 'chentoast/marks.nvim' }
   -- Show signature in the left mark column.
