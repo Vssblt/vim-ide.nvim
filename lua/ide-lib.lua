@@ -553,6 +553,70 @@ require('lspconfig')['clangd'].setup {
   capabilities = capabilities
 }
 
+require'lspconfig'.vimls.setup{
+  capabilities = capabilities,
+}
+
+require'lspconfig'.html.setup {
+  capabilities = capabilities,
+}
+
+require'lspconfig'.stylelint_lsp.setup{
+  capabilities = capabilities,
+  settings = {
+    stylelintplus = {
+    }
+  }
+}
+
+require'lspconfig'.tsserver.setup{
+  capabilities = capabilities,
+}
+
+require'lspconfig'.jsonls.setup{
+  capabilities = capabilities,
+}
+
+require'lspconfig'.pylsp.setup{
+  capabilities = capabilities,
+  settings = {
+    pylsp = {
+      plugins = {
+        pycodestyle = {
+          ignore = {'W391'},
+          maxLineLength = 100
+        }
+      }
+    }
+  }
+}
+
+require'lspconfig'.lua_ls.setup{
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT',
+      },
+      diagnostics = {
+        globals = {'vim'},
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+}
+
+vim.cmd [[ autocmd BufRead,BufNewFile *.org set filetype=org ]]
+require'lspconfig'.ltex.setup{
+  capabilities = capabilities,
+}
+
+
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set('n', 'gi', vim.diagnostic.open_float)

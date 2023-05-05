@@ -33,7 +33,13 @@ set hidden
 set synmaxcol=320    " Normally, the column count will not overtake 180.
 set matchpairs+=
 set updatetime=300
-set cursorline
+
+augroup CursorLineOnlyInActiveWindow
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+augroup END
+
 if has('termguicolors')
   set termguicolors
 endif
@@ -195,12 +201,12 @@ let g:qs_delay = 40
 " common settings
 """"""""""""""""""""""""""""""
 
-highlight Normal ctermfg=250 ctermbg=235 guifg=#d3d1d4 guibg=#282529
 highlight EndOfBuffer ctermfg=bg guifg=#2d2a2e guibg=#2d2a2e
 
 augroup NrHighlight
   autocmd!
-  autocmd WinEnter * :highlight Normal ctermfg=250 ctermbg=235 guifg=#d3d1d4 guibg=#252226
+  
+  autocmd VimEnter,WinEnter,BufWinEnter * :highlight Normal ctermfg=250 ctermbg=235 guifg=#d3d1d4 guibg=#252226
   autocmd WinLeave * :highlight Normal ctermfg=250 ctermbg=235 guifg=#d3d1d4 guibg=#2d2a2e
 augroup END
 

@@ -35,7 +35,7 @@ return require('packer').startup(function()
   use { 
     'Vssblt/vim-ide.nvim',
     after = { 'vim-maktaba', 'vim-glaive', 'vim-codefmt' },
-    run = 'sudo apt install gem npm perl && sudo npm -g install tree-sitter-cli neovim && sudo cpan install Neovim::Ext App::cpanminus && sudo gem install neovim'
+    run = 'sudo apt install gem npm perl && sudo npm -g install tree-sitter-cli neovim vim-language-server vscode-langservers-extracted stylelint-lsp typescript typescript-language-server && sudo cpan install Neovim::Ext App::cpanminus && sudo gem install neovim && pip install python-lsp-server'
   }
 
   use { 'wbthomason/packer.nvim' }
@@ -117,6 +117,7 @@ return require('packer').startup(function()
 	  run = "make install_jsregexp"
   })
   use { 'onsails/lspkind.nvim' }
+  use { 'luals/lua-language-server', run = "sudo apt install ninja-build && ./make.sh && sudo ln -s `pwd`/bin/lua-language-server /usr/bin/lua-language-server" }
 
   use { 'chentoast/marks.nvim' }
   -- Show signature in the left mark column.
