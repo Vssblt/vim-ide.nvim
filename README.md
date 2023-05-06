@@ -22,7 +22,7 @@ vim.cmd [[
 ]]
 
 return require('packer').startup(function()
-  use { 
+  use {
     'Vssblt/vim-ide.nvim',
     after = { 'vim-maktaba', 'vim-glaive', 'vim-codefmt' },
     run = 'sudo apt install gem npm perl cargo && sudo npm -g install tree-sitter-cli neovim vim-language-server vscode-langservers-extracted stylelint-lsp typescript typescript-language-server && sudo cpan install Neovim::Ext App::cpanminus && sudo gem install neovim && sudo pip install python-lsp-server cmake-language-server'
@@ -37,8 +37,19 @@ return require('packer').startup(function()
   use { "folke/neodev.nvim" }
   -- The lsp for lua development.
 
-  use { 'embear/vim-localvimrc' }
-  -- Autoload the '.lvimrc' in current directory.
+  use {
+    "klen/nvim-config-local",
+    config = function()
+      require('config-local').setup {
+        config_files = { ".nvim.lua", ".nvimrc", ".exrc", ".vimrc.lua", ".vimrc" },
+        hashfile = vim.fn.stdpath("data") .. "/config-local",
+        autocommands_create = true,
+        commands_create = true,
+        silent = true,
+        lookup_parents = false,
+      }
+    end
+  }
 
   use {
     'nvim-lualine/lualine.nvim',
@@ -70,10 +81,6 @@ return require('packer').startup(function()
   -- A vim 7.4+ plugin to generate table of contents for Markdown files.
   -- :GenTocGFM
 
-  use { "LunarWatcher/auto-pairs" }
-  -- Insert or delete brackets, parens, and quotes in pair.
-  -- a maintained fork of jiangmiao/auto-pairs
-
   -- { 
   -- These plugins have poor performance!!!!
     use { "lukas-reineke/indent-blankline.nvim",
@@ -89,7 +96,7 @@ return require('packer').startup(function()
   -- }
 
   use { 'rcarriga/nvim-notify' }
-  
+
   use { 'dstein64/vim-startuptime' }
   --------------------------------------------------------------------------
 
@@ -367,7 +374,7 @@ return require('packer').startup(function()
   }
 
   use {
-    'Vssblt/aerial.nvim',
+    'stevearc/aerial.nvim',
     config = function() require('aerial').setup() end,
   }
 
