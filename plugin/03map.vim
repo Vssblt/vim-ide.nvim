@@ -381,7 +381,8 @@ nmap <leader>.h <Plug>(PickerHelp)
 """"""""""""""""""""""""""""""
 " make 
 """"""""""""""""""""""""""""""
-nnoremap <F4> :Make -j `nproc`<CR>
+let g:makefile_path = "."
+nnoremap <F4> :exec "Make -C " . g:makefile_path . " -j `nproc`"<CR>
 nnoremap <C-c> :AbortDispatch<CR>
 function! GetBufferList()
   redir =>buflist

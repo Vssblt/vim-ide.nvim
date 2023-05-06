@@ -44,8 +44,6 @@ if has('termguicolors')
   set termguicolors
 endif
 set signcolumn=yes
-let g:localvimrc_ask=0
-let g:localvimrc_sandbox=0
 autocmd FileType qf wincmd J
 autocmd FileType fzf setlocal signcolumn=no
 set undofile
@@ -201,13 +199,19 @@ let g:qs_delay = 40
 " common settings
 """"""""""""""""""""""""""""""
 
-highlight EndOfBuffer ctermfg=bg guifg=#2d2a2e guibg=#2d2a2e
+highlight EndOfBufferInactive ctermfg=bg guifg=#2d2a2e guibg=#2d2a2e
+highlight EndOfBufferActive ctermfg=bg guifg=#252226 guibg=#252226
+
+set winhighlight+=EndOfBuffer:EndOfBufferInactive
 
 augroup NrHighlight
   autocmd!
   
-  autocmd VimEnter,WinEnter,BufWinEnter * :highlight Normal ctermfg=250 ctermbg=235 guifg=#d3d1d4 guibg=#252226
-  autocmd WinLeave * :highlight Normal ctermfg=250 ctermbg=235 guifg=#d3d1d4 guibg=#2d2a2e
+  autocmd VimEnter,WinEnter,BufWinEnter * :exe "setlocal winhighlight=".substitute(&winhighlight, "EndOfBufferInactive", "EndOfBufferActive", "")
+  autocmd WinLeave * :exe "setlocal winhighlight=".substitute(&winhighlight, "EndOfBufferActive", "EndOfBufferInactive", "")
+  
+  autocmd VimEnter,WinEnter,BufWinEnter * :highlight Normal ctermfg=250 ctermbg=235 guifg=#d3d1d4 guibg=#242125
+  autocmd WinLeave * :highlight Normal ctermfg=250 ctermbg=235 guifg=#d3d1d4 guibg=#272428
 augroup END
 
 highlight CursorLine ctermbg=236 guibg=#352F35

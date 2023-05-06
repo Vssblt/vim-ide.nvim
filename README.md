@@ -1,15 +1,5 @@
 ``` lua
-_G.__luacache_config = {
-  chunks = {
-    enable = true,
-    path = vim.fn.stdpath('cache')..'/luacache_chunks',
-  },
-  modpaths = {
-    enable = true,
-    path = vim.fn.stdpath('cache')..'/luacache_modpaths',
-  }
-}
-require('impatient').enable_profile()
+vim.loader.enable()
 
 -- Disable netrw 
 vim.g.loaded_netrw       = 1
@@ -40,8 +30,6 @@ return require('packer').startup(function()
 
   use { 'wbthomason/packer.nvim' }
   -- For manage plugs.
-  use { 'lewis6991/impatient.nvim' }
-  -- For speed up lua execution.
 
   --------------------------------------------------------------------------
   -- These plugins take effect automatically.
