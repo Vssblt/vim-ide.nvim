@@ -372,11 +372,14 @@ return require('packer').startup(function()
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate',
   }
+  
+  use({
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    after = "nvim-treesitter",
+    requires = "nvim-treesitter/nvim-treesitter",
+  })
 
-  use {
-    'stevearc/aerial.nvim',
-    config = function() require('aerial').setup() end,
-  }
+  use { 'stevearc/aerial.nvim' }
 
   use {
     'kyazdani42/nvim-web-devicons'
