@@ -25,7 +25,7 @@ return require('packer').startup(function()
   use {
     'Vssblt/vim-ide.nvim',
     after = { 'vim-maktaba', 'vim-glaive', 'vim-codefmt' },
-    run = 'sudo apt install gem npm perl cargo && sudo npm -g install tree-sitter-cli neovim vim-language-server vscode-langservers-extracted stylelint-lsp typescript typescript-language-server && sudo cpan install Neovim::Ext App::cpanminus && sudo gem install neovim && sudo pip install python-lsp-server cmake-language-server'
+    run = 'sudo apt install gem npm perl rust-all && sudo npm -g install tree-sitter-cli neovim vim-language-server vscode-langservers-extracted stylelint-lsp typescript typescript-language-server && sudo cpan install Neovim::Ext App::cpanminus && sudo gem install neovim && sudo pip install python-lsp-server cmake-language-server'
   }
 
   use { 'wbthomason/packer.nvim' }
