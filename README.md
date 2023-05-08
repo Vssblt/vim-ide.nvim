@@ -81,18 +81,16 @@ return require('packer').startup(function()
   -- A vim 7.4+ plugin to generate table of contents for Markdown files.
   -- :GenTocGFM
 
+  use { "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      require("indent_blankline").setup()
+    end
+  }
+
   -- { 
   -- These plugins have poor performance!!!!
-    use { "lukas-reineke/indent-blankline.nvim",
-      config = function()
-        require("indent_blankline").setup()
-      end
-    }
-
     use { 'unblevable/quick-scope'  }
     -- Quick move in current line.
-
-    use { 'bfrg/vim-cpp-modern' }
   -- }
 
   use { 'rcarriga/nvim-notify' }

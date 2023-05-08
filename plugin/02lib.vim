@@ -1,7 +1,7 @@
 """"""""""""""""""""""""""""""
 "This file is hiden config file. 
 """"""""""""""""""""""""""""""
-set lazyredraw
+set nolazyredraw
 set wildmenu
 set laststatus=3
 set showtabline=2
@@ -33,6 +33,7 @@ set hidden
 set synmaxcol=320    " Normally, the column count will not overtake 180.
 set matchpairs+=
 set updatetime=300
+set autoread
 
 augroup CursorLineOnlyInActiveWindow
   autocmd!
