@@ -21,16 +21,15 @@ nnoremap yi<space> yiW
 nnoremap bi<space> ciW
 nnoremap di<space> diW
 
-nnoremap <C-n> jjjj
-nnoremap <C-t> kkkk
-nnoremap <c-h> hhhh
-nnoremap <c-s> llll
+nnoremap <C-n> 4j
+nnoremap <C-t> 4k
+nnoremap <c-h> 4h
+nnoremap <c-s> 4l
 
-"Couldn't redraw in x mode
-xnoremap <c-h> hhhh
-xnoremap <c-s> llll
-xnoremap <c-n> jjjj
-xnoremap <c-t> kkkk
+xnoremap <c-h> 4h
+xnoremap <c-s> 4l
+xnoremap <c-n> 4j
+xnoremap <c-t> 4k
 
 nnoremap h h
 nnoremap t k
@@ -86,16 +85,12 @@ imap <c-t> <c-k>
 smap <c-n> <c-j>
 smap <c-t> <c-k>
 
-"nnoremap - -
-"nnoremap + +
-
 nnoremap <silent> <leader>k :call InterestingWords('n')<cr>
 xnoremap <silent> <leader>k :call InterestingWords('v')<cr>
 nnoremap <silent> <leader>K :nohl<CR>:call UncolorAllWords()<cr>
 nnoremap <silent> l :call WordNavigation(1)<cr>
 nnoremap <silent> L :call WordNavigation(0)<cr>
 
-" The redraw command could make scrolling more smooth.
 nnoremap j 8<c-y>
 nnoremap k 8<c-e>
 xnoremap j 8<c-y>
