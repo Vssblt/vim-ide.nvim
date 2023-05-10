@@ -1,4 +1,41 @@
--- common
+---------------------------
+-- Common
+---------------------------
+vim.o.lazyredraw = false
+vim.o.wildmenu = true
+vim.o.laststatus = 3
+vim.o.showtabline = 2
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.encoding = "utf8"
+vim.o.fileencodings= "ucs-bom,utf8,cp936,gb18030,big5,euc-jp,euc-kr,latin1"
+vim.o.hlsearch = true
+vim.o.showmatch = true
+vim.o.ignorecase =true
+vim.o.viminfo = "'20,\"50000"
+vim.o.timeoutlen = 10000
+vim.o.ttimeoutlen = 10
+vim.o.clipboard = "unnamed,unnamedplus"
+vim.o.mouse = a
+vim.o.t_Co = 256
+vim.o.fillchars = "stl: "
+vim.o.backspace = "indent,eol,start"
+vim.o.numberwidth = 1
+vim.o.scrolloff = 8
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+vim.o.expandtab = true
+vim.o.smarttab = true
+vim.o.smartcase = true
+vim.o.softtabstop = 0
+vim.o.hidden = true
+vim.o.synmaxcol = 320
+vim.o.updatetime = 300
+vim.o.autoread = true
+vim.o.signcolumn = "yes"
+vim.o.undofile = true
+vim.o.completeopt = "longest,menu"
+
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   pattern = {"*"},
   callback = function()
@@ -10,11 +47,112 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   end
 })
 
--- Other
+---------------------------
+-- vim-surround
+---------------------------
+vim.g.surround_no_mappings = 1
+
+---------------------------
+-- vim-dispatch
+---------------------------
+vim.g.dispatch_quickfix_height = 20
+vim.g.dispatch_tmux_height = 20
+
+---------------------------
+-- LookupFile
+---------------------------
+vim.g.LookupFile_MinPatLength = 2
+vim.g.LookupFile_PreservePatternHistory = 1
+vim.g.LookupFile_AlwaysAcceptFirst = 1
+vim.g.LookupFile_PreserveLastPattern = 0
+
+---------------------------
+-- vim-glaive settings
+---------------------------
+vim.g.myplugin_enablefeature = 1
+vim.g.myplugin_defaultdir = os.getenv("HOME")
+vim.g.myplugin_weirdmode = 'm'
+
+---------------------------
+-- clock settings
+---------------------------
+vim.g.clockn_enable = 1
+vim.g.clockn_color = '#000000'
+vim.g.clockn_winblend = 100
+vim.api.nvim_set_hl(0, "ClockNormal", { fg = "#000000" })
+vim.g.clockn_to_top = 1
+vim.g.clockn_to_right = 1
+
+---------------------------
+-- aerial.nvim
+---------------------------
+vim.api.nvim_set_hl(0, "AerialLine", { link = "QuickFixLine" })
+vim.api.nvim_set_hl(0, "QuickFixLine", { bg = "#848089", fg = "black" })
+vim.api.nvim_set_hl(0, "AerialLine", { bg = "#848089", fg = "black" })
+vim.api.nvim_set_hl(0, "AerialLineNC", { bg = "#848089" })
+vim.api.nvim_set_hl(0, "AerialLine", { link  =  "QuickFixLine" })
+vim.api.nvim_set_hl(0, "QuickFixLine", { bg = "#848089", fg = "black" })
+vim.api.nvim_set_hl(0, "AerialLine", { bg = "#848089", fg = "black" })
+vim.api.nvim_set_hl(0, "AerialLineNC", { bg = "#848089" })
+
+---------------------------
+-- markdown-preview.nvim
+---------------------------
+vim.g.mkdp_auto_start = 1
+vim.g.mkdp_auto_close = 1
+vim.g.mkdp_refresh_slow = 0
+vim.g.mkdp_command_for_global = 0
+vim.g.mkdp_open_to_the_world = 0
+vim.g.mkdp_open_ip = ''
+vim.g.mkdp_browser = ''
+vim.g.mkdp_echo_preview_url = 0
+vim.g.mkdp_browserfunc = ''
+vim.g.mkdp_preview_options = {
+ mkit = {},
+ katex = {},
+ uml = {},
+ maid = {},
+ disable_sync_scroll = 0,
+ sync_scroll_type = 'middle',
+ hide_yaml_meta = 1,
+ sequence_diagrams = {},
+ flowchart_diagrams = {},
+ content_editable = false,
+ disable_filename = 0,
+ toc = {}
+ }
+vim.g.mkdp_markdown_css = ''
+vim.g.mkdp_highlight_css = ''
+vim.g.mkdp_port = ''
+vim.g.mkdp_page_title = '「${name}」'
+vim.g.mkdp_theme = 'dark'
+vim.g.vim_markdown_folding_disabled = 1
+
+---------------------------
+-- vim-template
+-- Requires: sudo apt install ruby-licensee
+---------------------------
+vim.g.email = "sunruiyangcp01@gmail.com"
+vim.g.username = "Vincent Sun"
+vim.g.templates_detect_git = 1
+
+
+---------------------------
+-- vim-interestingwords settings
+---------------------------
+vim.g.interestingWordsDefaultMappings = 0
+vim.g.interestingWordsRandomiseColors = 1
+vim.g.interestingWordsTermColors = {'154', '121', '211', '137', '214', '222', '1', '2', '3', '4', '6', '64', '99' }
+vim.g.interestingWordsGUIColors = {'#f85e84', '#ef9062', '#e5c463', '#7accd7', '#ab9df2' }
+
+---------------------------
 -- notify
+---------------------------
 vim.notify = require("notify")
 
+---------------------------
 -- nvim-treesitter
+---------------------------
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "all",
   sync_install = false,
@@ -24,7 +162,9 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
+---------------------------
 -- nvim-tree
+---------------------------
 require("nvim-tree").setup({
   --git = {
     --enable = false,
@@ -128,7 +268,9 @@ require('lualine').setup {
   extensions = {}
 }
 
- --vgit.nvim
+---------------------------
+--vgit.nvim
+---------------------------
 require('vgit').setup({
   keymaps = {
     ['n <C-j>'] = function() require('vgit').hunk_up() end,
@@ -333,6 +475,9 @@ require('vgit').setup({
   }
 })
 
+---------------------------
+-- nvim-surround
+---------------------------
 require("nvim-surround").setup({ keymaps = { change = "bs" } })
 
 require'marks'.setup {
@@ -371,6 +516,9 @@ require'marks'.setup {
   }
 }
 
+---------------------------
+-- nvim-gdb
+---------------------------
 require'nvim-gdb'.setup({
   logfile = "/tmp/nvim-gdb-lua.log",
   gdb_cli_prompt = '(gdb) ',
@@ -400,7 +548,10 @@ require'nvim-gdb'.setup({
 })
 
 
+---------------------------
 -- aerial.nvim
+---------------------------
+
 -- Call the setup function to change the default behavior
 require("aerial").setup({
   -- Priority list of preferred backends for aerial.
@@ -831,6 +982,19 @@ cmp.setup.cmdline(':', {
     { name = 'cmdline' }
   })
 })
+
+-- set highlight
+vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg="NONE", strikethrough = true, fg="#808080" })
+vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { bg="NONE", fg="#569CD6" })
+vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { link = "CmpItemAbbrMatch" })
+vim.api.nvim_set_hl(0, "CmpItemKindVariable", { bg="NONE", fg="#9CDCFE" })
+vim.api.nvim_set_hl(0, "CmpItemKindInterface", { link = "CmpItemKindVariable" })
+vim.api.nvim_set_hl(0, "CmpItemKindText", { link = "CmpItemKindVariable" })
+vim.api.nvim_set_hl(0, "CmpItemKindFunction", { bg="NONE", fg="#C586C0" })
+vim.api.nvim_set_hl(0, "CmpItemKindMethod", { link = "CmpItemKindFunction" })
+vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { bg="NONE", fg="#D4D4D4" })
+vim.api.nvim_set_hl(0, "CmpItemKindProperty", { link = "CmpItemKindKeyword" })
+vim.api.nvim_set_hl(0, "CmpItemKindUnit", { link = "CmpItemKindKeyword" })
 
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
