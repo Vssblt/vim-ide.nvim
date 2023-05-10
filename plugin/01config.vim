@@ -69,11 +69,6 @@ let g:termdebug_wide = 160
 let g:termdebug_disasm_window = 0
 let g:termdebug_new_tab = 1
 
-""""""""""""""""""""""""""""""""""""""""""
-" lukas-reineke/indent-blankline.nvim
-""""""""""""""""""""""""""""""""""""""""""
-let g:indent_blankline_char = '┊'
-
 """"""""""""""""""""""""""""""
 " vim-doge
 """"""""""""""""""""""""""""""
