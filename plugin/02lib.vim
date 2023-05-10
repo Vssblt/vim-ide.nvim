@@ -15,7 +15,6 @@ set ignorecase
 set viminfo='20,\"50000
 set timeoutlen=10000
 set ttimeoutlen=10
-set updatetime=0
 set clipboard^=unnamed,unnamedplus
 set mouse=a
 set t_Co=256
@@ -378,3 +377,7 @@ highlight! link CmpItemKindMethod CmpItemKindFunction
 highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
 highlight! link CmpItemKindProperty CmpItemKindKeyword
 highlight! link CmpItemKindUnit CmpItemKindKeyword
+
+autocmd CursorHold  * lua vim.lsp.buf.document_highlight()
+autocmd CursorHoldI * lua vim.lsp.buf.document_highlight()
+autocmd CursorMoved * lua vim.lsp.buf.clear_references()
