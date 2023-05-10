@@ -1,4 +1,17 @@
+-- common
+vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+  pattern = {"*"},
+  callback = function()
+    vim.highlight.on_yank(
+      {
+        timeout = 500,
+      }
+    )
+  end
+})
 
+-- Other
+-- notify
 vim.notify = require("notify")
 
 -- nvim-treesitter
@@ -926,3 +939,4 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end, opts)
   end,
 })
+
