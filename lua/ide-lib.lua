@@ -35,10 +35,7 @@ vim.o.autoread = true
 vim.o.signcolumn = "yes"
 vim.o.undofile = true
 vim.o.completeopt = "longest,menu"
-
-if vim.o.termguicolors then
-  vim.o.termguicolors = true
-end
+vim.o.termguicolors = true
 
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   pattern = {"*"},
