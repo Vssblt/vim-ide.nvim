@@ -55,7 +55,7 @@ let g:qs_delay = 40
 """"""""""""""""""""""""""""""
 
 highlight EndOfBufferInactive ctermfg=bg guifg=#2d2a2e guibg=#2d2a2e
-highlight EndOfBufferActive ctermfg=bg guifg=#252226 guibg=#252226
+highlight EndOfBufferActive ctermfg=bg guifg=#242125 guibg=#242125
 
 set winhighlight+=EndOfBuffer:EndOfBufferInactive
 
@@ -66,7 +66,7 @@ augroup NrHighlight
   autocmd WinLeave * :exe "setlocal winhighlight=".substitute(&winhighlight, "EndOfBufferActive", "EndOfBufferInactive", "")
   
   autocmd VimEnter,WinEnter,BufWinEnter * :highlight Normal ctermfg=250 ctermbg=235 guifg=#d3d1d4 guibg=#242125
-  autocmd WinLeave * :highlight Normal ctermfg=250 ctermbg=235 guifg=#d3d1d4 guibg=#272428
+  autocmd WinLeave * :highlight Normal ctermfg=250 ctermbg=235 guifg=#d3d1d4 guibg=#2d2a2e
 augroup END
 
 highlight CursorLine ctermbg=236 guibg=#352F35
