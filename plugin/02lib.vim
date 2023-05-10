@@ -1,31 +1,22 @@
 """"""""""""""""""""""""""""""
 "This file is hiden config file. 
 """"""""""""""""""""""""""""""
+
 lua require("ide-lib")
-
-augroup CursorLineOnlyInActiveWindow
-  autocmd!
-  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  autocmd WinLeave * setlocal nocursorline
-augroup END
-
-if has('termguicolors')
-  set termguicolors
-endif
-
-autocmd FileType qf wincmd J
-autocmd FileType fzf setlocal signcolumn=no
 
 aug QFClose
   au!
   au WinEnter * if winnr('$') == 1 && &buftype == "quickfix"|q|endif
 aug END
+
 function NoFileCheck()
   if (&buftype == 'nofile')
     setlocal nobuflisted
   endif
 endfunction
+
 au BufCreate * call NoFileCheck()
+
 let g:last_buffer = []
 filetype plugin indent on
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
@@ -35,21 +26,6 @@ hi MatchParen cterm=bold ctermbg=none ctermfg=magenta ctermfg=lightblue guifg=#5
 " ranger settings
 """"""""""""""""""""""""""""""
 let g:ranger_map_keys = 0
-
-execute ":command! VConfig :e " g:plugindir.'/plugin/01config.vim'
-execute ":command! VHConfig :e " g:plugindir.'/plugin/02lib.vim'
-execute ":command! Vlua :e " g:plugindir.'/lua/ide-lib.lua'
-execute ":command! VPlugList :e " '~/.config/nvim/init.lua'
-execute ":command! DvorakSettingsV :e " g:plugindir.'/plugin/03map.vim'
-execute "command! Bda :bufdo bwipeout"
-
-command! -nargs=0 FHide FloatermHide
-command! -nargs=0 FNext FloatermNext
-command! -nargs=0 FFirst FloatermFirst
-command! -nargs=0 FKill FloatermKill
-command! -nargs=0 FLast FloatermLast
-command! -nargs=0 FPrev FloatermPrev
-command! -nargs=0 FShow FloatermShow
 
 """"""""""""""""""""""""""""""
 " orther
@@ -106,11 +82,3 @@ if &diff
     let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
 endif
 
-""""""""""""""""""""""""""""""
-" mzlogin/vim-markdown-toc
-""""""""""""""""""""""""""""""
-autocmd FileType markdown command! TOC :GenTocGFM
-
-autocmd CursorHold  * lua vim.lsp.buf.document_highlight()
-autocmd CursorHoldI * lua vim.lsp.buf.document_highlight()
-autocmd CursorMoved * lua vim.lsp.buf.clear_references()
