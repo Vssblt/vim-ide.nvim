@@ -176,15 +176,10 @@ nnoremap <leader>* VHoL<Esc>``/\%V<C-r><C-w><CR>
 nnoremap # :b#<CR>
 
 """"""""""""""""""""""""""""""
-" Floaterm
+" toggleterm
 """"""""""""""""""""""""""""""
-" nnoremap <leader><leader>n :FloatermNew<CR>
-" nnoremap <leader><leader>h :FloatermHide<CR>
-" nnoremap ,,h :FloatermHide<CR>
-" nnoremap <leader><leader>s :FloatermShow<CR>
-" nnoremap <leader><leader>l :FloatermNext<CR>
-" nnoremap <leader><leader>L :FloatermPrev<CR>
-" nnoremap <leader><leader>i :FloatermNew
+nnoremap <leader><leader>t :ToggleTerm direction=float<CR>
+nnoremap <leader><leader>s :TermSelect<CR>
 
 inoremap <C-BS> <C-W>
 inoremap  <C-W>
