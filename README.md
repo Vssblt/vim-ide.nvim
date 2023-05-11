@@ -96,6 +96,26 @@ return require('packer').startup(function()
   use { 'rcarriga/nvim-notify' }
 
   use { 'dstein64/vim-startuptime' }
+
+  use {
+      'goolord/alpha-nvim',
+      config = function()
+        require('dashboard').setup {
+          theme = 'doom',
+          shortcut_type = 'number',
+        }
+        local dashboard = require("alpha.themes.dashboard")
+        dashboard.section.buttons.val = {
+        	dashboard.button("f", "  Find file", ":lua require('fzf-lua').files({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>"),
+        	dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
+        	dashboard.button("r", "  Recently used files", ":lua require('fzf-lua').oldfiles({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>"),
+        	dashboard.button("c", "  Configuration", ":e $MYVIMRC <CR>"),
+        	dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
+        }
+        require'alpha'.setup(dashboard.opts)
+      end,
+      requires = { 'glepnir/dashboard-nvim' }
+  }
   --------------------------------------------------------------------------
 
   use { 'hrsh7th/nvim-cmp' }
@@ -115,6 +135,8 @@ return require('packer').startup(function()
   use { 'luals/lua-language-server', run = "sudo apt install ninja-build && ./make.sh && sudo ln -s `pwd`/bin/lua-language-server /usr/bin/lua-language-server" }
   -- rust lsp
   use { 'rust-lang/rust-analyzer', run = "cargo xtask install --server" }
+
+  --------------------------------------------------------------------------
 
   use { 'chentoast/marks.nvim' }
   -- Show signature in the left mark column.
@@ -221,22 +243,6 @@ return require('packer').startup(function()
   -- use | <text> | to create table unit.
   -- use || to create |+++++++++|
 
-  use { 'easymotion/vim-easymotion'  }
-  -- <leader>.
-  -- search one chara
-  --
-  -- <leader><leader>.
-  -- search a string
-  --
-  -- <leader>d
-  -- go start in current line
-  --
-  -- <leader>-
-  -- go end in current line
-  --
-  -- <leader>uh/<leader>ut/<leader>un/<leader>us
-  -- go somewhere
-
   use { 'Vssblt/vim-choosewin'  }
   -- type . to switch window
 
@@ -273,34 +279,12 @@ return require('packer').startup(function()
   -- <Leader><Tab>
   -- open in new tab
 
-  use { 'voldikss/vim-floaterm'  }
-  -- :FloatermNew
-  -- <leader><leader>n
-  -- open a new floaterm popup window
-  --
-  -- :FloatermHide        rename: FHide
-  -- <leader><leader>h
-  -- hide floaterm popup windows
-  --
-  -- :FloatermNext        rename: FNext
-  -- show next floaterm window
-  --
-  -- :FloatermPrev        rename: FPrev
-  -- show prev floaterm window
-  --
-  -- :FloatermFirst       rename: FFirst
-  -- show first floaterm window
-  --
-  -- :FloatermLast        rename: FLast
-  -- show last floaterm window
-  --
-  -- :FloatermShow        rename: FShow
-  -- <leader><leader>s
-  -- show current floaterm window
-  --
-  -- <C-D>
-  -- close current floaterm window
-
+  use { 'akinsho/toggleterm.nvim',
+    config = function ()
+      require("toggleterm").setup{}
+    end
+  }
+  
   use { 'flazz/vim-colorschemes'  }
   --:colorscheme [color theme]
 
@@ -403,5 +387,18 @@ return require('packer').startup(function()
   use { 'chrisbra/vim-diff-enhanced' }
   -- for enhance diff use this
   -- :EnhancedDiff histogram
+  -- use {
+  --   "folke/which-key.nvim",
+  --   config = function()
+  --     vim.o.timeout = true
+  --     vim.o.timeoutlen = 300
+  --     require("which-key").setup {
+  --     }
+  --   end
+  -- }
+  
+  use { 'moll/vim-bbye' }
+  -- This plug can delete buffer without closing window and breaking the layout.
+ 
 end)
 ```
