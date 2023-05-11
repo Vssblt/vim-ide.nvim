@@ -43,6 +43,8 @@ xnoremap s l
 nnoremap s l
 xnoremap s l
 
+inoremap <c-n> <esc>A
+
 lua vim.keymap.set("n", "n", [[v:count ? 'j' : 'gj']], {noremap = true, expr = true})
 lua vim.keymap.set("x", "n", [[v:count ? 'j' : 'gj']], {noremap = true, expr = true})
 
@@ -78,10 +80,6 @@ nnoremap T <C-\><C-n>k
 nnoremap S <C-\><C-n>l
 nnoremap N <C-\><C-n>j
 nnoremap H <C-\><C-n>h
-xnoremap T <C-\><C-n>k
-xnoremap S <C-\><C-n>l
-xnoremap N <C-\><C-n>j
-xnoremap H <C-\><C-n>h
 imap <c-n> <c-j>
 imap <c-t> <c-k>
 smap <c-n> <c-j>
@@ -254,17 +252,17 @@ comm! -nargs=? -bang A ClangdSwitchSourceHeader
 """"""""""""""""""""""""""""""
 " vim-surround
 """"""""""""""""""""""""""""""
-nmap ds  <Plug>Dsurround
-nmap bs  <Plug>Csurround
-nmap bS  <Plug>CSurround
-nmap ys  <Plug>Ysurround
-nmap yS  <Plug>YSurround
-nmap yss <Plug>Yssurround
-nmap ySs <Plug>YSsurround
-nmap ySS <Plug>YSsurround
-xmap S   <Plug>VSurround
-xmap gS  <Plug>VgSurround
-
+" nmap ds  <Plug>Dsurround
+" nmap bs  <Plug>Csurround
+" nmap bS  <Plug>CSurround
+" nmap ys  <Plug>Ysurround
+" nmap yS  <Plug>YSurround
+" nmap yss <Plug>Yssurround
+" nmap ySs <Plug>YSsurround
+" nmap ySS <Plug>YSsurround
+" xmap S   <Plug>VSurround
+" xmap gS  <Plug>VgSurround
+"
 
 """"""""""""""""""""""""""""""
 " vim-visual-multi

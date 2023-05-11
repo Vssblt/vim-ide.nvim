@@ -207,10 +207,10 @@ require("nvim-tree").setup({
     adaptive_size = true,
     mappings = {
       list = {
-        { key = { "<CR>", "o", "<2-LeftMouse>" },  action = "edit" }
+        { key = { "<CR>", "o" },  action = "edit" }
         ,{ key = "<C-e>",                          action = "edit_in_place" }
         ,{ key = "O",                              action = "edit_no_picker" }
-        ,{ key = { "cd", "<C-]>", "<2-RightMouse>" },    action = "cd" }
+        ,{ key = { "cd", "<2-LeftMouse>"},    action = "cd" }
         ,{ key = "<C-v>",                          action = "" }
         ,{ key = "<C-t>",                          action = "" }
         ,{ key = "<C-x>",                          action = "split" }
@@ -233,10 +233,10 @@ require("nvim-tree").setup({
         ,{ key = "r",                              action = "rename" }
         ,{ key = "<C-r>",                          action = "full_rename" }
         ,{ key = "x",                              action = "cut" }
-        ,{ key = "cc",                             action = "copy" }
+        ,{ key = "yy",                             action = "copy" }
         ,{ key = "p",                              action = "paste" }
-        ,{ key = "y",                              action = "copy_name" }
-        ,{ key = "Y",                              action = "copy_path" }
+        ,{ key = "yn",                             action = "copy_name" }
+        ,{ key = "yp",                             action = "copy_path" }
         ,{ key = "gy",                             action = "copy_absolute_path" }
         ,{ key = "[c",                             action = "prev_git_item" }
         ,{ key = "]c",                             action = "next_git_item" }
@@ -948,8 +948,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Buffer local mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local opts = { buffer = ev.buf }
-    vim.keymap.set('n', '<leader><TAB>', vim.lsp.buf.declaration, opts)
-    vim.keymap.set('n', '<leader><CR>', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', '<leader><TAB>', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', '<leader><CR>', vim.lsp.buf.declaration, opts)
     vim.keymap.set('n', 'gh', vim.lsp.buf.hover, opts)
     vim.keymap.set('n', 'gk', vim.lsp.buf.signature_help, opts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.rename, opts)
@@ -961,3 +961,19 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
+if vim.g.neovide then
+  vim.o.guifont = "CodeNewRoman Nerd Font Mono:style=Bold:h10"
+  vim.o.guifontwide = "CodeNewRoman Nerd Font Propo:style=Bold:h10"
+  vim.keymap.set("c", "<C-S-v>", "<C-r>+", {
+    noremap = true,
+  })
+  vim.keymap.set("x", "<C-S-v>", "p", {
+    noremap = true,
+  })
+  vim.keymap.set("o", "<C-S-v>", "p", {
+    noremap = true,
+  })
+  vim.keymap.set("i", "<C-S-v>", "<C-r>+", {
+    noremap = true,
+  })
+end
