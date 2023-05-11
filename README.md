@@ -288,11 +288,16 @@ return require('packer').startup(function()
   use { 'flazz/vim-colorschemes'  }
   --:colorscheme [color theme]
 
-  use { 'francoiscabrol/ranger.vim'  }
+  use { 'rbgrouleff/bclose.vim', config = function() vim.g.bclose_no_plugin_maps = true end }
+
+  use {
+    'francoiscabrol/ranger.vim',
+    requires = { 'rbgrouleff/bclose.vim' }
+  }
   -- <leader>o
   -- open a file in new tab.
 
-  use { 'Vssblt/vim-translator'  }
+  use { 'Vssblt/vim-translator' }
   --:Translate/TranslateX/TranslateW/TranslateH/TranslateL/TranslateR
 
   use { 'kkoomen/vim-doge', run = ':call doge#install()', after = 'vim-ide.nvim' }
