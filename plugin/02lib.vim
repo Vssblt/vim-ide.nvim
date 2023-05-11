@@ -2,7 +2,7 @@
 "This file is hiden config file. 
 """"""""""""""""""""""""""""""
 
-lua require("ide-lib")
+lua require("user/lib")
 
 aug QFClose
   au!
@@ -26,13 +26,6 @@ hi MatchParen cterm=bold ctermbg=none ctermfg=magenta ctermfg=lightblue guifg=#5
 " ranger settings
 """"""""""""""""""""""""""""""
 let g:ranger_map_keys = 0
-
-""""""""""""""""""""""""""""""
-" orther
-""""""""""""""""""""""""""""""
-if filereadable(g:plugindir."/plugin/04tempConfig.vim")
-    execute ':source' g:plugindir."/plugin/04tempConfig.vim"
-endif
 
 """"""""""""""""""""""""""""""
 " quick-scope settings

@@ -117,8 +117,10 @@ nmap r :bn<CR>
 nmap c :bp<CR>
 nnoremap R gt
 nnoremap C gT
-nmap <leader>b :set buflisted<CR>c:sp<CR>r:bd<cr>
-nmap <leader>B :bufdo bd<CR>
+"nmap <leader>b :set buflisted<CR>c:sp<CR>r:bd<cr>
+"nmap <leader>B :bufdo bd<CR>
+nmap <leader>b :Bdelete<CR>
+nmap <leader>B :bufdo Bdelete<CR>
 
 nnoremap <ScrollWheelUp> <C-Y><C-Y><C-Y><C-Y>
 nnoremap <ScrollWheelDown> <C-E><C-E><C-E><C-E>
@@ -138,19 +140,6 @@ nnoremap d<leader>d d^
 
 nnoremap <tab><tab> <Esc>/\(\(\[TODO\:\)\\|\(<+\)\).*\(\(\]\)\\|\(+>\)\)<CR>:nohlsearch<CR>"_cgn
 nnoremap <tab><tab> <Esc>/<++><CR>:nohlsearch<CR>"_cgn
-
-nmap <leader>uh <Plug>(easymotion-linebackward)
-nmap <leader>ut <Plug>(easymotion-k)
-nmap <leader>un <Plug>(easymotion-j)
-nmap <leader>us <Plug>(easymotion-lineforward)
-xmap <leader>uh <Plug>(easymotion-linebackward)
-xmap <leader>ut <Plug>(easymotion-k)
-xmap <leader>un <Plug>(easymotion-j)
-xmap <leader>us <Plug>(easymotion-lineforward)
-omap <leader>uh <Plug>(easymotion-linebackward)
-omap <leader>ut <Plug>(easymotion-k)
-omap <leader>un <Plug>(easymotion-j)
-omap <leader>us <Plug>(easymotion-lineforward)
 
 nnoremap <leader>; :AerialToggle<CR>
 nnoremap <leader>q :NvimTreeToggle<CR>
@@ -189,13 +178,13 @@ nnoremap # :b#<CR>
 """"""""""""""""""""""""""""""
 " Floaterm
 """"""""""""""""""""""""""""""
-nnoremap <leader><leader>n :FloatermNew<CR>
-nnoremap <leader><leader>h :FloatermHide<CR>
-nnoremap ,,h :FloatermHide<CR>
-nnoremap <leader><leader>s :FloatermShow<CR>
-nnoremap <leader><leader>l :FloatermNext<CR>
-nnoremap <leader><leader>L :FloatermPrev<CR>
-nnoremap <leader><leader>i :FloatermNew
+" nnoremap <leader><leader>n :FloatermNew<CR>
+" nnoremap <leader><leader>h :FloatermHide<CR>
+" nnoremap ,,h :FloatermHide<CR>
+" nnoremap <leader><leader>s :FloatermShow<CR>
+" nnoremap <leader><leader>l :FloatermNext<CR>
+" nnoremap <leader><leader>L :FloatermPrev<CR>
+" nnoremap <leader><leader>i :FloatermNew
 
 inoremap <C-BS> <C-W>
 inoremap  <C-W>
@@ -242,6 +231,9 @@ xmap <leader>a :Ranger<CR>
 nmap <leader>e :lua require('fzf-lua').files({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
 omap <leader>e :lua require('fzf-lua').files({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
 xmap <leader>e :lua require('fzf-lua').files({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
+nmap <leader>u :lua require('fzf-lua').lines({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
+omap <leader>u :lua require('fzf-lua').lines({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
+xmap <leader>u :lua require('fzf-lua').lines({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
 nnoremap B :lua require('fzf-lua').buffers({winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
 nnoremap M :lua require('fzf-lua').marks({winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
 autocmd FileType fzf tnoremap <buffer> <C-n> <Down>
@@ -513,4 +505,4 @@ map <leader>c<esc> <Nop>
 map <leader>r<esc> <Nop>
 map <leader><esc> <Nop>
 
-lua require("vsmap")
+lua require("user/map")

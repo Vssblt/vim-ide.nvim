@@ -14,12 +14,6 @@ set tabstop=2
 set sw=2
 
 """"""""""""""""""""""""""""""
-" EasyMotion settings
-""""""""""""""""""""""""""""""
-let g:EasyMotion_keys = "aoeuidhtns',.pyfgcrl;qjkxbmwvz" "This is used for dvorak keyboard layout, you can change this option if you'r using qwerty layout.
-let g:EasyMotion_smartcase = 1
-
-""""""""""""""""""""""""""""""
 " choosewin settings
 """"""""""""""""""""""""""""""
 let g:choosewin_overlay_enable = 0
@@ -28,9 +22,9 @@ let g:choosewin_label = "aoeuidhtns"
 """"""""""""""""""""""""""""""
 " vim-floaterm settings
 """"""""""""""""""""""""""""""
-let g:floaterm_height = 0.9
-let g:floaterm_width = 0.9
-let g:floaterm_autoclose = 2
+" let g:floaterm_height = 0.9
+" let g:floaterm_width = 0.9
+" let g:floaterm_autoclose = 2
 
 """"""""""""""""""""""""""""""
 " other settings

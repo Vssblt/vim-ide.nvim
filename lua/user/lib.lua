@@ -16,7 +16,7 @@ vim.o.viminfo = "'20,\"50000"
 vim.o.timeoutlen = 10000
 vim.o.ttimeoutlen = 10
 vim.o.clipboard = "unnamed,unnamedplus"
-vim.o.mouse = a
+vim.o.mouse = "a"
 vim.o.t_Co = 256
 vim.o.fillchars = "stl: "
 vim.o.backspace = "indent,eol,start"
@@ -57,7 +57,7 @@ vim.api.nvim_create_user_command("FShow", "FloatermShow", { bang = true })
 
 vim.api.nvim_create_user_command("VConfig", "e " .. vim.g.plugindir .. "/plugin/01config.vim", { bang = true })
 vim.api.nvim_create_user_command("VHConfig", "e " .. vim.g.plugindir .. "/plugin/02lib.vim", { bang = true })
-vim.api.nvim_create_user_command("Vlua", "e " .. vim.g.plugindir .. "/lua/ide-lib.lua", { bang = true })
+vim.api.nvim_create_user_command("Vlua", "e " .. vim.g.plugindir .. "/lua/user/lib.lua", { bang = true })
 vim.api.nvim_create_user_command("VPlugList", "e ~/.config/nvim/init.lua", { bang = true })
 vim.api.nvim_create_user_command("DvorakSettingsV", "e " .. vim.g.plugindir .. "/plugin/03map.vim", { bang = true })
 vim.api.nvim_create_user_command("Bda", "bufdo bwipeout", { bang = true })
