@@ -1009,7 +1009,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
-if vim.g.neovide then
+if vim.fn.exists(vim.g.neovide) then
   vim.o.guifont = "CodeNewRoman Nerd Font Mono:style=Bold:h10"
   vim.o.guifontwide = "CodeNewRoman Nerd Font Propo:style=Bold:h10"
   vim.keymap.set("c", "<C-S-v>", "<C-r>+", {
