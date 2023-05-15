@@ -105,20 +105,20 @@ function Scrolloff_eof()
   call feedkeys( l:lines . "\<c-e>")
 endfunction
 
-nnoremap G :let g:x = line("$") - line(".")<CR>G:call Scrolloff_eof()<CR>
+nnoremap <silent> G :let g:x = line("$") - line(".")<CR>G:call Scrolloff_eof()<CR>
 
 nnoremap b c
-nnoremap r :bnext<CR>
+nnoremap <silent> r :bnext<CR>
 xnoremap b c
-xnoremap r :bnext<CR>
-nmap r :bn<CR>
-nmap c :bp<CR>
+xnoremap <silent> r :bnext<CR>
+nmap <silent> r :bn<CR>
+nmap <silent> c :bp<CR>
 nnoremap R gt
 nnoremap C gT
 "nmap <leader>b :set buflisted<CR>c:sp<CR>r:bd<cr>
 "nmap <leader>B :bufdo bd<CR>
-nmap <leader>b :Bdelete<CR>
-nmap <leader>B :bufdo Bdelete<CR>
+nmap <silent> <leader>b :Bdelete<CR>
+nmap <silent> <leader>B :bufdo Bdelete<CR>
 
 nnoremap <ScrollWheelUp> <C-Y><C-Y><C-Y><C-Y>
 nnoremap <ScrollWheelDown> <C-E><C-E><C-E><C-E>
@@ -139,9 +139,9 @@ nnoremap d<leader>d d^
 nnoremap <tab><tab> <Esc>/\(\(\[TODO\:\)\\|\(<+\)\).*\(\(\]\)\\|\(+>\)\)<CR>:nohlsearch<CR>"_cgn
 nnoremap <tab><tab> <Esc>/<++><CR>:nohlsearch<CR>"_cgn
 
-nnoremap <leader>; :AerialToggle<CR>
-nnoremap <leader>q :NvimTreeToggle<CR>
-nnoremap <leader>j :GundoToggle<CR>
+nnoremap <silent> <leader>; :AerialToggle<CR>
+nnoremap <silent> <leader>q :NvimTreeToggle<CR>
+nnoremap <silent> <leader>j :GundoToggle<CR>
 
 nmap . <Plug>(choosewin)
 nnoremap " ,
@@ -164,10 +164,10 @@ function! CutAppend()
 	execute "delete _"
 endfunction
 
-nnoremap <leader>yy :call CopyAppend()<CR>
-xnoremap <leader>yy :call CopyAppend()<CR>
-nnoremap <leader>yd :call CutAppend()<CR>
-xnoremap <leader>yd :call CutAppend()<CR>
+nnoremap <silent> <leader>yy :call CopyAppend()<CR>
+xnoremap <silent> <leader>yy :call CopyAppend()<CR>
+nnoremap <silent> <leader>yd :call CutAppend()<CR>
+xnoremap <silent> <leader>yd :call CutAppend()<CR>
 
 nnoremap <leader>/ VHoL<Esc>``/\%V
 nnoremap <leader>* VHoL<Esc>``/\%V<C-r><C-w><CR>
@@ -176,8 +176,8 @@ nnoremap # :b#<CR>
 """"""""""""""""""""""""""""""
 " toggleterm
 """"""""""""""""""""""""""""""
-nnoremap <leader><leader>t :ToggleTerm direction=float<CR>
-nnoremap <leader><leader>s :TermSelect<CR>
+nnoremap <silent> <leader><leader>t :ToggleTerm direction=float<CR>
+nnoremap <silent> <leader><leader>s :TermSelect<CR>
 
 inoremap <C-BS> <C-W>
 inoremap  <C-W>
@@ -218,25 +218,25 @@ func BufEnter()
 endfunc
 
 " fzf.vim
-nmap <leader>a :Ranger<CR>
-omap <leader>a :Ranger<CR>
-xmap <leader>a :Ranger<CR>
-nmap <leader>e :lua require('fzf-lua').files({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
-omap <leader>e :lua require('fzf-lua').files({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
-xmap <leader>e :lua require('fzf-lua').files({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
-nmap <leader>u :lua require('fzf-lua').lines({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
-omap <leader>u :lua require('fzf-lua').lines({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
-xmap <leader>u :lua require('fzf-lua').lines({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
-nnoremap B :lua require('fzf-lua').buffers({winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
-nnoremap M :lua require('fzf-lua').marks({winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
+nmap <silent> <leader>a :Ranger<CR>
+omap <silent> <leader>a :Ranger<CR>
+xmap <silent> <leader>a :Ranger<CR>
+nmap <silent> <leader>e :lua require('fzf-lua').files({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
+omap <silent> <leader>e :lua require('fzf-lua').files({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
+xmap <silent> <leader>e :lua require('fzf-lua').files({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
+nmap <silent> <leader>u :lua require('fzf-lua').lines({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
+omap <silent> <leader>u :lua require('fzf-lua').lines({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
+xmap <silent> <leader>u :lua require('fzf-lua').lines({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
+nnoremap <silent> B :lua require('fzf-lua').buffers({winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
+nnoremap <silent> M :lua require('fzf-lua').marks({winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
 autocmd FileType fzf tnoremap <buffer> <C-n> <Down>
 autocmd FileType fzf tnoremap <buffer> <C-t> <Up>
 autocmd FileType fzf IndentBlanklineDisable
 autocmd FileType fzf setl signcolumn=no
 
-nmap <leader>o :lua require('fzf-lua').git_files({winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
-omap <leader>o :lua require('fzf-lua').git_files({winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
-xmap <leader>o :lua require('fzf-lua').git_files({winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
+nmap <silent> <leader>o :lua require('fzf-lua').git_files({winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
+omap <silent> <leader>o :lua require('fzf-lua').git_files({winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
+xmap <silent> <leader>o :lua require('fzf-lua').git_files({winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
 
 """"""""""""""""""""""""""""""
 " nvim-cmp and nvim-lspconfig
@@ -364,8 +364,8 @@ nmap <leader>.h <Plug>(PickerHelp)
 " make 
 """"""""""""""""""""""""""""""
 let g:makefile_path = "."
-nnoremap <F4> :exec "Make -C " . g:makefile_path . " -j `nproc`"<CR>
-nnoremap <C-c> :AbortDispatch<CR>
+nnoremap <silent> <F4> :exec "Make -C " . g:makefile_path . " -j `nproc`"<CR>
+nnoremap <silent> <C-c> :AbortDispatch<CR>
 function! GetBufferList()
   redir =>buflist
   silent! ls!
@@ -404,13 +404,13 @@ function! g:Start_Termdebug(arg)
 		execute "Termdebug " . a:arg
 	endif
 endfunction
-nnoremap <F6> :!Make -j `nproc`<CR>:call g:Start_Termdebug("")<CR>
+nnoremap <silent> <F6> :!Make -j `nproc`<CR>:call g:Start_Termdebug("")<CR>
 
 
 "***********************************
 " debugger
 "***********************************
-noremap <F5> :lua require'nvim-gdb'.open_layout()<CR><ESC>
+noremap <silent> <F5> :lua require'nvim-gdb'.open_layout()<CR><ESC>
 
 comm! -nargs=? -bang L e ~/.local/share/nvim/site/pack/packer/start/light-gdb.nvim/lua/gdb/
 
