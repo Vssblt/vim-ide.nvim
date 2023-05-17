@@ -135,7 +135,14 @@ return require('packer').startup(function()
   use { 'luals/lua-language-server', run = "sudo apt install ninja-build && ./make.sh && sudo ln -s `pwd`/bin/lua-language-server /usr/bin/lua-language-server" }
   -- rust lsp
   use { 'rust-lang/rust-analyzer', run = "cargo xtask install --server" }
-
+  
+  use {
+    'antosha417/nvim-lsp-file-operations',
+    requires = {
+      { "nvim-lua/plenary.nvim" },
+      { "kyazdani42/nvim-tree.lua" },
+    }
+  }
   --------------------------------------------------------------------------
 
   use { 'chentoast/marks.nvim' }
