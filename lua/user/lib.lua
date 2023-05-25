@@ -851,11 +851,24 @@ cmp.setup({
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-     { name = 'luasnip' }, -- For luasnip users.
-  }, {
+    { name = 'path' },
+    { name = 'nvim_lsp_signature_help' },
+    -- {
+    --     name = 'spell',
+    --     option = {
+    --         keep_all_entries = false,
+    --         enable_in_context = function()
+    --             return true
+    --         end,
+    --     },
+    -- },
+    { name = 'luasnip' },
     { name = 'buffer' },
   })
 })
+
+-- vim.opt.spell = true
+-- vim.opt.spelllang = { 'en_us' }
 
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
@@ -901,7 +914,8 @@ vim.api.nvim_set_hl(0, "CmpItemKindUnit", { link = "CmpItemKindKeyword" })
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 require('lspconfig')['clangd'].setup {
-  capabilities = capabilities
+  capabilities = capabilities,
+  cmd = { "clangd", "--completion-style=detailed" }
 }
 
 require'lspconfig'.vimls.setup{
