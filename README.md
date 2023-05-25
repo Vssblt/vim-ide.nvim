@@ -125,10 +125,12 @@ return require('packer').startup(function()
   use { 'hrsh7th/cmp-nvim-lsp' }
   use { 'f3fora/cmp-spell' }
   use { 'neovim/nvim-lspconfig' }
+  use { 'hrsh7th/cmp-nvim-lsp-signature-help' }
   use({
 	  "L3MON4D3/LuaSnip",
 	  run = "make install_jsregexp"
   })
+  use { 'saadparwaiz1/cmp_luasnip' }
   -- completion menu style
   use { 'onsails/lspkind.nvim' }
   -- lua lsp
