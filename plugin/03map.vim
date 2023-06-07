@@ -15,11 +15,42 @@
 nnoremap o ox<BS>
 nnoremap O Ox<BS>
 
+nnoremap <silent> * :let @/= '\<' . expand('<cword>') . '\>' <bar> set hls <cr>
+nnoremap <silent> g* :let @/=expand('<cword>') <bar> set hls <cr>
+
 noremap <C-d> <C-\><C-n>
 
 nnoremap yi<space> yiW
 nnoremap bi<space> ciW
 nnoremap di<space> diW
+nnoremap vi<space> viW
+
+nnoremap b" ci"
+nnoremap b[ ci[
+nnoremap b{ ci{
+nnoremap b' ci'
+nnoremap b` ci`
+nnoremap b( ci(
+nnoremap b<space> ciW
+nnoremap b< ci<
+
+nnoremap d" di"
+nnoremap d[ di[
+nnoremap d{ di{
+nnoremap d' di'
+nnoremap d` di`
+nnoremap d( di(
+nnoremap d<space> diW
+nnoremap d< di<
+
+nnoremap y" yi"
+nnoremap y[ yi[
+nnoremap y{ yi{
+nnoremap y' yi'
+nnoremap y` yi`
+nnoremap y( yi(
+nnoremap y<space> yiW
+nnoremap y< yi<
 
 nnoremap <C-n> 4j
 nnoremap <C-t> 4k

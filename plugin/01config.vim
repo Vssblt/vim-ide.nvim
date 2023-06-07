@@ -20,13 +20,6 @@ let g:choosewin_overlay_enable = 0
 let g:choosewin_label = "aoeuidhtns"
 
 """"""""""""""""""""""""""""""
-" vim-floaterm settings
-""""""""""""""""""""""""""""""
-" let g:floaterm_height = 0.9
-" let g:floaterm_width = 0.9
-" let g:floaterm_autoclose = 2
-
-""""""""""""""""""""""""""""""
 " other settings
 """"""""""""""""""""""""""""""
 let g:sonokai_style = 'shusia'

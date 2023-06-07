@@ -1,3 +1,11 @@
+# Work List
+| desc                                                     |
+|----------------------------------------------------------|
+| 关闭回车自动补全                                         |
+| 补全适配 vim-visual-multi                                |
+| insert模式下补全的 <c-n> 和LuaSnip的 "下一个插入点" 冲突 |
+
+# Config
 ``` lua
 vim.loader.enable()
 

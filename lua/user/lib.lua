@@ -79,11 +79,6 @@ vim.api.nvim_create_autocmd({"FileType"}, { pattern = "fzf", command = "setlocal
 vim.api.nvim_create_autocmd({"FileType"}, { pattern = "markdown", command = "command! TOC :GenTocGFM" })
 
 ---------------------------
--- vim-surround
----------------------------
-vim.g.surround_no_mappings = 1
-
----------------------------
 -- vim-dispatch
 ---------------------------
 vim.g.dispatch_quickfix_height = 20
@@ -202,64 +197,74 @@ end
 
 vim.api.nvim_create_autocmd({"BufWinLeave", "WinLeave", "TabLeave", }, { pattern = {"NvimTree_*"}, callback = change_root_cwd})
 
+local function on_attach(bufnr)
+  local api = require('nvim-tree.api')
+  local function opts(desc)
+    return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
+  vim.keymap.set("n", "<CR>",  api.node.open.edit,opts('Open'))
+  vim.keymap.set("n", "o", api.node.open.edit,opts('Open'))
+  vim.keymap.set("n", "<C-e>", api.node.open.replace_tree_buffer, opts('Open: In Place'))
+  vim.keymap.set("n", "O", api.node.open.no_window_picker, opts('Open: No Window Picker'))
+  vim.keymap.set("n", "<2-LeftMouse>",api.tree.change_root_to_node,opts('CD'))
+  vim.keymap.set("n", "cd",api.tree.change_root_to_node,opts('CD'))
+  vim.keymap.set("n", "<C-v>", '', {buffer = bufnr})
+  vim.keymap.del("n", "<C-v>", {buffer = bufnr})
+  vim.keymap.set("n", "<C-t>", '', {buffer = bufnr})
+  vim.keymap.del("n", "<C-t>", {buffer = bufnr})
+  vim.keymap.set("n", "<C-x>",api.node.open.horizontal,              opts('Open: Horizontal Split'))
+  vim.keymap.set("n", ",t",api.node.open.tab,                     opts('Open: New Tab'))
+  vim.keymap.set("n", "<",api.node.navigate.sibling.prev,        opts('Previous Sibling'))
+  vim.keymap.set("n", ">",api.node.navigate.sibling.next,        opts('Next Sibling'))
+  vim.keymap.set("n", "P",api.tree.change_root_to_parent,        opts('Up'))
+  vim.keymap.set("n", "<BS>", api.node.navigate.parent_close,        opts('Close Directory'))
+  vim.keymap.set("n", "<Tab>",api.node.open.preview,                 opts('Open Preview'))
+  vim.keymap.set("n", "K",api.node.navigate.sibling.first,       opts('First Sibling'))
+  vim.keymap.set("n", "J",api.node.navigate.sibling.last,        opts('Last Sibling'))
+  vim.keymap.set("n", "I",api.tree.toggle_gitignore_filter,      opts('Toggle Git Ignore'))
+  vim.keymap.set("n", "h",api.tree.toggle_hidden_filter,         opts('Toggle Dotfiles'))
+  vim.keymap.set("n", "H","", {buffer = bufnr})
+  vim.keymap.del("n", "H", {buffer = bufnr})
+  vim.keymap.set("n", "U",api.tree.toggle_custom_filter,         opts('Toggle Hidden'))
+  vim.keymap.set("n", "R",api.tree.reload,                       opts('Refresh'))
+  vim.keymap.set("n", "a", api.fs.create,                         opts('Create'))
+  vim.keymap.set("n", "dd", api.fs.remove,                         opts('Delete'))
+  vim.keymap.set("n", "DD", api.fs.trash,                          opts('Trash'))
+  vim.keymap.set("n", "r",api.fs.rename,                         opts('Rename'))
+  vim.keymap.set("n", "<C-r>",api.fs.rename_sub,                     opts('Rename: Omit Filename'))
+  vim.keymap.set("n", "x",api.fs.cut,                            opts('Cut'))
+  vim.keymap.set("n", "yy", api.fs.copy.node,                      opts('Copy'))
+  vim.keymap.set("n", "p", api.fs.paste,                          opts('Paste'))
+  vim.keymap.set("n", "yn", api.fs.copy.filename,                  opts('Copy Name'))
+  vim.keymap.set("n", "yp", api.fs.copy.relative_path,             opts('Copy Relative Path'))
+  vim.keymap.set("n", "gy", api.fs.copy.absolute_path,             opts('Copy Absolute Path'))
+  vim.keymap.set("n", "[c", api.node.navigate.git.prev,            opts('Prev Git'))
+  vim.keymap.set("n", "]c",  api.node.navigate.git.next,            opts('Next Git'))
+  vim.keymap.set("n", "-",api.node.navigate.parent,              opts('Parent Directory'))
+  vim.keymap.set("n", "s",api.tree.search_node,                  opts('Search'))
+  vim.keymap.set("n", "S","", {buffer = bufnr})
+  vim.keymap.del("n", "S", {buffer = bufnr})
+  vim.keymap.set("n", "f",api.live_filter.start,                 opts('Filter'))
+  vim.keymap.set("n", "F",api.live_filter.clear,                 opts('Clean Filter'))
+  vim.keymap.set("n", "q",api.tree.close,                        opts('Close'))
+  vim.keymap.set("n", "W",api.tree.collapse_all,                 opts('Collapse'))
+  vim.keymap.set("n", "E",api.tree.expand_all,                   opts('Expand All'))
+  vim.keymap.set("n", ".","", {buffer = bufnr})
+  vim.keymap.del("n", ".", {buffer = bufnr})
+  vim.keymap.set("n", "<C-k>",api.node.show_info_popup,              opts('Info'))
+  vim.keymap.set("n", "g?",  api.tree.toggle_help,                  opts('Help'))
+end
+
 require("nvim-tree").setup({
   --git = {
     --enable = false,
   --},
   sort_by = "case_sensitive",
   --disable_netrw = true,
-  -- on_attach = on_attach,
+  on_attach = on_attach,
   hijack_netrw = true,
   view = {
     adaptive_size = true,
-    mappings = {
-      list = {
-        { key = { "<CR>", "o" },  action = "edit" }
-        ,{ key = "<C-e>",                          action = "edit_in_place" }
-        ,{ key = "O",                              action = "edit_no_picker" }
-        ,{ key = { "cd", "<2-LeftMouse>"},    action = "cd" }
-        ,{ key = "<C-v>",                          action = "" }
-        ,{ key = "<C-t>",                          action = "" }
-        ,{ key = "<C-x>",                          action = "split" }
-        ,{ key = ",t",                             action = "tabnew" }
-        ,{ key = "<",                              action = "prev_sibling" }
-        ,{ key = ">",                              action = "next_sibling" }
-        ,{ key = "P",                              action = "parent_node" }
-        ,{ key = "<BS>",                           action = "close_node" }
-        ,{ key = "<Tab>",                          action = "preview" }
-        ,{ key = "K",                              action = "first_sibling" }
-        ,{ key = "J",                              action = "last_sibling" }
-        ,{ key = "I",                              action = "toggle_git_ignored" }
-        ,{ key = "h",                              action = "toggle_dotfiles" }
-        ,{ key = "H",                              action = "" }
-        ,{ key = "U",                              action = "toggle_custom" }
-        ,{ key = "R",                              action = "refresh" }
-        ,{ key = "a",                              action = "create" }
-        ,{ key = "dd",                             action = "remove" }
-        ,{ key = "DD",                             action = "trash" }
-        ,{ key = "r",                              action = "rename" }
-        ,{ key = "<C-r>",                          action = "full_rename" }
-        ,{ key = "x",                              action = "cut" }
-        ,{ key = "yy",                             action = "copy" }
-        ,{ key = "p",                              action = "paste" }
-        ,{ key = "yn",                             action = "copy_name" }
-        ,{ key = "yp",                             action = "copy_path" }
-        ,{ key = "gy",                             action = "copy_absolute_path" }
-        ,{ key = "[c",                             action = "prev_git_item" }
-        ,{ key = "]c",                             action = "next_git_item" }
-        ,{ key = "-",                              action = "dir_up" }
-        ,{ key = "s",                              action = "search_node" }
-        ,{ key = "S",                              action = "" }
-        ,{ key = "f",                              action = "live_filter" }
-        ,{ key = "F",                              action = "clear_live_filter" }
-        ,{ key = "q",                              action = "close" }
-        ,{ key = "W",                              action = "collapse_all" }
-        ,{ key = "E",                              action = "expand_all" }
-        ,{ key = ".",                              action = "" }
-        ,{ key = "<C-k>",                          action = "toggle_file_info" }
-        ,{ key = "g?",                             action = "toggle_help" }
-      },
-    },
   },
   renderer = {
     group_empty = true,
@@ -548,11 +553,6 @@ require('vgit').setup({
     },
   }
 })
-
----------------------------
--- nvim-surround
----------------------------
-require("nvim-surround").setup({ keymaps = { change = "bs" } })
 
 require'marks'.setup {
   default_mappings = true,
