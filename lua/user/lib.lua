@@ -113,13 +113,13 @@ vim.g.clockn_to_right = 1
 -- aerial.nvim
 ---------------------------
 vim.api.nvim_set_hl(0, "AerialLine", { link = "QuickFixLine" })
-vim.api.nvim_set_hl(0, "QuickFixLine", { bg = "#848089", fg = "black" })
-vim.api.nvim_set_hl(0, "AerialLine", { bg = "#848089", fg = "black" })
-vim.api.nvim_set_hl(0, "AerialLineNC", { bg = "#848089" })
+vim.api.nvim_set_hl(0, "QuickFixLine", { bg = "#7ACCD7", fg = "black" })
+vim.api.nvim_set_hl(0, "AerialLine", { bg = "#7ACCD7", fg = "black" })
+vim.api.nvim_set_hl(0, "AerialLineNC", { bg = "#7ACCD7" })
 vim.api.nvim_set_hl(0, "AerialLine", { link  =  "QuickFixLine" })
-vim.api.nvim_set_hl(0, "QuickFixLine", { bg = "#848089", fg = "black" })
-vim.api.nvim_set_hl(0, "AerialLine", { bg = "#848089", fg = "black" })
-vim.api.nvim_set_hl(0, "AerialLineNC", { bg = "#848089" })
+vim.api.nvim_set_hl(0, "QuickFixLine", { bg = "#7ACCD7", fg = "black" })
+vim.api.nvim_set_hl(0, "AerialLine", { bg = "#7ACCD7", fg = "black" })
+vim.api.nvim_set_hl(0, "AerialLineNC", { bg = "#7ACCD7" })
 
 ---------------------------
 -- markdown-preview.nvim

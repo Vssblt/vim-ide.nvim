@@ -477,6 +477,7 @@ augroup QuickFixWinVar
   autocmd!
   autocmd FileType qf map <silent><buffer> r r
   autocmd FileType qf map <silent><buffer> c c
+  autocmd FileType qf map <silent><buffer> q :q<CR>
 augroup END
 
 augroup HelpWinVar
