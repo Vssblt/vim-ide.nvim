@@ -34,7 +34,7 @@ vim.o.updatetime = 300
 vim.o.autoread = true
 vim.o.signcolumn = "yes"
 vim.o.undofile = true
-vim.o.completeopt = "longest,menu"
+vim.o.completeopt = "menu,menuone,noselect,noinsert"
 vim.o.termguicolors = true
 
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
@@ -827,7 +827,7 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ['<C-Space>'] = cmp.mapping.complete(),
     --['<ESC>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ['<CR>'] = cmp.mapping.confirm({ select = false }),
     ['<Tab>'] = function(fallback)
       if not cmp.select_next_item() then
         if vim.bo.buftype ~= 'prompt' and has_words_before() then
