@@ -113,13 +113,13 @@ vim.g.clockn_to_right = 1
 -- aerial.nvim
 ---------------------------
 vim.api.nvim_set_hl(0, "AerialLine", { link = "QuickFixLine" })
-vim.api.nvim_set_hl(0, "QuickFixLine", { bg = "#848089", fg = "black" })
-vim.api.nvim_set_hl(0, "AerialLine", { bg = "#848089", fg = "black" })
-vim.api.nvim_set_hl(0, "AerialLineNC", { bg = "#848089" })
+vim.api.nvim_set_hl(0, "QuickFixLine", { bg = "#7ACCD7", fg = "black" })
+vim.api.nvim_set_hl(0, "AerialLine", { bg = "#7ACCD7", fg = "black" })
+vim.api.nvim_set_hl(0, "AerialLineNC", { bg = "#7ACCD7" })
 vim.api.nvim_set_hl(0, "AerialLine", { link  =  "QuickFixLine" })
-vim.api.nvim_set_hl(0, "QuickFixLine", { bg = "#848089", fg = "black" })
-vim.api.nvim_set_hl(0, "AerialLine", { bg = "#848089", fg = "black" })
-vim.api.nvim_set_hl(0, "AerialLineNC", { bg = "#848089" })
+vim.api.nvim_set_hl(0, "QuickFixLine", { bg = "#7ACCD7", fg = "black" })
+vim.api.nvim_set_hl(0, "AerialLine", { bg = "#7ACCD7", fg = "black" })
+vim.api.nvim_set_hl(0, "AerialLineNC", { bg = "#7ACCD7" })
 
 ---------------------------
 -- markdown-preview.nvim
@@ -827,7 +827,7 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ['<C-Space>'] = cmp.mapping.complete(),
     --['<ESC>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ['<CR>'] = cmp.mapping.confirm({ select = false }),
     ['<Tab>'] = function(fallback)
       if not cmp.select_next_item() then
         if vim.bo.buftype ~= 'prompt' and has_words_before() then
