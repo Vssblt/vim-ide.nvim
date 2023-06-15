@@ -170,7 +170,7 @@ nnoremap d<leader>d d^
 nnoremap <tab><tab> <Esc>/\(\(\[TODO\:\)\\|\(<+\)\).*\(\(\]\)\\|\(+>\)\)<CR>:nohlsearch<CR>"_cgn
 nnoremap <tab><tab> <Esc>/<++><CR>:nohlsearch<CR>"_cgn
 
-nnoremap <silent> <leader>; :AerialToggle<CR>
+nnoremap <silent> <leader>; :SymbolsOutline<CR>
 nnoremap <silent> <leader>q :NvimTreeToggle<CR>
 nnoremap <silent> <leader>j :GundoToggle<CR>
 
@@ -216,9 +216,9 @@ onoremap <C-BS> <C-W>
 onoremap  <C-W>
 
 """"""""""""""""""""""""""""""
-" aerial.nvim
+" SymbolsOutline
 """"""""""""""""""""""""""""""
-"autocmd FileType aerial nnoremap <CR> :AerialOpen<CR>
+" autocmd FileType Outline IndentBlanklineDisable
 
 """"""""""""""""""""""""""""""
 " ranger

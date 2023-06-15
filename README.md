@@ -396,7 +396,12 @@ return require('packer').startup(function()
     requires = "nvim-treesitter/nvim-treesitter",
   })
 
-  use { 'stevearc/aerial.nvim' }
+  use { 'simrat39/symbols-outline.nvim', 
+    config = function()
+      require("symbols-outline").setup(opts)
+    end
+  }
+  -- use { 'stevearc/aerial.nvim' }
 
   use {
     'kyazdani42/nvim-web-devicons'
