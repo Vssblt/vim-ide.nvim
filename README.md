@@ -89,41 +89,58 @@ return require('packer').startup(function()
   -- A vim 7.4+ plugin to generate table of contents for Markdown files.
   -- :GenTocGFM
 
-  use { "lukas-reineke/indent-blankline.nvim",
-    config = function()
-      require("indent_blankline").setup()
-    end
-  }
-
   -- { 
   -- These plugins have poor performance!!!!
     use { 'unblevable/quick-scope'  }
     -- Quick move in current line.
   -- }
 
+  -- use { "lukas-reineke/indent-blankline.nvim",
+  --   config = function()
+  --     require("indent_blankline").setup()
+  --   end
+  -- }
+
+  use { "shellRaining/hlchunk.nvim",
+    config = function()
+      require('hlchunk').setup({
+        indent = {
+            chars = { "│", "¦", "┆", "┊", },
+
+            -- style = {
+            --     "#8B00FF",
+            -- },
+        },
+        blank = {
+            enable = false,
+        }
+      })
+    end
+  }
+
   use { 'rcarriga/nvim-notify' }
 
   use { 'dstein64/vim-startuptime' }
-
-  use {
-      'goolord/alpha-nvim',
-      config = function()
-        require('dashboard').setup {
-          theme = 'doom',
-          shortcut_type = 'number',
-        }
-        local dashboard = require("alpha.themes.dashboard")
-        dashboard.section.buttons.val = {
-        	dashboard.button("f", "  Find file", ":lua require('fzf-lua').files({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>"),
-        	dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-        	dashboard.button("r", "  Recently used files", ":lua require('fzf-lua').oldfiles({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>"),
-        	dashboard.button("c", "  Configuration", ":e $MYVIMRC <CR>"),
-        	dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
-        }
-        require'alpha'.setup(dashboard.opts)
-      end,
-      requires = { 'glepnir/dashboard-nvim' }
-  }
+  --
+  -- use {
+  --     'goolord/alpha-nvim',
+  --     config = function()
+  --       require('dashboard').setup {
+  --         theme = 'doom',
+  --         shortcut_type = 'number',
+  --       }
+  --       local dashboard = require("alpha.themes.dashboard")
+  --       dashboard.section.buttons.val = {
+  --       	dashboard.button("f", "  Find file", ":lua require('fzf-lua').files({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>"),
+  --       	dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
+  --       	dashboard.button("r", "  Recently used files", ":lua require('fzf-lua').oldfiles({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>"),
+  --       	dashboard.button("c", "  Configuration", ":e $MYVIMRC <CR>"),
+  --       	dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
+  --       }
+  --       require'alpha'.setup(dashboard.opts)
+  --     end,
+  --     requires = { 'glepnir/dashboard-nvim' }
+  -- }
   --------------------------------------------------------------------------
 
   use { 'hrsh7th/nvim-cmp' }
@@ -327,7 +344,12 @@ return require('packer').startup(function()
 
   use {
     "kylechui/nvim-surround",
-    tag = "*" -- Use for stability; omit to use `main` branch for the latest features
+    tag = "v2.0.5", -- Use for stability; omit to use `main` branch for the latest features
+    config = function()
+        require("nvim-surround").setup({
+          keymaps={change="bs"}
+        })
+    end
   }
   -- ydc s iw/$/]/t
   -- Select a text and type: S"
@@ -383,7 +405,7 @@ return require('packer').startup(function()
   use {
     'kyazdani42/nvim-tree.lua',
     requires = 'kyazdani42/nvim-web-devicons', -- optional, for file icons
-    tag = 'nightly', -- optional, updated every week. (see issue #1193)
+    -- tag = 'nightly', -- optional, updated every week. (see issue #1193)
   }
 
   use {'sindrets/winshift.nvim'}

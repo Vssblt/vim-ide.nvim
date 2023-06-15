@@ -262,7 +262,7 @@ nnoremap <silent> B :lua require('fzf-lua').buffers({winopts = { preview = { lay
 nnoremap <silent> M :lua require('fzf-lua').marks({winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
 autocmd FileType fzf tnoremap <buffer> <C-n> <Down>
 autocmd FileType fzf tnoremap <buffer> <C-t> <Up>
-autocmd FileType fzf IndentBlanklineDisable
+" autocmd FileType fzf IndentBlanklineDisable
 autocmd FileType fzf setl signcolumn=no
 
 nmap <silent> <leader>o :lua require('fzf-lua').git_files({winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
