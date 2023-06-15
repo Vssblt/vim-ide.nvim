@@ -89,9 +89,22 @@ return require('packer').startup(function()
   -- A vim 7.4+ plugin to generate table of contents for Markdown files.
   -- :GenTocGFM
 
-  use { "lukas-reineke/indent-blankline.nvim",
+  -- use { "lukas-reineke/indent-blankline.nvim",
+  --   config = function()
+  --     require("indent_blankline").setup()
+  --   end
+  -- }
+
+  use { "shellRaining/hlchunk.nvim",
     config = function()
-      require("indent_blankline").setup()
+      require('hlchunk').setup({
+        indent = {
+            chars = { "│", "¦", "┆", "┊", },
+        },
+        blank = {
+            enable = false,
+        }
+      })
     end
   }
 
@@ -374,7 +387,12 @@ return require('packer').startup(function()
     requires = "nvim-treesitter/nvim-treesitter",
   })
 
-  use { 'stevearc/aerial.nvim' }
+  use { 'simrat39/symbols-outline.nvim', 
+    config = function()
+      require("symbols-outline").setup(opts)
+    end
+  }
+  -- use { 'stevearc/aerial.nvim' }
 
   use {
     'kyazdani42/nvim-web-devicons'
