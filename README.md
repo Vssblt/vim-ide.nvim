@@ -121,26 +121,26 @@ return require('packer').startup(function()
   use { 'rcarriga/nvim-notify' }
 
   use { 'dstein64/vim-startuptime' }
-  --
-  -- use {
-  --     'goolord/alpha-nvim',
-  --     config = function()
-  --       require('dashboard').setup {
-  --         theme = 'doom',
-  --         shortcut_type = 'number',
-  --       }
-  --       local dashboard = require("alpha.themes.dashboard")
-  --       dashboard.section.buttons.val = {
-  --       	dashboard.button("f", "  Find file", ":lua require('fzf-lua').files({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>"),
-  --       	dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-  --       	dashboard.button("r", "  Recently used files", ":lua require('fzf-lua').oldfiles({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>"),
-  --       	dashboard.button("c", "  Configuration", ":e $MYVIMRC <CR>"),
-  --       	dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
-  --       }
-  --       require'alpha'.setup(dashboard.opts)
-  --     end,
-  --     requires = { 'glepnir/dashboard-nvim' }
-  -- }
+
+  use {
+      'goolord/alpha-nvim',
+      config = function()
+        require('dashboard').setup {
+          theme = 'doom',
+          shortcut_type = 'number',
+        }
+        local dashboard = require("alpha.themes.dashboard")
+        dashboard.section.buttons.val = {
+        	dashboard.button("f", "  Find file", ":lua require('fzf-lua').files({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>"),
+        	dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
+        	dashboard.button("r", "  Recently used files", ":lua require('fzf-lua').oldfiles({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>"),
+        	dashboard.button("c", "  Configuration", ":e $MYVIMRC <CR>"),
+        	dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
+        }
+        require'alpha'.setup(dashboard.opts)
+      end,
+      requires = { 'glepnir/dashboard-nvim' }
+  }
   --------------------------------------------------------------------------
 
   use { 'hrsh7th/nvim-cmp' }
