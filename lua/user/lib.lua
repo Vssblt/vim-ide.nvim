@@ -36,6 +36,10 @@ vim.o.signcolumn = "yes"
 vim.o.undofile = true
 vim.o.completeopt = "menu,menuone,noselect,noinsert"
 vim.o.termguicolors = true
+vim.o.pumheight = 40
+vim.o.pumwidth = 40
+
+vim.cmd[[hi FocusedSymbol guifg=#2d2a2e guibg=#78dce8]]
 
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   pattern = {"*"},
@@ -813,7 +817,10 @@ end
 local lspkind = require('lspkind')
 cmp.setup({
   formatting = {
-    format = lspkind.cmp_format(),
+    format = function(entry, vim_item)
+      vim_item.abbr = string.sub(vim_item.abbr, 1, 50)
+      return vim_item
+    end
   },
   snippet = {
     expand = function(args)

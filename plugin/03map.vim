@@ -319,6 +319,7 @@ let g:VM_maps["Visual Find"]                 = '\f'
 let g:VM_maps["Visual Cursors"]              = '\c'
 let g:VM_maps["Select Cursor Down"]          = '<M-C-Down>'
 let g:VM_maps["Select Cursor Up"]            = '<M-C-Up>'
+let g:VM_maps["Select Operator"]            = ''
 
 let g:VM_maps["Erase Regions"]               = '\gr'
 
