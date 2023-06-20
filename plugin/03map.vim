@@ -76,11 +76,11 @@ xnoremap s l
 
 inoremap <c-n> <esc>A
 
-lua vim.keymap.set("n", "n", [[v:count ? 'j' : 'gj']], {noremap = true, expr = true})
-lua vim.keymap.set("x", "n", [[v:count ? 'j' : 'gj']], {noremap = true, expr = true})
+lua vim.keymap.set("n", "n", [[v:count ? 'j' : 'gj']], {noremap = true, expr = true, silent=true})
+lua vim.keymap.set("x", "n", [[v:count ? 'j' : 'gj']], {noremap = true, expr = true, silent=true})
 
-lua vim.keymap.set("n", "t", [[v:count ? 'k' : 'gk']], {noremap = true, expr = true})
-lua vim.keymap.set("x", "t", [[v:count ? 'k' : 'gk']], {noremap = true, expr = true})
+lua vim.keymap.set("n", "t", [[v:count ? 'k' : 'gk']], {noremap = true, expr = true, silent=true})
+lua vim.keymap.set("x", "t", [[v:count ? 'k' : 'gk']], {noremap = true, expr = true, silent=true})
 
 function! NetrwMapping()
   nnoremap <buffer> t k
@@ -252,9 +252,9 @@ endfunc
 nmap <silent> <leader>a :Ranger<CR>
 omap <silent> <leader>a :Ranger<CR>
 xmap <silent> <leader>a :Ranger<CR>
-nmap <silent> <leader>e :lua require('fzf-lua').files({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
-omap <silent> <leader>e :lua require('fzf-lua').files({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
-xmap <silent> <leader>e :lua require('fzf-lua').files({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
+nmap <silent> <leader>o :lua require('fzf-lua').files({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
+omap <silent> <leader>o :lua require('fzf-lua').files({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
+xmap <silent> <leader>o :lua require('fzf-lua').files({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
 nmap <silent> <leader>u :lua require('fzf-lua').lines({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
 omap <silent> <leader>u :lua require('fzf-lua').lines({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
 xmap <silent> <leader>u :lua require('fzf-lua').lines({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
@@ -265,9 +265,9 @@ autocmd FileType fzf tnoremap <buffer> <C-t> <Up>
 " autocmd FileType fzf IndentBlanklineDisable
 autocmd FileType fzf setl signcolumn=no
 
-nmap <silent> <leader>o :lua require('fzf-lua').git_files({winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
-omap <silent> <leader>o :lua require('fzf-lua').git_files({winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
-xmap <silent> <leader>o :lua require('fzf-lua').git_files({winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
+nmap <silent> <leader>e :lua require('fzf-lua').git_files({winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
+omap <silent> <leader>e :lua require('fzf-lua').git_files({winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
+xmap <silent> <leader>e :lua require('fzf-lua').git_files({winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>
 
 """"""""""""""""""""""""""""""
 " nvim-cmp and nvim-lspconfig

@@ -38,6 +38,7 @@ vim.o.completeopt = "menu,menuone,noselect,noinsert"
 vim.o.termguicolors = true
 vim.o.pumheight = 40
 vim.o.pumwidth = 40
+vim.cmd("syntax off")
 
 vim.cmd[[hi FocusedSymbol guifg=#2d2a2e guibg=#78dce8]]
 
@@ -182,12 +183,18 @@ vim.notify = require("notify")
 
 ---------------------------
 -- nvim-treesitter
+-- poor performance
 ---------------------------
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "all",
+  -- ensure_installed = "all",
   sync_install = false,
   highlight = {
-    enable = false,
+    enable = true,
+    disable = function (lang, bufnr)
+      local buf_name = vim.api.nvim_buf_get_name(bufnr)
+      local file_size = vim.api.nvim_call_function("getfsize", { buf_name })
+      return vim.api.nvim_buf_line_count(bufnr) > 10000 or file_size > 10000 * 1024
+    end,
     additional_vim_regex_highlighting = false,
   },
 }
@@ -606,207 +613,6 @@ require'nvim-gdb'.setup({
   }
 })
 
-
----------------------------
--- aerial.nvim
----------------------------
--- 
--- require("aerial").setup({
---   backends = { "treesitter", "lsp", "markdown", "man" },
--- 
---   layout = {
---     max_width = { 80, 0.2 },
---     width = nil,
---     min_width = 10,
--- 
---     win_opts = {},
--- 
---     default_direction = "prefer_right",
--- 
---     placement = "window",
--- 
---     preserve_equality = false,
---   },
--- 
---   attach_mode = "window",
--- 
---   close_automatic_events = {},
--- 
---   keymaps = {
---     ["?"] = "actions.show_help",
---     ["g?"] = "actions.show_help",
---     ["<CR>"] = "actions.jump",
---     ["<2-LeftMouse>"] = "actions.jump",
---     ["<C-v>"] = "actions.jump_vsplit",
---     ["<C-s>"] = "actions.jump_split",
---     ["p"] = "actions.scroll",
---     ["<C-j>"] = "actions.up_and_scroll",
---     ["<C-k>"] = "actions.down_and_scroll",
---     ["{"] = "actions.prev",
---     ["}"] = "actions.next",
---     ["[["] = "actions.prev_up",
---     ["]]"] = "actions.next_up",
---     ["q"] = "actions.close",
---     ["o"] = "actions.tree_toggle",
---     ["za"] = "actions.tree_toggle",
---     ["O"] = "actions.tree_toggle_recursive",
---     ["zA"] = "actions.tree_toggle_recursive",
---     ["l"] = "actions.tree_open",
---     ["zo"] = "actions.tree_open",
---     ["L"] = "actions.tree_open_recursive",
---     ["zO"] = "actions.tree_open_recursive",
---     ["h"] = "actions.tree_close",
---     ["zc"] = "actions.tree_close",
---     ["H"] = false,
---     ["zC"] = "actions.tree_close_recursive",
---     ["zr"] = "actions.tree_increase_fold_level",
---     ["zR"] = "actions.tree_open_all",
---     ["zm"] = "actions.tree_decrease_fold_level",
---     ["zM"] = "actions.tree_close_all",
---     ["zx"] = "actions.tree_sync_folds",
---     ["zX"] = "actions.tree_sync_folds",
---   },
--- 
---   lazy_load = true,
--- 
---   disable_max_lines = 10000,
--- 
---   disable_max_size = 2000000, -- Default 2MB
--- 
---   filter_kind = {
---     "Class",
---     "Constructor",
---     "Enum",
---     "Function",
---     "Interface",
---     "Module",
---     "Method",
---     "Struct",
---   },
--- 
---   highlight_mode = "split_width",
--- 
---   highlight_closest = true,
--- 
---   highlight_on_hover = false,
--- 
---   highlight_on_jump = 300,
--- 
---   autojump = false,
--- 
---   icons = {},
--- 
---   ignore = {
---     unlisted_buffers = false,
--- 
---     filetypes = {},
--- 
---     buftypes = "special",
--- 
---     wintypes = "special",
---   },
--- 
---   manage_folds = false,
--- 
---   link_folds_to_tree = false,
--- 
---   link_tree_to_folds = true,
--- 
---   nerd_font = "auto",
--- 
---   on_attach = function(bufnr) end,
--- 
---   on_first_symbols = function(bufnr) end,
--- 
---   open_automatic = false,
--- 
---   post_jump_cmd = "normal! zz",
--- 
---   post_parse_symbol = function(bufnr, item, ctx)
---     return true
---   end,
--- 
---   post_add_all_symbols = function(bufnr, items, ctx)
---     return items
---   end,
--- 
---   close_on_select = false,
--- 
---   update_events = "TextChanged,InsertLeave",
--- 
---   show_guides = false,
--- 
---   guides = {
---     mid_item = "├─",
---     last_item = "└─",
---     nested_top = "│ ",
---     whitespace = "  ",
---   },
--- 
---   get_highlight = function(symbol, is_icon)
---   end,
--- 
---   float = {
---     border = "rounded",
--- 
---     relative = "cursor",
--- 
---     max_height = 0.9,
---     height = nil,
---     min_height = { 8, 0.1 },
--- 
---     override = function(conf, source_winid)
---       return conf
---     end,
---   },
--- 
---   nav = {
---     border = "rounded",
---     max_height = 0.9,
---     min_height = { 10, 0.1 },
---     max_width = 0.5,
---     min_width = { 0.2, 20 },
---     win_opts = {
---       cursorline = true,
---       winblend = 10,
---     },
---     autojump = false,
---     preview = false,
---     keymaps = {
---       ["<CR>"] = "actions.jump",
---       ["<2-LeftMouse>"] = "actions.jump",
---       ["<C-v>"] = "actions.jump_vsplit",
---       ["<C-s>"] = "actions.jump_split",
---       ["h"] = "actions.left",
---       ["l"] = "actions.right",
---       ["<C-c>"] = "actions.close",
---     },
---   },
--- 
---   lsp = {
---     diagnostics_trigger_update = true,
--- 
---     update_when_errors = true,
--- 
---     update_delay = 300,
--- 
---     priority = {
---     },
---   },
--- 
---   treesitter = {
---     update_delay = 300,
---   },
--- 
---   markdown = {
---     update_delay = 300,
---   },
--- 
---   man = {
---     update_delay = 300,
---   },
--- })
-
 local cmp = require'cmp'
 
 local has_words_before = function()
@@ -918,23 +724,55 @@ vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { bg="NONE", fg="#D4D4D4" })
 vim.api.nvim_set_hl(0, "CmpItemKindProperty", { link = "CmpItemKindKeyword" })
 vim.api.nvim_set_hl(0, "CmpItemKindUnit", { link = "CmpItemKindKeyword" })
 
+local highlight_attach = function(client, bufnr)
+    vim.cmd[[hi! def link @number @lsp.type.function]]
+    vim.cmd[[hi! def link @type @lsp.type.type]]
+    vim.cmd[[hi! def link @macro @lsp.type.macro]]
+
+    vim.cmd[[hi! def link @storageclass @lsp.type.class]]
+    vim.cmd[[hi! def link @method @lsp.type.method]]
+    vim.cmd[[hi! def link @comment @lsp.type.comment]]
+    vim.cmd[[hi! def link @function @lsp.type.function]]
+    vim.cmd[[hi! def link @property @lsp.type.property]]
+    vim.cmd[[hi! def link @variable @lsp.type.variable]]
+    vim.cmd[[hi! def link @namespace @lsp.type.namespace]]
+    vim.cmd[[hi! def link @parameter @lsp.type.parameter]]
+
+    vim.cmd[[hi! def link TSComment @lsp.type.comment]]
+    vim.cmd[[hi! def link TSConstMacro @lsp.type.macro]]
+    vim.cmd[[hi! def link TSFuncBuiltin @lsp.type.function]]
+    vim.cmd[[hi! def link TSFuncMacro @lsp.type.macro]]
+    vim.cmd[[hi! def link TSFunction @lsp.type.function]]
+    vim.cmd[[hi! def link TSMethod @lsp.type.method]]
+    vim.cmd[[hi! def link TSNamespace @lsp.type.namespace]]
+    vim.cmd[[hi! def link TSParameter @lsp.type.parameter]]
+    vim.cmd[[hi! def link TSProperty @lsp.type.property]]
+    vim.cmd[[hi! def link TSStorageClass @lsp.type.class]]
+    vim.cmd[[hi! def link TSType @lsp.type.type]]
+    vim.cmd[[hi! def link TSVariable @lsp.type.variable]]
+end
+
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 require('lspconfig')['clangd'].setup {
   capabilities = capabilities,
+  on_attach = highlight_attach,
   cmd = { "clangd", "--completion-style=detailed" }
 }
 
 require'lspconfig'.vimls.setup{
   capabilities = capabilities,
+  on_attach = highlight_attach,
 }
 
 require'lspconfig'.html.setup {
   capabilities = capabilities,
+  on_attach = highlight_attach,
 }
 
 require'lspconfig'.stylelint_lsp.setup{
   capabilities = capabilities,
+  on_attach = highlight_attach,
   settings = {
     stylelintplus = {
     }
@@ -943,14 +781,17 @@ require'lspconfig'.stylelint_lsp.setup{
 
 require'lspconfig'.tsserver.setup{
   capabilities = capabilities,
+  on_attach = highlight_attach,
 }
 
 require'lspconfig'.jsonls.setup{
   capabilities = capabilities,
+  on_attach = highlight_attach,
 }
 
 require'lspconfig'.pylsp.setup{
   capabilities = capabilities,
+  on_attach = highlight_attach,
   settings = {
     pylsp = {
       plugins = {
@@ -965,6 +806,7 @@ require'lspconfig'.pylsp.setup{
 
 require'lspconfig'.lua_ls.setup{
   capabilities = capabilities,
+  on_attach = highlight_attach,
   settings = {
     Lua = {
       runtime = {
@@ -987,18 +829,22 @@ require'lspconfig'.lua_ls.setup{
 vim.cmd [[ autocmd BufRead,BufNewFile *.org set filetype=org ]]
 require'lspconfig'.ltex.setup{
   capabilities = capabilities,
+  on_attach = highlight_attach,
 }
 
 require'lspconfig'.cmake.setup{
   capabilities = capabilities,
+  on_attach = highlight_attach,
 }
 
 require'lspconfig'.rust_analyzer.setup{
   capabilities = capabilities,
+  on_attach = highlight_attach,
 }
 
 require("lsp-file-operations").setup {
   capabilities = capabilities,
+  on_attach = highlight_attach,
   debug = false
 }
 
