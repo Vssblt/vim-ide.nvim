@@ -89,34 +89,42 @@ return require('packer').startup(function()
   -- A vim 7.4+ plugin to generate table of contents for Markdown files.
   -- :GenTocGFM
 
-  -- { 
-  -- These plugins have poor performance!!!!
     use { 'unblevable/quick-scope'  }
-    -- Quick move in current line.
-  -- }
 
-  -- use { "lukas-reineke/indent-blankline.nvim",
-  --   config = function()
-  --     require("indent_blankline").setup()
-  --   end
-  -- }
-
---  use { "shellRaining/hlchunk.nvim",
---    config = function()
---      require('hlchunk').setup({
---        indent = {
---            chars = { "│", "¦", "┆", "┊", },
---
---            -- style = {
---            --     "#8B00FF",
---            -- },
---        },
---        blank = {
---            enable = false,
---        }
---      })
---    end
---  }
+  use { "Vssblt/hlchunk.nvim",
+    config = function()
+      require('hlchunk').setup({
+        indent = {
+          chars = { "│" },
+          style = {
+            { fg = "#39363e" }
+         },
+        },
+        chunk = {
+          enable = true,
+          use_treesitter = true,
+          notify = true, -- notify if some situation(like disable chunk mod double time)
+          exclude_filetypes = {
+            aerial = true,
+            dashboard = true,
+          },
+          chars = {
+            horizontal_line = "─",
+            vertical_line = "│",
+            left_top = "╭",
+            left_bottom = "╰",
+            right_arrow = ">",
+          },
+          style = {
+            { fg = "#806d9c" },
+          },
+        },
+        blank = {
+          enable = false,
+        }
+      })
+    end
+  }
 
   use { 'rcarriga/nvim-notify' }
 
