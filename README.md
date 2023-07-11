@@ -25,7 +25,7 @@ vim.cmd [[packadd packer.nvim]]
 vim.cmd [[
   augroup packer_user_config
     autocmd!
-    autocmd BufWritePost init.lua source <afile> | PackerSync
+    autocmd BufWritePost $HOME/.config/nvim/init.lua source <afile> | PackerSync
   augroup end
 ]]
 
@@ -89,7 +89,7 @@ return require('packer').startup(function()
   -- A vim 7.4+ plugin to generate table of contents for Markdown files.
   -- :GenTocGFM
 
-    use { 'unblevable/quick-scope'  }
+  use { 'unblevable/quick-scope'  }
 
   use { "Vssblt/hlchunk.nvim",
     config = function()
