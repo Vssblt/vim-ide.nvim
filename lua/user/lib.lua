@@ -67,10 +67,6 @@ vim.api.nvim_create_user_command("VPlugList", "e ~/.config/nvim/init.lua", { ban
 vim.api.nvim_create_user_command("DvorakSettingsV", "e " .. vim.g.plugindir .. "/plugin/03map.vim", { bang = true })
 vim.api.nvim_create_user_command("Bda", "bufdo bwipeout", { bang = true })
 
-vim.api.nvim_create_autocmd({"CursorHold"}, { command = "lua vim.lsp.buf.document_highlight()" })
-vim.api.nvim_create_autocmd({"CursorHoldI"}, { command = "lua vim.lsp.buf.document_highlight()" })
-vim.api.nvim_create_autocmd({"CursorMoved"}, { command = "lua vim.lsp.buf.clear_references()" })
-
 local CursorLineOnlyInActiveWindow = vim.api.nvim_create_augroup("CursorLineOnlyInActiveWindow" , {clear = true})
 vim.api.nvim_create_autocmd({"WinEnter", "VimEnter", "BufWinEnter" }, { command = "setlocal cursorline", group = CursorLineOnlyInActiveWindow })
 vim.api.nvim_create_autocmd({"WinLeave" }, { command = "setlocal nocursorline", group = CursorLineOnlyInActiveWindow })
@@ -208,7 +204,7 @@ end
 
 vim.api.nvim_create_autocmd({"BufWinLeave", "WinLeave", "TabLeave", }, { pattern = {"NvimTree_*"}, callback = change_root_cwd})
 
-local function on_attach(bufnr)
+local function nvim_tree_attach(bufnr)
   local api = require('nvim-tree.api')
   local function opts(desc)
     return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
@@ -272,7 +268,7 @@ require("nvim-tree").setup({
   --},
   sort_by = "case_sensitive",
   --disable_netrw = true,
-  on_attach = on_attach,
+  on_attach = nvim_tree_attach,
   hijack_netrw = true,
   view = {
     adaptive_size = true,
@@ -724,55 +720,70 @@ vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { bg="NONE", fg="#D4D4D4" })
 vim.api.nvim_set_hl(0, "CmpItemKindProperty", { link = "CmpItemKindKeyword" })
 vim.api.nvim_set_hl(0, "CmpItemKindUnit", { link = "CmpItemKindKeyword" })
 
-local highlight_attach = function(client, bufnr)
-    vim.cmd[[hi! def link @number @lsp.type.function]]
-    vim.cmd[[hi! def link @type @lsp.type.type]]
-    vim.cmd[[hi! def link @macro @lsp.type.macro]]
+local lspattach = function(client, bufnr)
+  if client.supports_method('textDocument/documentHighlight') then
+      vim.cmd('augroup LspHighlight')
+      vim.cmd('autocmd!')
+      vim.cmd('autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()')
+      vim.cmd('autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()')
+      vim.cmd('autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()')
+      vim.cmd('augroup END')
+  end
+  
+  vim.cmd[[hi! def link @number @lsp.type.function]]
+  vim.cmd[[hi! def link @type @lsp.type.type]]
+  vim.cmd[[hi! def link @macro @lsp.type.macro]]
 
-    vim.cmd[[hi! def link @storageclass @lsp.type.class]]
-    vim.cmd[[hi! def link @method @lsp.type.method]]
-    vim.cmd[[hi! def link @comment @lsp.type.comment]]
-    vim.cmd[[hi! def link @function @lsp.type.function]]
-    vim.cmd[[hi! def link @property @lsp.type.property]]
-    vim.cmd[[hi! def link @variable @lsp.type.variable]]
-    vim.cmd[[hi! def link @namespace @lsp.type.namespace]]
-    vim.cmd[[hi! def link @parameter @lsp.type.parameter]]
+  vim.cmd[[hi! def link @storageclass @lsp.type.class]]
+  vim.cmd[[hi! def link @method @lsp.type.method]]
+  vim.cmd[[hi! def link @comment @lsp.type.comment]]
+  vim.cmd[[hi! def link @function @lsp.type.function]]
+  vim.cmd[[hi! def link @property @lsp.type.property]]
+  vim.cmd[[hi! def link @variable @lsp.type.variable]]
+  vim.cmd[[hi! def link @namespace @lsp.type.namespace]]
+  vim.cmd[[hi! def link @parameter @lsp.type.parameter]]
 
-    vim.cmd[[hi! def link TSComment @lsp.type.comment]]
-    vim.cmd[[hi! def link TSConstMacro @lsp.type.macro]]
-    vim.cmd[[hi! def link TSFuncBuiltin @lsp.type.function]]
-    vim.cmd[[hi! def link TSFuncMacro @lsp.type.macro]]
-    vim.cmd[[hi! def link TSFunction @lsp.type.function]]
-    vim.cmd[[hi! def link TSMethod @lsp.type.method]]
-    vim.cmd[[hi! def link TSNamespace @lsp.type.namespace]]
-    vim.cmd[[hi! def link TSParameter @lsp.type.parameter]]
-    vim.cmd[[hi! def link TSProperty @lsp.type.property]]
-    vim.cmd[[hi! def link TSStorageClass @lsp.type.class]]
-    vim.cmd[[hi! def link TSType @lsp.type.type]]
-    vim.cmd[[hi! def link TSVariable @lsp.type.variable]]
+  vim.cmd[[hi! def link TSComment @lsp.type.comment]]
+  vim.cmd[[hi! def link TSConstMacro @lsp.type.macro]]
+  vim.cmd[[hi! def link TSFuncBuiltin @lsp.type.function]]
+  vim.cmd[[hi! def link TSFuncMacro @lsp.type.macro]]
+  vim.cmd[[hi! def link TSFunction @lsp.type.function]]
+  vim.cmd[[hi! def link TSMethod @lsp.type.method]]
+  vim.cmd[[hi! def link TSNamespace @lsp.type.namespace]]
+  vim.cmd[[hi! def link TSParameter @lsp.type.parameter]]
+  vim.cmd[[hi! def link TSProperty @lsp.type.property]]
+  vim.cmd[[hi! def link TSStorageClass @lsp.type.class]]
+  vim.cmd[[hi! def link TSType @lsp.type.type]]
+  vim.cmd[[hi! def link TSVariable @lsp.type.variable]]
+
 end
 
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 require('lspconfig')['clangd'].setup {
   capabilities = capabilities,
-  on_attach = highlight_attach,
+  on_attach = lspattach,
   cmd = { "clangd", "--completion-style=detailed" }
+}
+
+require'lspconfig'.asm_lsp.setup{
+  capabilities = capabilities,
+  on_attach = lspattach,
 }
 
 require'lspconfig'.vimls.setup{
   capabilities = capabilities,
-  on_attach = highlight_attach,
+  on_attach = lspattach,
 }
 
 require'lspconfig'.html.setup {
   capabilities = capabilities,
-  on_attach = highlight_attach,
+  on_attach = lspattach,
 }
 
 require'lspconfig'.stylelint_lsp.setup{
   capabilities = capabilities,
-  on_attach = highlight_attach,
+  on_attach = lspattach,
   settings = {
     stylelintplus = {
     }
@@ -781,17 +792,17 @@ require'lspconfig'.stylelint_lsp.setup{
 
 require'lspconfig'.tsserver.setup{
   capabilities = capabilities,
-  on_attach = highlight_attach,
+  on_attach = lspattach,
 }
 
 require'lspconfig'.jsonls.setup{
   capabilities = capabilities,
-  on_attach = highlight_attach,
+  on_attach = lspattach,
 }
 
 require'lspconfig'.pylsp.setup{
   capabilities = capabilities,
-  on_attach = highlight_attach,
+  on_attach = lspattach,
   settings = {
     pylsp = {
       plugins = {
@@ -806,7 +817,7 @@ require'lspconfig'.pylsp.setup{
 
 require'lspconfig'.lua_ls.setup{
   capabilities = capabilities,
-  on_attach = highlight_attach,
+  on_attach = lspattach,
   settings = {
     Lua = {
       runtime = {
@@ -829,22 +840,22 @@ require'lspconfig'.lua_ls.setup{
 vim.cmd [[ autocmd BufRead,BufNewFile *.org set filetype=org ]]
 require'lspconfig'.ltex.setup{
   capabilities = capabilities,
-  on_attach = highlight_attach,
+  on_attach = lspattach,
 }
 
 require'lspconfig'.cmake.setup{
   capabilities = capabilities,
-  on_attach = highlight_attach,
+  on_attach = lspattach,
 }
 
 require'lspconfig'.rust_analyzer.setup{
   capabilities = capabilities,
-  on_attach = highlight_attach,
+  on_attach = lspattach,
 }
 
 require("lsp-file-operations").setup {
   capabilities = capabilities,
-  on_attach = highlight_attach,
+  on_attach = lspattach,
   debug = false
 }
 
