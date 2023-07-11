@@ -14,6 +14,7 @@
 """"""""""""""""""""""""""""""
 nnoremap o ox<BS>
 nnoremap O Ox<BS>
+nnoremap W b
 
 nnoremap <silent> * :let @/= '\<' . expand('<cword>') . '\>' <bar> set hls <cr>
 nnoremap <silent> g* :let @/=expand('<cword>') <bar> set hls <cr>
