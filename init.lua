@@ -595,10 +595,4 @@ require("lazy").setup({
   -- Jump forward position.
   -- <c-t>
   -- Jump backward position.
-
-  {
-    'Vssblt/vim-ide.nvim',
-    priority = getPriority(),
---    build = 'sudo apt install gem npm perl rust-all -y && sudo npm -g install tree-sitter-cli neovim vim-language-server vscode-langservers-extracted stylelint-lsp typescript typescript-language-server && sudo cpan install Neovim::Ext App::cpanminus && sudo gem install neovim && sudo pip install python-lsp-server cmake-language-server'
-  },
 })
