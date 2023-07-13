@@ -204,9 +204,26 @@ require("lazy").setup({
   },
 
   -- lua lsp
-  -- { 'luals/lua-language-server', build = "sudo apt install ninja-build && ./make.sh && sudo ln -s `pwd`/bin/lua-language-server /usr/bin/lua-language-server", priority = getPriority() },
+  {
+    'luals/lua-language-server',
+    build = [[
+      which lua-language-server
+      (( $? == 0 )) && exit 0
+      sudo apt install ninja-build -y
+      ./make.sh
+      sudo ln -s `pwd`/bin/lua-language-server /usr/bin/lua-language-server
+    ]],
+    timeout = 360,
+    priority = getPriority()
+  },
   -- rust lsp
-  --{ 'rust-lang/rust-analyzer', build = "cargo xtask install --server", priority = getPriority() },
+  {
+    'rust-lang/rust-analyzer',
+    version = "2023-01-02",
+    build = "cargo xtask install --server",
+    timeout = 360,
+    priority = getPriority()
+  },
 
   { 'nvim-lua/plenary.nvim', priority = getPriority() },
 
