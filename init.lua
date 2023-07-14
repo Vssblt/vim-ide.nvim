@@ -137,13 +137,25 @@ require("lazy").setup({
         shortcut_type = 'number',
       }
       local dashboard = require("alpha.themes.dashboard")
+      local function footer()
+        local plugin_status = " Plugins " .. vim.fn.len(vim.fn.globpath("$HOME/.local/share/nvim/lazy/", "*", 0, 1))
+        local datetime = os.date("󰸗 %m-%d-%Y    %H:%M:%S   ")
+        local version = vim.version()
+        local nvim_version_info = "v" .. version.major .. "." .. version.minor .. "." .. version.patch .. "   "
+        return " ⚡Neovim ".. nvim_version_info .. datetime .. plugin_status
+      end
+      dashboard.section.header.opts.hl = "Type"
+      dashboard.section.footer.opts.hl = "Type"
+
+      dashboard.section.footer.val = footer();
       dashboard.section.buttons.val = {
-        dashboard.button("f", "  Find file", ":lua require('fzf-lua').files({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>"),
-        dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-        dashboard.button("r", "  Recently used files", ":lua require('fzf-lua').oldfiles({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>"),
-        dashboard.button("c", "  Extension List", ":Vinit<CR>"),
-        dashboard.button("c", "  Configuration", ":Vlib<CR>"),
-        dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
+        dashboard.button("f", "  Find file", ":lua require('fzf-lua').files({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>"),
+        dashboard.button("e", "󰈔  New file", ":ene <BAR> startinsert <CR>"),
+        dashboard.button("r", "  Recently files", ":lua require('fzf-lua').oldfiles({ fzf_opts = {['--layout'] = 'reverse-list'}, winopts = { preview = { layout = 'flex', flip_columns = 200 } } })<CR>"),
+        dashboard.button("p", "  Extension List", ":Vinit<CR>"),
+        dashboard.button("c", "󱁤  Configuration", ":Vlib<CR>"),
+        dashboard.button("u", "  Update Plugins", ":Lazy update<CR>"),
+        dashboard.button("q", "󰅙  Quit Neovim", ":qa<CR>"),
       }
       require'alpha'.setup(dashboard.opts)
     end,
@@ -621,30 +633,30 @@ require("lazy").setup({
         lsp_blacklist = {},
         symbol_blacklist = {},
         symbols = {
-          File = { icon = "", hl = "@text.uri" },
-          Module = { icon = "", hl = "@namespace" },
-          Namespace = { icon = "", hl = "@namespace" },
-          Package = { icon = "", hl = "@namespace" },
-          Class = { icon = "𝓒", hl = "@type" },
+          File = { icon = "", hl = "@text.uri" },
+          Module = { icon = "", hl = "@namespace" },
+          Namespace = { icon = "", hl = "@namespace" },
+          Package = { icon = "", hl = "@namespace" },
+          Class = { icon = "󰙱", hl = "@type" },
           Method = { icon = "ƒ", hl = "@method" },
-          Property = { icon = "", hl = "@method" },
-          Field = { icon = "", hl = "@field" },
-          Constructor = { icon = "", hl = "@constructor" },
+          Property = { icon = "", hl = "@method" },
+          Field = { icon = "󰽑", hl = "@field" },
+          Constructor = { icon = "", hl = "@constructor" },
           Enum = { icon = "ℰ", hl = "@type" },
           Interface = { icon = "ﰮ", hl = "@type" },
-          Function = { icon = "", hl = "@function" },
+          Function = { icon = "󰡱", hl = "@function" },
           Variable = { icon = "", hl = "@constant" },
-          Constant = { icon = "", hl = "@constant" },
+          Constant = { icon = "󰏿", hl = "@constant" },
           String = { icon = "𝓐", hl = "@string" },
           Number = { icon = "#", hl = "@number" },
           Boolean = { icon = "⊨", hl = "@boolean" },
-          Array = { icon = "", hl = "@constant" },
+          Array = { icon = "", hl = "@constant" },
           Object = { icon = "⦿", hl = "@type" },
-          Key = { icon = "🔐", hl = "@type" },
-          Null = { icon = "NULL", hl = "@type" },
+          Key = { icon = "", hl = "@type" },
+          Null = { icon = "󰟢", hl = "@type" },
           EnumMember = { icon = "", hl = "@field" },
           Struct = { icon = "𝓢", hl = "@type" },
-          Event = { icon = "🗲", hl = "@type" },
+          Event = { icon = "", hl = "@type" },
           Operator = { icon = "+", hl = "@operator" },
           TypeParameter = { icon = "𝙏", hl = "@parameter" },
           Component = { icon = "", hl = "@function" },
