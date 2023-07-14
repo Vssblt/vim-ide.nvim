@@ -157,6 +157,10 @@ require("lazy").setup({
         dashboard.button("u", "  Update Plugins", ":Lazy update<CR>"),
         dashboard.button("q", "󰅙  Quit Neovim", ":qa<CR>"),
       }
+      local dashboard_height = 24
+      if vim.o.lines > dashboard_height then
+        dashboard.opts.layout[1].val = math.floor((vim.o.lines - dashboard_height) / 3)
+      end
       require'alpha'.setup(dashboard.opts)
     end,
     priority = getPriority(),
