@@ -519,12 +519,7 @@ require("lazy").setup({
   },
   --------------------------------------------------------------------------
 
-  { 'Vssblt/sonokai', priority = getPriority(),
-    config = function()
-      vim.o.termguicolors = true
-      vim.cmd[[colorscheme sonokai]]
-    end
-  },
+  { 'Vssblt/sonokai', priority = getPriority() },
 
   { 'morhetz/gruvbox', priority = getPriority(),  },
 

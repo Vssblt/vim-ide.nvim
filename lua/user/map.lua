@@ -79,7 +79,7 @@ function Map.setup()
   vim.keymap.set("x", "n", [[v:count ? 'j' : 'gj']], {noremap = true, expr = true, silent=true})
   vim.keymap.set("n", "t", [[v:count ? 'k' : 'gk']], {noremap = true, expr = true, silent=true})
   vim.keymap.set("x", "t", [[v:count ? 'k' : 'gk']], {noremap = true, expr = true, silent=true})
-  
+
   vim.cmd[[
     function! NetrwMapping()
       nnoremap <buffer> t k
@@ -193,7 +193,7 @@ function Map.setup()
     """"""""""""""""""""""""""""""
     " SymbolsOutline
     """"""""""""""""""""""""""""""
-    autocmd FileType Outline IndentBlanklineDisable
+    " autocmd FileType Outline IndentBlanklineDisable
     
     """"""""""""""""""""""""""""""
     " ranger

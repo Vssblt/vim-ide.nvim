@@ -103,6 +103,7 @@ function Lib.setup()
   vim.o.termguicolors = true
   vim.o.pumheight = 40
   vim.o.pumwidth = 40
+  vim.cmd[[colorscheme sonokai]]
   vim.cmd("syntax off")
 
   vim.cmd[[hi FocusedSymbol guifg=#2d2a2e guibg=#78dce8]]
@@ -128,9 +129,11 @@ function Lib.setup()
   vim.api.nvim_create_user_command("Vmap", "e $HOME/.config/nvim/lua/user/map.lua", { bang = true })
   vim.api.nvim_create_user_command("Vlib", "e $HOME/.config/nvim/lua/user/lib.lua", { bang = true })
   vim.api.nvim_create_user_command("Vinit", "e $HOME/.config/nvim/init.lua", { bang = true })
+
   vim.api.nvim_create_user_command("VMap", "e $HOME/.config/nvim/lua/user/map.lua", { bang = true })
   vim.api.nvim_create_user_command("VLib", "e $HOME/.config/nvim/lua/user/lib.lua", { bang = true })
   vim.api.nvim_create_user_command("VInit", "e $HOME/.config/nvim/init.lua", { bang = true })
+
   vim.api.nvim_create_user_command("Bda", "bufdo bwipeout", { bang = true })
 
   local CursorLineOnlyInActiveWindow = vim.api.nvim_create_augroup("CursorLineOnlyInActiveWindow" , {clear = true})
