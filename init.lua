@@ -507,7 +507,13 @@ require("lazy").setup({
     priority = getPriority(),
   },
 
-  { 'rbgrouleff/bclose.vim', config = function() vim.g.bclose_no_plugin_maps = true end, priority = getPriority(), },
+  {
+    'rbgrouleff/bclose.vim',
+    config = function()
+      vim.g.bclose_no_plugin_maps = true
+    end,
+    priority = getPriority()
+  },
 
   {
     'francoiscabrol/ranger.vim',
@@ -551,7 +557,11 @@ require("lazy").setup({
 
   { 'aperezdc/vim-template', priority = getPriority(),  },
 
-  { 'junegunn/fzf', build = 'cd ~/.fzf && ./install --all', priority = getPriority(), },
+  {
+    'junegunn/fzf',
+    build = 'cd ~/.fzf && ./install --all',
+    priority = getPriority(),
+  },
 
   {
     'ibhagwan/fzf-lua',
