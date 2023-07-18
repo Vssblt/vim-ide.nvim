@@ -103,10 +103,16 @@ function Lib.setup()
   vim.o.termguicolors = true
   vim.o.pumheight = 40
   vim.o.pumwidth = 40
+  vim.o.foldcolumn = '1' -- '0' is not bad
+  vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+  vim.o.foldlevelstart = 99
+  vim.o.foldenable = true
+  -- vim.opt.foldmethod = "expr"
+  -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
   vim.cmd[[colorscheme sonokai]]
   vim.cmd("syntax off")
 
-  vim.cmd[[hi FocusedSymbol guifg=#2d2a2e guibg=#78dce8]]
+  vim.cmd[[hi FocusedSymbol guifg=#1f1f1f guibg=#78dce8]]
 
   vim.api.nvim_create_autocmd({ "TextYankPost" }, {
     pattern = {"*"},
@@ -827,7 +833,12 @@ function Lib.setup()
   end
 
   -- Set up lspconfig.
+  --------------------------------------------------------------------------
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
+  capabilities.textDocument.foldingRange = {
+      dynamicRegistration = false,
+      lineFoldingOnly = true
+  }
   require('lspconfig')['clangd'].setup {
     capabilities = capabilities,
     on_attach = lspattach,
@@ -907,7 +918,7 @@ function Lib.setup()
 
   -- luasnip 
   require("luasnip.loaders.from_vscode").lazy_load()
-  
+
   --------------------------------------------------------------------------
   vim.cmd [[ autocmd BufRead,BufNewFile *.org set filetype=org ]]
   require'lspconfig'.ltex.setup{
@@ -930,7 +941,41 @@ function Lib.setup()
     on_attach = lspattach,
     debug = false
   }
+  local handler = function(virtText, lnum, endLnum, width, truncate)
+    local newVirtText = {}
+    local suffix = ('  %d '):format(endLnum - lnum)
+    local sufWidth = vim.fn.strdisplaywidth(suffix)
+    local targetWidth = width - sufWidth
+    local curWidth = 0
+    for _, chunk in ipairs(virtText) do
+        local chunkText = chunk[1]
+        local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+        if targetWidth > curWidth + chunkWidth then
+            table.insert(newVirtText, chunk)
+        else
+            chunkText = truncate(chunkText, targetWidth - curWidth)
+            local hlGroup = chunk[2]
+            table.insert(newVirtText, {chunkText, hlGroup})
+            chunkWidth = vim.fn.strdisplaywidth(chunkText)
+            -- str width returned from truncate() may less than 2nd argument, need padding
+            if curWidth + chunkWidth < targetWidth then
+                suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth)
+            end
+            break
+        end
+        curWidth = curWidth + chunkWidth
+    end
+    table.insert(newVirtText, {suffix, 'MoreMsg'})
+    return newVirtText
+  end
 
+  -- global handler
+  -- `handler` is the 2nd parameter of `setFoldVirtTextHandler`,
+  -- check out `./lua/ufo.lua` and search `setFoldVirtTextHandler` for detail.
+  require('ufo').setup({
+    fold_virt_text_handler = handler
+  })
+  --------------------------------------------------------------------------
   -- Global mappings.
   -- See `:help vim.diagnostic.*` for documentation on any of the below functions
   vim.keymap.set('n', 'gi', vim.diagnostic.open_float)
@@ -1021,8 +1066,8 @@ function Lib.setup()
   " common settings
   """"""""""""""""""""""""""""""
 
-  highlight EndOfBufferInactive ctermfg=bg guifg=#2d2a2e guibg=#2d2a2e
-  highlight EndOfBufferActive ctermfg=bg guifg=#242125 guibg=#242125
+  highlight EndOfBufferInactive ctermfg=bg guifg=#1f1f1f guibg=#1f1f1f
+  highlight EndOfBufferActive ctermfg=bg guifg=#181818 guibg=#181818
 
   set winhighlight+=EndOfBuffer:EndOfBufferInactive
 
@@ -1032,11 +1077,11 @@ function Lib.setup()
     autocmd VimEnter,WinEnter,BufWinEnter * :exe "setlocal winhighlight=".substitute(&winhighlight, "EndOfBufferInactive", "EndOfBufferActive", "")
     autocmd WinLeave * :exe "setlocal winhighlight=".substitute(&winhighlight, "EndOfBufferActive", "EndOfBufferInactive", "")
     
-    autocmd VimEnter,WinEnter,BufWinEnter * :highlight Normal ctermfg=250 ctermbg=235 guifg=#d3d1d4 guibg=#242125
-    autocmd WinLeave * :highlight Normal ctermfg=250 ctermbg=235 guifg=#d3d1d4 guibg=#2d2a2e
+    autocmd VimEnter,WinEnter,BufWinEnter * :highlight Normal ctermbg=235 guibg=#181818
+    autocmd WinLeave * :highlight Normal ctermbg=235 guibg=#1f1f1f
   augroup END
 
-  highlight CursorLine ctermbg=236 guibg=#352F35
+  highlight CursorLine ctermbg=236 guibg=#2F2B2F
 
   let g:fcitx5_remote='/usr/bin/fcitx5-remote'
   let g:termdebug_useFloatingHover=1

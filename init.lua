@@ -737,6 +737,14 @@ require("lazy").setup({
     -- <c-t>
     -- Jump backward position.
   },
+  {
+    'kevinhwang91/promise-async',
+    priority = getPriority()
+  },
+  {
+    'kevinhwang91/nvim-ufo',
+    priority = getPriority()
+  },
 })
 
 local Lib = require('user/lib')

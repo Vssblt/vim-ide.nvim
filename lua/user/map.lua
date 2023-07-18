@@ -320,7 +320,7 @@ function Map.setup()
     "***********************************
     " debugger
     "***********************************
-    noremap <silent> <F5> :lua require'nvim-gdb'.open_layout()<CR><ESC>
+    noremap <silent> <F5> :lua require'nvim-gdb'.create_windows()<CR><ESC>
     
     comm! -nargs=? -bang L e ~/.local/share/nvim/site/pack/packer/start/light-gdb.nvim/lua/gdb/
     
@@ -363,6 +363,7 @@ function Map.setup()
       autocmd!
       autocmd FileType help map <silent><buffer> r r
       autocmd FileType help map <silent><buffer> c c
+      autocmd FileType help map <silent><buffer> q :q<CR>
     augroup END
     
     augroup AerialWinVar
