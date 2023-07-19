@@ -252,10 +252,36 @@ function Lib.setup()
       disable = function (lang, bufnr)
         local buf_name = vim.api.nvim_buf_get_name(bufnr)
         local file_size = vim.api.nvim_call_function("getfsize", { buf_name })
-        return vim.api.nvim_buf_line_count(bufnr) > 10000 or file_size > 10000 * 1024
+        return vim.api.nvim_buf_line_count(bufnr) > 10000 or file_size > 200 * 1024
       end,
       additional_vim_regex_highlighting = false,
     },
+   textobjects = {
+     select = {
+       enable = true,
+       lookahead = true,
+       keymaps = {
+         ["af"] = "@function.outer",
+         ["if"] = "@function.inner",
+         ["ic"] = "@class.inner",
+         ["ac"] = "@class.outer",
+         ["is"] = "@scope.inner",
+         ["as"] = "@scope.outer",
+         ["ip"] = "@parameter.inner",
+         ["ap"] = "@parameter.outer",
+         ["id"] = "@conditional.inner",
+         ["ad"] = "@conditional.outer",
+         ["ib"] = "@block.inner",
+         ["ab"] = "@block.outer",
+       },
+       selection_modes = {
+         ['@parameter.outer'] = 'v',
+         ['@function.outer'] = 'V',
+         ['@class.outer'] = '<c-v>',
+       },
+       include_surrounding_whitespace = true,
+     },
+   },
   }
 
   ---------------------------
@@ -689,6 +715,14 @@ function Lib.setup()
 
   local lspkind = require('lspkind')
   cmp.setup({
+    sorting = {
+      comparators = {
+        cmp.config.compare.exact,
+        cmp.config.compare.score,
+        cmp.config.compare.offset,
+        cmp.config.compare.recently_used,
+      },
+    },
     formatting = {
       format = function(entry, vim_item)
         vim_item.abbr = string.sub(vim_item.abbr, 1, 50)
@@ -730,20 +764,24 @@ function Lib.setup()
       end,
     }),
     sources = cmp.config.sources({
-      { name = 'nvim_lsp' },
-      { name = 'path' },
-      { name = 'nvim_lsp_signature_help' },
+      { priority = 100, name = 'nvim_lsp' },
+      { priority = 90, name = 'path' },
+      { priority = 80, name = 'nvim_lsp_signature_help' },
+      { priority = 70, name = 'luasnip' },
+      { priority = 61, name = "nvim_lua",  },
+      { priority = 60, name = 'buffer' },
+      { priority = 50, name = "dictionary",  },
+      { priority = 50, name = "calc",  },
       -- {
-      --     name = 'spell',
-      --     option = {
-      --         keep_all_entries = false,
-      --         enable_in_context = function()
-      --             return true
-      --         end,
-      --     },
+      --   priority = 3
+      --   name = 'spell',
+      --   option = {
+      --       keep_all_entries = false,
+      --       enable_in_context = function()
+      --           return true
+      --       end,
+      --   },
       -- },
-      { name = 'luasnip' },
-      { name = 'buffer' },
     })
   })
 

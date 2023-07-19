@@ -173,6 +173,11 @@ require("lazy").setup({
   { 'hrsh7th/cmp-cmdline', priority = getPriority(), },
   { 'hrsh7th/cmp-nvim-lsp', priority = getPriority(), },
   { 'f3fora/cmp-spell', priority = getPriority(), },
+  { 'hrsh7th/cmp-nvim-lua', priority = getPriority(), },
+  { 'hrsh7th/cmp-calc', priority = getPriority(), },
+  { 'lukas-reineke/cmp-rg', priority = getPriority(), },
+  { 'uga-rosa/cmp-dictionary', priority = getPriority(), },
+  
 
   {
     "williamboman/mason.nvim",
@@ -541,7 +546,10 @@ require("lazy").setup({
   },
   --------------------------------------------------------------------------
 
-  { 'Vssblt/sonokai', priority = getPriority() },
+  {
+    'Vssblt/sonokai',
+    priority = getPriority(),
+  },
 
   { 'morhetz/gruvbox', priority = getPriority(),  },
 
@@ -572,6 +580,26 @@ require("lazy").setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     priority = getPriority(),
+  },
+  
+  {
+    'Badhi/nvim-treesitter-cpp-tools',
+    priority = getPriority(),
+    config = function()
+      require 'nt-cpp-tools'.setup({
+        preview = {
+            quit = 'q',
+            accept = '<tab><cr>'
+        },
+        header_extension = 'h',
+        source_extension = 'cpp',
+        custom_define_class_function_commands = {
+            TSCppImplWrite = {
+                output_handle = require'nt-cpp-tools.output_handlers'.get_add_to_cpp()
+            }
+        }
+      })
+    end,
   },
 
   {
