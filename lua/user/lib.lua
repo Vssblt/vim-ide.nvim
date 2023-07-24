@@ -764,12 +764,12 @@ function Lib.setup()
       end,
     }),
     sources = cmp.config.sources({
+      { priority = 110, name = 'luasnip' },
       { priority = 100, name = 'nvim_lsp' },
       { priority = 90, name = 'path' },
+      { priority = 90, name = 'buffer' },
       { priority = 80, name = 'nvim_lsp_signature_help' },
-      { priority = 70, name = 'luasnip' },
       { priority = 61, name = "nvim_lua",  },
-      { priority = 60, name = 'buffer' },
       { priority = 50, name = "dictionary",  },
       { priority = 50, name = "calc",  },
       -- {

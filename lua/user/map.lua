@@ -405,6 +405,9 @@ function Map.setup()
     comm! -nargs=? -bang Gitlog lua require('vgit').project_logs_preview()
     comm! -nargs=? -bang Gitlogall lua require('vgit').project_logs_preview('--all')
     
+    comm! -nargs=? -bang LGit tab term lazygit
+    comm! -nargs=? -bang Lgit tab term lazygit
+    
     map <space><esc> <Nop>
     map <leader>c<esc> <Nop>
     map <leader>r<esc> <Nop>
