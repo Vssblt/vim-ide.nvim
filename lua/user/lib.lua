@@ -252,7 +252,22 @@ function Lib.setup()
       disable = function (lang, bufnr)
         local buf_name = vim.api.nvim_buf_get_name(bufnr)
         local file_size = vim.api.nvim_call_function("getfsize", { buf_name })
-        return vim.api.nvim_buf_line_count(bufnr) > 10000 or file_size > 200 * 1024
+        local check_file_size = vim.api.nvim_buf_line_count(bufnr) > 10000 or file_size > 200 * 1024
+        local max_col = 0
+        local col_limit = 360
+        if check_file_size then
+          return check_file_size
+        end
+        for _, line in ipairs(vim.api.nvim_buf_get_lines(0, 0, -1, false)) do
+          local col = #line
+          if col > max_col then
+            max_col = col
+            if max_col > col_limit then
+              return true
+            end
+          end
+        end
+        return false
       end,
       additional_vim_regex_highlighting = false,
     },
@@ -273,6 +288,8 @@ function Lib.setup()
          ["ad"] = "@conditional.outer",
          ["ib"] = "@block.inner",
          ["ab"] = "@block.outer",
+         ["am"] = "@comment.outer",
+         ["im"] = "@comment.inner",
        },
        selection_modes = {
          ['@parameter.outer'] = 'v',
@@ -444,213 +461,6 @@ function Lib.setup()
     },
     extensions = {}
   }
-
-  ---------------------------
-  -- vgit.nvim
-  ---------------------------
-  require('vgit').setup({
-    keymaps = {
-      ['n <C-j>'] = function() require('vgit').hunk_up() end,
-      ['n <C-k>'] = function() require('vgit').hunk_down() end,
-    },
-    settings = {
-      git = {
-        cmd = 'git', -- optional setting, not really required
-        fallback_cwd = vim.fn.expand("$HOME"),
-        fallback_args = {
-          "--git-dir",
-          vim.fn.expand("$HOME/dots/yadm-repo"),
-          "--work-tree",
-          vim.fn.expand("$HOME"),
-        },
-      },
-      hls = {
-        GitBackground = 'Normal',
-        GitHeader = 'NormalFloat',
-        GitFooter = 'NormalFloat',
-        GitBorder = 'LineNr',
-        GitLineNr = 'LineNr',
-        GitComment = 'Comment',
-        GitSignsAdd = {
-          gui = nil,
-          fg = '#d7ffaf',
-          bg = nil,
-          sp = nil,
-          override = false,
-        },
-        GitSignsChange = {
-          gui = nil,
-          fg = '#7AA6DA',
-          bg = nil,
-          sp = nil,
-          override = false,
-        },
-        GitSignsDelete = {
-          gui = nil,
-          fg = '#e95678',
-          bg = nil,
-          sp = nil,
-          override = false,
-        },
-        GitSignsAddLn = 'DiffAdd',
-        GitSignsDeleteLn = 'DiffDelete',
-        GitWordAdd = {
-          gui = nil,
-          fg = nil,
-          bg = '#5d7a22',
-          sp = nil,
-          override = false,
-        },
-        GitWordDelete = {
-          gui = nil,
-          fg = nil,
-          bg = '#960f3d',
-          sp = nil,
-          override = false,
-        },
-      },
-      live_blame = {
-        enabled = false,
-        format = function(blame, git_config)
-          local config_author = git_config['user.name']
-          local author = blame.author
-          if config_author == author then
-            author = 'You'
-          end
-          local time = os.difftime(os.time(), blame.author_time)
-            / (60 * 60 * 24 * 30 * 12)
-          local time_divisions = {
-            { 1, 'years' },
-            { 12, 'months' },
-            { 30, 'days' },
-            { 24, 'hours' },
-            { 60, 'minutes' },
-            { 60, 'seconds' },
-          }
-          local counter = 1
-          local time_division = time_divisions[counter]
-          local time_boundary = time_division[1]
-          local time_postfix = time_division[2]
-          while time < 1 and counter ~= #time_divisions do
-            time_division = time_divisions[counter]
-            time_boundary = time_division[1]
-            time_postfix = time_division[2]
-            time = time * time_boundary
-            counter = counter + 1
-          end
-          local commit_message = blame.commit_message
-          if not blame.committed then
-            author = 'You'
-            commit_message = 'Uncommitted changes'
-            return string.format(' %s • %s', author, commit_message)
-          end
-          local max_commit_message_length = 255
-          if #commit_message > max_commit_message_length then
-            commit_message = commit_message:sub(1, max_commit_message_length) .. '...'
-          end
-          return string.format(
-            ' %s, %s • %s',
-            author,
-            string.format(
-              '%s %s ago',
-              time >= 0 and math.floor(time + 0.5) or math.ceil(time - 0.5),
-              time_postfix
-            ),
-            commit_message
-          )
-        end,
-      },
-      live_gutter = {
-        enabled = true,
-        edge_navigation = true, -- This allows users to navigate within a hunk
-      },
-      authorship_code_lens = {
-        enabled = true,
-      },
-      scene = {
-        diff_preference = 'unified', -- unified or split
-        keymaps = {
-          quit = ',Q'
-        }
-      },
-      diff_preview = {
-        keymaps = {
-          buffer_stage = 'A',
-          buffer_unstage = ',U',
-          buffer_hunk_stage = 'a',
-          buffer_hunk_unstage = ',u',
-          toggle_view = ',<TAB>',
-          reset = 'R',
-        },
-      },
-      project_diff_preview = {
-        keymaps = {
-          buffer_stage = 'a',
-          buffer_unstage = ',u',
-          buffer_hunk_stage = 'o',
-          buffer_hunk_unstage = ',O',
-          buffer_reset = ',R',
-          stage_all = 'A',
-          unstage_all = ',U',
-          reset_all = ',<C-r>',
-        },
-      },
-      signs = {
-        priority = 10,
-        definitions = {
-          GitSignsAddLn = {
-            linehl = 'GitSignsAddLn',
-            texthl = nil,
-            numhl = nil,
-            icon = nil,
-            text = '',
-          },
-          GitSignsDeleteLn = {
-            linehl = 'GitSignsDeleteLn',
-            texthl = nil,
-            numhl = nil,
-            icon = nil,
-            text = '',
-          },
-          GitSignsAdd = {
-            texthl = 'GitSignsAdd',
-            numhl = nil,
-            icon = nil,
-            linehl = nil,
-            text = '┃',
-          },
-          GitSignsDelete = {
-            texthl = 'GitSignsDelete',
-            numhl = nil,
-            icon = nil,
-            linehl = nil,
-            text = '┃',
-          },
-          GitSignsChange = {
-            texthl = 'GitSignsChange',
-            numhl = nil,
-            icon = nil,
-            linehl = nil,
-            text = '┃',
-          },
-        },
-        usage = {
-          screen = {
-            add = 'GitSignsAddLn',
-            remove = 'GitSignsDeleteLn',
-          },
-          main = {
-            add = 'GitSignsAdd',
-            remove = 'GitSignsDelete',
-            change = 'GitSignsChange',
-          },
-        },
-      },
-      symbols = {
-        void = '⣿',
-      },
-    }
-  })
 
   ---------------------------
   -- chentoast/marks.nvim
@@ -1010,9 +820,9 @@ function Lib.setup()
   -- global handler
   -- `handler` is the 2nd parameter of `setFoldVirtTextHandler`,
   -- check out `./lua/ufo.lua` and search `setFoldVirtTextHandler` for detail.
-  require('ufo').setup({
-    fold_virt_text_handler = handler
-  })
+ require('ufo').setup({
+   fold_virt_text_handler = handler
+ })
   --------------------------------------------------------------------------
   -- Global mappings.
   -- See `:help vim.diagnostic.*` for documentation on any of the below functions

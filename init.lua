@@ -716,12 +716,6 @@ require("lazy").setup({
   },
 
   {
-    'tanvirtin/vgit.nvim',
-    dependencies = 'nvim-lua/plenary.nvim',
-    priority = getPriority(),
-  },
-
-  {
     'stevearc/stickybuf.nvim', config = function() require('stickybuf').setup() end, priority = getPriority()
     -- for debug cpp project.
   },
@@ -780,4 +774,3 @@ local Map = require('user/map')
 
 Lib.setup()
 Map.setup()
-
