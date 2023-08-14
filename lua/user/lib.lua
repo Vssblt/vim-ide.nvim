@@ -2,16 +2,30 @@ local Lib = {}
 function Lib.setup()
 
   vim.cmd[[
-    "You can change important config here. If you want to edit other config you
-    "can use :HConfig to open and change it.
+  
+    " function s:tempWin()
+    "   if 
+    " endfunction
+  
     
+    " augroup DISABLE_SIGNCOLUMN
+	   "  autocmd!
+    " autocmd BufWinEnter * if (s:tempWin())  endif
+	   "  " au FileType NvimTree,Outline,ltgdb-terminal,ltgdb-terminal,ltgdb-stack,ltgdb-breakpoint,ltgdb-scope,ltgdb-watch setlocal signcolumn=no
+    " " augroup END
+    " 
+    " augroup DISABLE_FOLDCOLUMN
+	   "  autocmd!
+	   "  au FileType NvimTree,Outline,ltgdb-terminal,ltgdb-terminal,ltgdb-stack,ltgdb-breakpoint,ltgdb-scope,ltgdb-watch setlocal foldcolumn=0
+    " augroup END
+
+
     """"""""""""""""""""""""""""""
     " common settings
     """"""""""""""""""""""""""""""
     let mapleader=',' 
     let g:VM_leader='.'
     let g:vvimrc_name=".vvimrc"
-    let g:with_x11 = 0
     set tabstop=2
     set sw=2
     
@@ -80,7 +94,7 @@ function Lib.setup()
   vim.o.viminfo = "'20,\"50000"
   vim.o.timeoutlen = 10000
   vim.o.ttimeoutlen = 10
-  vim.o.clipboard = "unnamed,unnamedplus"
+  vim.o.clipboard = "unnamedplus,unnamed"
   vim.o.mouse = "a"
   vim.o.t_Co = 256
   vim.o.fillchars = "stl: "
@@ -97,13 +111,13 @@ function Lib.setup()
   vim.o.synmaxcol = 320
   vim.o.updatetime = 100
   vim.o.autoread = true
-  vim.o.signcolumn = "yes"
+  vim.o.signcolumn = "number"
   vim.o.undofile = true
   vim.o.completeopt = "menu,menuone,noselect,noinsert"
   vim.o.termguicolors = true
   vim.o.pumheight = 40
   vim.o.pumwidth = 40
-  vim.o.foldcolumn = '1' -- '0' is not bad
+  vim.o.foldcolumn = '0' -- '0' is not bad
   vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
   vim.o.foldlevelstart = 99
   vim.o.foldenable = true
@@ -124,6 +138,26 @@ function Lib.setup()
       )
     end
   })
+  vim.api.nvim_create_autocmd({"BufWinEnter"},
+    {
+      pattern = {"*"},
+      callback = function(ev)
+        if vim.bo.filetype == "Outline"
+          or vim.bo.filetype == "ltgdb-terminal"
+          or vim.bo.filetype == "ltgdb-terminal"
+          or vim.bo.filetype == "ltgdb-stack"
+          or vim.bo.filetype == "ltgdb-breakpoint"
+          or vim.bo.filetype == "ltgdb-scope"
+          or vim.bo.filetype == "ltgdb-watch"
+          or vim.bo.filetype == 'fzf'
+        then
+          vim.wo.signcolumn="no"
+          vim.wo.foldcolumn='0'
+        end
+      end,
+    }
+  )
+
   vim.api.nvim_create_user_command("FHide", "FloatermHide", { bang = true })
   vim.api.nvim_create_user_command("FNext", "FloatermNext", { bang = true })
   vim.api.nvim_create_user_command("FFirst", "FloatermFirst", { bang = true })
@@ -367,7 +401,6 @@ function Lib.setup()
     vim.keymap.set("n", "<C-k>",api.node.show_info_popup,              opts('Info'))
     vim.keymap.set("n", "g?",  api.tree.toggle_help,                  opts('Help'))
   end
-
   require("nvim-tree").setup({
     --git = {
       --enable = false,
@@ -377,7 +410,8 @@ function Lib.setup()
     on_attach = nvim_tree_attach,
     hijack_netrw = true,
     view = {
-      adaptive_size = true,
+      adaptive_size = false,
+      width = 26
     },
     renderer = {
       group_empty = true,
@@ -386,6 +420,8 @@ function Lib.setup()
       dotfiles = true,
     },
   })
+  require('nvim-tree.view').View.winopts.signcolumn = 'no'
+  require('nvim-tree.view').View.winopts.foldcolumn = "0"
 
   local function tab_win_closed(winnr)
     local api = require"nvim-tree.api"
@@ -438,7 +474,13 @@ function Lib.setup()
     sections = {
       lualine_a = {'mode'},
       lualine_b = {'branch', 'diff', 'diagnostics'},
-      lualine_c = {'filename'},
+      lualine_c = {
+        {
+          'filename',
+          file_status = true,
+          path = 2
+        }
+      },
       lualine_x = {'encoding', 'fileformat', 'filetype'},
       lualine_y = {'progress'},
       lualine_z = {'location'}
@@ -941,8 +983,6 @@ function Lib.setup()
   if &diff
       let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
   endif
-
-  autocmd FileType Outline setlocal signcolumn=no 
   ]]
 end
 

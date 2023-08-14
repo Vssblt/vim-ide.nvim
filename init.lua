@@ -11,9 +11,9 @@ vim.loader.enable()
 -- Disable netrw and matchparen
 vim.g.loaded_netrw       = 1
 vim.g.loaded_netrwPlugin = 1
-vim.g.matchparen_timeout = 2
-vim.g.matchparen_insert_timeout = 2
-vim.g.loaded_matchparen = 1
+-- vim.g.matchparen_timeout = 2
+-- vim.g.matchparen_insert_timeout = 2
+-- vim.g.loaded_matchparen = 1
 
 
 -- load lazy.nvim
@@ -45,7 +45,7 @@ require("lazy").setup({
   { "folke/neodev.nvim", priority = getPriority(), },
   {
     "klen/nvim-config-local",
-    config = function()
+    init = function()
       require('config-local').setup {
         config_files = { ".nvim.lua", ".nvimrc", ".exrc", ".vimrc.lua", ".vimrc" },
         hashfile = vim.fn.stdpath("data") .. "/config-local",
@@ -624,6 +624,7 @@ require("lazy").setup({
           exclude_filetypes = {
             aerial = true,
             dashboard = true,
+            Outline = true,
           },
           chars = {
             horizontal_line = "─",
@@ -633,27 +634,34 @@ require("lazy").setup({
             right_arrow = ">",
           },
           style = {
-            { fg = "#806d9c" },
+            { fg = "#00ffff" },
           },
         },
         blank = {
           enable = false,
-        }
+        },
+        line_num = {
+          enable = true,
+          use_treesitter = true,
+          style = {
+            { fg = "#00ffff" }
+          }
+        },
       })
     end,
     priority = getPriority(),
   },
 
   {
-    'simrat39/symbols-outline.nvim',
+    'Vssblt/symbols-outline.nvim',
     config = function()
       local opts = {
         highlight_hovered_item = true,
         show_guides = true,
         auto_preview = false,
         position = 'right',
-        relative_width = true,
-        width = 18,
+        relative_width = false,
+        width = 26,
         auto_close = true,
         show_numbers = false,
         show_relative_numbers = false,
@@ -671,6 +679,8 @@ require("lazy").setup({
           toggle_preview = "K",
           rename_symbol = "r",
           code_actions = "a",
+          fold = "zf",
+          unfold = "zo",
         },
         lsp_blacklist = {},
         symbol_blacklist = {},

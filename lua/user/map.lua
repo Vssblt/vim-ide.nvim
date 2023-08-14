@@ -123,8 +123,8 @@ function Map.setup()
     nnoremap C gT
     "nmap <leader>b :set buflisted<CR>c:sp<CR>r:bd<cr>
     "nmap <leader>B :bufdo bd<CR>
-    nmap <silent> <leader>b :Bdelete<CR>
-    nmap <silent> <leader>B :bufdo Bdelete<CR>
+    nmap <silent> <leader>b :Bwipeout<CR>
+    nmap <silent> <leader>B :bufdo Bwipeout<CR>
     
     nnoremap <ScrollWheelUp> <C-Y><C-Y><C-Y><C-Y>
     nnoremap <ScrollWheelDown> <C-E><C-E><C-E><C-E>
@@ -154,19 +154,13 @@ function Map.setup()
     xnoremap " ,
     
     function! CopyAppend()
-    	if g:with_x11 == 1
-    		let @*=@*.getline('.')."\n"
-    	else
-    		let @" .= getline('.')."\n"
-    	endif
+    		let @+ .= getline('.')."\n"
+    		let @* .= getline('.')."\n"
     endfunction
     
     function! CutAppend()
-    	if g:with_x11 == 1
-    		let @*=@*.getline('.')."\n"
-    	else
-    		let @" .= getline('.')."\n"
-    	endif
+    		let @+ .= getline('.')."\n"
+    		let @* .= getline('.')."\n"
     	execute "delete _"
     endfunction
     
@@ -273,7 +267,9 @@ function Map.setup()
     """"""""""""""""""""""""""""""
     " make 
     """"""""""""""""""""""""""""""
-    let g:makefile_path = "."
+    if (!exists('g:makefile_path'))
+      let g:makefile_path = "."
+    endif
     nnoremap <silent> <F4> :exec "Make -C " . g:makefile_path . " -j `nproc`"<CR>
     nnoremap <silent> <C-c> :AbortDispatch<CR>
     function! GetBufferList()
