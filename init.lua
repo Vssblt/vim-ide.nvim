@@ -629,8 +629,8 @@ require("lazy").setup({
           chars = {
             horizontal_line = "─",
             vertical_line = "│",
-            left_top = "╭",
-            left_bottom = "╰",
+            left_top = "┌",
+            left_bottom = "└",
             right_arrow = ">",
           },
           style = {
@@ -639,6 +639,7 @@ require("lazy").setup({
         },
         blank = {
           enable = false,
+          use_treesitter = true,
         },
         line_num = {
           enable = true,
