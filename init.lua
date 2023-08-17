@@ -634,7 +634,7 @@ require("lazy").setup({
             right_arrow = ">",
           },
           style = {
-            { fg = "#00ffff" },
+            { fg = "lightblue" },
           },
         },
         blank = {
@@ -645,7 +645,7 @@ require("lazy").setup({
           enable = true,
           use_treesitter = true,
           style = {
-            { fg = "#00ffff" }
+            { fg = "lightblue" }
           }
         },
       })
@@ -663,7 +663,7 @@ require("lazy").setup({
         position = 'right',
         relative_width = false,
         width = 26,
-        auto_close = true,
+        auto_close = false,
         show_numbers = false,
         show_relative_numbers = false,
         show_symbol_details = true,
@@ -778,6 +778,105 @@ require("lazy").setup({
     'kevinhwang91/nvim-ufo',
     priority = getPriority()
   },
+  {
+    "folke/edgy.nvim",
+    config = function()
+      require'edgy'.setup({
+        right = {
+          {
+            title = "Nvim-Tree",
+            ft = "NvimTree",
+            size = { height = 0.4 },
+          },
+          {
+            title = "Symbols",
+            ft = "Outline",
+            size = { height = 0.6 },
+          },
+        }, ---@type (Edgy.View.Opts|string)[]
+        bottom = {
+          {
+            title = "Symbols",
+            ft = "qf",
+            size = { width = 0.5 },
+          },
+        }, ---@type (Edgy.View.Opts|string)[]
+        left = {}, ---@type (Edgy.View.Opts|string)[]
+        top = {}, ---@type (Edgy.View.Opts|string)[]
+
+        ---@type table<Edgy.Pos, {size:integer | fun():integer, wo?:vim.wo}>
+        options = {
+          left = { size = 34 },
+          bottom = { size = 12 },
+          right = { size = 34 },
+          top = { size = 12 },
+        },
+        -- edgebar animations
+        animate = {
+          enabled = true,
+          fps = 165, -- frames per second
+          cps = 250, -- cells per second
+          on_begin = function()
+            vim.g.minianimate_disable = true
+          end,
+          on_end = function()
+            vim.g.minianimate_disable = true
+          end,
+          -- Spinner for pinned views that are loading.
+          -- if you have noice.nvim installed, you can use any spinner from it, like:
+          -- spinner = require("noice.util.spinners").spinners.circleFull,
+          spinner = {
+            frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
+            interval = 80,
+          },
+        },
+        -- enable this to exit Neovim when only edgy windows are left
+        exit_when_last = true,
+        -- close edgy when all windows are hidden instead of opening one of them
+        -- disable to always keep at least one edgy split visible in each open section
+        close_when_all_hidden = true,
+        -- global window options for edgebar windows
+        ---@type vim.wo
+        wo = {
+          -- Setting to `true`, will add an edgy winbar.
+          -- Setting to `false`, won't set any winbar.
+          -- Setting to a string, will set the winbar to that string.
+          winbar = true,
+          winfixwidth = true,
+          winfixheight = true,
+          spell = false,
+          signcolumn = "no",
+        },
+        -- buffer-local keymaps to be added to edgebar buffers.
+        -- Existing buffer-local keymaps will never be overridden.
+        -- Set to false to disable a builtin.
+        ---@type table<string, fun(win:Edgy.Window)|false>
+        keys = {
+          -- -- close window
+          -- ["q"] = function(win)
+          --   win:close()
+          -- end,
+          -- -- hide window
+          -- ["<c-q>"] = function(win)
+          --   win:hide()
+          -- end,
+          -- -- close sidebar
+          -- ["Q"] = function(win)
+          --   win.view.edgebar:close()
+          -- end,
+        },
+        icons = {
+          closed = " ",
+          open = " ",
+        },
+        -- enable this on Neovim <= 0.10.0 to properly fold edgebar windows.
+        -- Not needed on a nightly build >= June 5, 2023.
+        fix_win_height = vim.fn.has("nvim-0.10.0") == 0,
+      })
+    end,
+    event = "VeryLazy",
+    priority = getPriority()
+  }
 })
 
 local Lib = require('user/lib')

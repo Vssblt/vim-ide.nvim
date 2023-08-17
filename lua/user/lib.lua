@@ -121,6 +121,7 @@ function Lib.setup()
   vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
   vim.o.foldlevelstart = 99
   vim.o.foldenable = true
+  vim.o.splitkeep = "screen"
   -- vim.opt.foldmethod = "expr"
   -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
   vim.cmd[[colorscheme sonokai]]
@@ -469,7 +470,7 @@ function Lib.setup()
       section_separators = { left = '', right = ''},
       disabled_filetypes = {},
       always_divide_middle = true,
-      globalstatus = false,
+      globalstatus = true,
     },
     sections = {
       lualine_a = {'mode'},
@@ -911,6 +912,12 @@ function Lib.setup()
     })
   end
 
+  local ns_id_eob_active = vim.api.nvim_create_namespace("EOBActive")
+  local ns_id_eob_inactive = vim.api.nvim_create_namespace("EOBInactive")
+  vim.api.nvim_set_hl(ns_id_eob_inactive, "EndOfBuffer", {fg = "#1F1F1F"})
+  vim.api.nvim_set_hl(ns_id_eob_inactive, "NvimTreeEndOfBuffer", {fg = "#1F1F1F"})
+  vim.api.nvim_set_hl(ns_id_eob_active, "EndOfBuffer", {fg = "#131313"})
+  vim.api.nvim_set_hl(ns_id_eob_active, "NvimTreeEndOfBuffer", {fg = "#131313"})
 
   vim.cmd[[
   aug QFClose
@@ -930,7 +937,7 @@ function Lib.setup()
   filetype plugin indent on
   au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
   hi MatchParen cterm=bold ctermbg=none ctermfg=magenta ctermfg=lightblue guifg=#505080 guibg=#C06060
-
+  hi VertSplit ctermfg=232 guifg=darkgray guibg=#1f1f1f
   """"""""""""""""""""""""""""""
   " ranger settings
   """"""""""""""""""""""""""""""
@@ -957,17 +964,20 @@ function Lib.setup()
   """"""""""""""""""""""""""""""
 
   highlight EndOfBufferInactive ctermfg=bg guifg=#1f1f1f guibg=#1f1f1f
-  highlight EndOfBufferActive ctermfg=bg guifg=#181818 guibg=#181818
+  highlight EndOfBufferActive ctermfg=bg guifg=#131313 guibg=#131313
+  
+  " highlight link NvimTreeEndOfBufferInactive EndOfBufferInactive
+  " highlight link NvimTreeEndOfBufferActive BufferActive 
 
   set winhighlight+=EndOfBuffer:EndOfBufferInactive
-
+  
   augroup NrHighlight
     autocmd!
     
-    autocmd VimEnter,WinEnter,BufWinEnter * :exe "setlocal winhighlight=".substitute(&winhighlight, "EndOfBufferInactive", "EndOfBufferActive", "")
-    autocmd WinLeave * :exe "setlocal winhighlight=".substitute(&winhighlight, "EndOfBufferActive", "EndOfBufferInactive", "")
+    autocmd VimEnter,WinEnter,BufWinEnter * :lua require'user/lib'.activeCurrentWindow()
+    autocmd WinLeave * :lua require'user/lib'.inactiveCurrentWindow()
     
-    autocmd VimEnter,WinEnter,BufWinEnter * :highlight Normal ctermbg=235 guibg=#181818
+    autocmd VimEnter,WinEnter,BufWinEnter * :highlight Normal ctermbg=235 guibg=#131313
     autocmd WinLeave * :highlight Normal ctermbg=235 guibg=#1f1f1f
   augroup END
 
@@ -984,6 +994,18 @@ function Lib.setup()
       let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
   endif
   ]]
+end
+  
+function Lib.activeCurrentWindow()
+  local win_id = vim.api.nvim_get_current_win()
+  local ns_id = vim.api.nvim_create_namespace("EOBActive")
+  vim.api.nvim_win_set_hl_ns(win_id, ns_id)
+end
+
+function Lib.inactiveCurrentWindow()
+  local win_id = vim.api.nvim_get_current_win()
+  local ns_id = vim.api.nvim_create_namespace("EOBInactive")
+  vim.api.nvim_win_set_hl_ns(win_id, ns_id)
 end
 
 return Lib

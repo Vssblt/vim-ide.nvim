@@ -146,7 +146,7 @@ function Map.setup()
     nnoremap <tab><tab> <Esc>/<++><CR>:nohlsearch<CR>"_cgn
     
     nnoremap <silent> <leader>; :SymbolsOutline<CR>
-    nnoremap <silent> <leader>q :NvimTreeToggle<CR>
+    nnoremap <silent> <leader>q :SymbolsOutline<CR>:NvimTreeToggle<CR>:lua require("edgy").goto_main()<CR>
     nnoremap <silent> <leader>j :GundoToggle<CR>
     
     nmap . <Plug>(choosewin)
