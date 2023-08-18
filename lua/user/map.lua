@@ -270,7 +270,7 @@ function Map.setup()
     if (!exists('g:makefile_path'))
       let g:makefile_path = "."
     endif
-    nnoremap <silent> <F4> :exec "Make -C " . g:makefile_path . " -j `nproc`"<CR>
+    nnoremap <silent> <F4> :exec "Make -C " . g:makefile_path . " -j `nproc`"<CR>:lua require("edgy").goto_main()<CR>
     nnoremap <silent> <C-c> :AbortDispatch<CR>
     function! GetBufferList()
       redir =>buflist

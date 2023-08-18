@@ -625,6 +625,7 @@ require("lazy").setup({
             aerial = true,
             dashboard = true,
             Outline = true,
+            qf = true,
           },
           chars = {
             horizontal_line = "─",
@@ -786,30 +787,52 @@ require("lazy").setup({
           {
             title = "Nvim-Tree",
             ft = "NvimTree",
-            size = { height = 0.4 },
           },
           {
             title = "Symbols",
             ft = "Outline",
-            size = { height = 0.6 },
+          },
+          {
+            title = "Breakpoint",
+            ft = "ltgdb-breakpoint",
+          },
+          {
+            title = "Watch",
+            ft = "ltgdb-watch",
+          },
+          {
+            title = "scope",
+            ft = "ltgdb-scope",
           },
         }, ---@type (Edgy.View.Opts|string)[]
         bottom = {
           {
-            title = "Symbols",
+            title = "GDB Console",
+            ft = "ltgdb-terminal",
+          },
+          {
+            title = "Quick Fix",
             ft = "qf",
-            size = { width = 0.5 },
           },
         }, ---@type (Edgy.View.Opts|string)[]
         left = {}, ---@type (Edgy.View.Opts|string)[]
-        top = {}, ---@type (Edgy.View.Opts|string)[]
+        top = {
+          {
+            title = "Stack",
+            ft = "ltgdb-stack",
+          },
+          {
+            title = "Standard Output",
+            ft = "ltgdb-gdbout",
+          },
+        }, ---@type (Edgy.View.Opts|string)[]
 
         ---@type table<Edgy.Pos, {size:integer | fun():integer, wo?:vim.wo}>
         options = {
           left = { size = 34 },
-          bottom = { size = 12 },
+          bottom = { size = 18 },
           right = { size = 34 },
-          top = { size = 12 },
+          top = { size = 18 },
         },
         -- edgebar animations
         animate = {
