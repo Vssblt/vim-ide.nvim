@@ -271,8 +271,9 @@ function Lib.setup()
   vim.g.interestingWordsDefaultMappings = 0
   vim.g.interestingWordsRandomiseColors = 1
   vim.g.interestingWordsTermColors = {'154', '121', '211', '137', '214', '222', '1', '2', '3', '4', '6', '64', '99' }
-  vim.g.interestingWordsGUIColors = {'#f85e84', '#ef9062', '#e5c463', '#7accd7', '#ab9df2' }
+  vim.g.interestingWordsGUIColors = {'#ef9062', '#e5c463', '#9ECD6F', '#ab9df2', '#E3E1E4', '#848089' }
 
+  -- '#f85e84'
   ---------------------------
   -- notify
   ---------------------------
@@ -936,8 +937,11 @@ function Lib.setup()
   })
 
   if vim.fn.exists(vim.g.neovide) then
-    vim.o.guifont = "CodeNewRoman Nerd Font Mono:style=Bold:h10"
-    vim.o.guifontwide = "CodeNewRoman Nerd Font Propo:style=Bold:h10"
+    -- vim.o.guifont = "CodeNewRoman Nerd Font Mono:style=Bold:h10"
+    -- vim.o.guifontwide = "CodeNewRoman Nerd Font Propo:style=Bold:h10"
+    
+    vim.o.guifont = "CodeNewRoman Nerd Font:style=Regular:h12"
+    vim.o.guifontwide = "CodeNewRoman Nerd Font:style=Regular:h12"
     vim.keymap.set("c", "<C-S-v>", "<C-r>+", {
       noremap = true,
     })
