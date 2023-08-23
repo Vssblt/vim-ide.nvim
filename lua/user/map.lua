@@ -146,8 +146,9 @@ function Map.setup()
     nnoremap <tab><tab> <Esc>/<++><CR>:nohlsearch<CR>"_cgn
     
     nnoremap <silent> <leader>; :SymbolsOutline<CR>
-    nnoremap <silent> <leader>q :SymbolsOutline<CR>:NvimTreeToggle<CR>:lua require("edgy").goto_main()<CR>
-    nnoremap <silent> <leader>j :GundoToggle<CR>
+    nnoremap <silent> <leader>q :NvimTreeToggle<CR> 
+    ":UndotreeToggle<CR>:lua require("edgy").goto_main()<CR>
+    nnoremap <silent> <leader>j :UndotreeToggle<CR>
     
     nmap . <Plug>(choosewin)
     nnoremap " ,
@@ -303,7 +304,8 @@ function Map.setup()
       endif
     endfunction
     
-    nmap <silent> <F2> :call ToggleList("Quickfix", 'c')<CR>
+    " nmap <silent> <F2> :call ToggleList("Quickfix", 'c')<CR>:lua require'edgy'.goto_main()<CR>
+    nmap <silent> <F2> :copen<CR>
     
     function! g:Start_Termdebug(arg)
     	if v:shell_error == 0

@@ -783,10 +783,19 @@ require("lazy").setup({
     "folke/edgy.nvim",
     config = function()
       require'edgy'.setup({
-        right = {
+        left = {
           {
             title = "Nvim-Tree",
             ft = "NvimTree",
+          },
+          {
+            title = "Undo-Tree",
+            ft = "undotree",
+          },
+          {
+            title = "Undo-Tree-Diff",
+            ft = "diff",
+            size = { height = 0.1}
           },
           {
             title = "Symbols",
@@ -804,18 +813,18 @@ require("lazy").setup({
             title = "scope",
             ft = "ltgdb-scope",
           },
-        }, ---@type (Edgy.View.Opts|string)[]
+        },
         bottom = {
-          {
-            title = "GDB Console",
-            ft = "ltgdb-terminal",
-          },
           {
             title = "Quick Fix",
             ft = "qf",
           },
-        }, ---@type (Edgy.View.Opts|string)[]
-        left = {}, ---@type (Edgy.View.Opts|string)[]
+          {
+            title = "GDB Console",
+            ft = "ltgdb-terminal",
+          },
+        },
+        right = {},
         top = {
           {
             title = "Stack",
@@ -825,13 +834,12 @@ require("lazy").setup({
             title = "Standard Output",
             ft = "ltgdb-gdbout",
           },
-        }, ---@type (Edgy.View.Opts|string)[]
+        },
 
-        ---@type table<Edgy.Pos, {size:integer | fun():integer, wo?:vim.wo}>
         options = {
-          left = { size = 34 },
+          left = { size = 33 },
           bottom = { size = 18 },
-          right = { size = 34 },
+          right = { size = 33 },
           top = { size = 18 },
         },
         -- edgebar animations
@@ -899,7 +907,13 @@ require("lazy").setup({
     end,
     event = "VeryLazy",
     priority = getPriority()
-  }
+  },
+  {
+    "mbbill/undotree",
+    priority = getPriority(),
+    config = function()
+    end
+  },
 })
 
 local Lib = require('user/lib')

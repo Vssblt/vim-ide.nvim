@@ -287,58 +287,95 @@ function Lib.setup()
     sync_install = false,
     highlight = {
       enable = true,
-      disable = function (lang, bufnr)
-        local buf_name = vim.api.nvim_buf_get_name(bufnr)
-        local file_size = vim.api.nvim_call_function("getfsize", { buf_name })
-        local check_file_size = vim.api.nvim_buf_line_count(bufnr) > 10000 or file_size > 200 * 1024
-        local max_col = 0
-        local col_limit = 360
-        if check_file_size then
-          return check_file_size
-        end
-        for _, line in ipairs(vim.api.nvim_buf_get_lines(0, 0, -1, false)) do
-          local col = #line
-          if col > max_col then
-            max_col = col
-            if max_col > col_limit then
-              return true
-            end
-          end
-        end
-        return false
-      end,
+      -- disable = function (lang, bufnr)
+      --   local buf_name = vim.api.nvim_buf_get_name(bufnr)
+      --   local file_size = vim.api.nvim_call_function("getfsize", { buf_name })
+      --   local check_file_size = vim.api.nvim_buf_line_count(bufnr) > 10000 or file_size > 200 * 1024
+      --   local max_col = 0
+      --   local col_limit = 360
+      --   if check_file_size then
+      --     return check_file_size
+      --   end
+      --   for _, line in ipairs(vim.api.nvim_buf_get_lines(0, 0, -1, false)) do
+      --     local col = #line
+      --     if col > max_col then
+      --       max_col = col
+      --       if max_col > col_limit then
+      --         return true
+      --       end
+      --     end
+      --   end
+      --   return false
+      -- end,
       additional_vim_regex_highlighting = false,
     },
-   textobjects = {
-     select = {
-       enable = true,
-       lookahead = true,
-       keymaps = {
-         ["af"] = "@function.outer",
-         ["if"] = "@function.inner",
-         ["ic"] = "@class.inner",
-         ["ac"] = "@class.outer",
-         ["is"] = "@scope.inner",
-         ["as"] = "@scope.outer",
-         ["ip"] = "@parameter.inner",
-         ["ap"] = "@parameter.outer",
-         ["id"] = "@conditional.inner",
-         ["ad"] = "@conditional.outer",
-         ["ib"] = "@block.inner",
-         ["ab"] = "@block.outer",
-         ["am"] = "@comment.outer",
-         ["im"] = "@comment.inner",
-       },
-       selection_modes = {
-         ['@parameter.outer'] = 'v',
-         ['@function.outer'] = 'V',
-         ['@class.outer'] = '<c-v>',
-       },
-       include_surrounding_whitespace = true,
-     },
-   },
+    textobjects = {
+      select = {
+        enable = true,
+        lookahead = true,
+        keymaps = {
+          ["af"] = "@function.outer",
+          ["if"] = "@function.inner",
+          ["ic"] = "@class.inner",
+          ["ac"] = "@class.outer",
+          ["is"] = "@scope.inner",
+          ["as"] = "@scope.outer",
+          ["ip"] = "@parameter.inner",
+          ["ap"] = "@parameter.outer",
+          ["id"] = "@conditional.inner",
+          ["ad"] = "@conditional.outer",
+          ["ib"] = "@block.inner",
+          ["ab"] = "@block.outer",
+          ["am"] = "@comment.outer",
+          ["im"] = "@comment.inner",
+        },
+        selection_modes = {
+          ['@parameter.outer'] = 'v',
+          ['@function.outer'] = 'V',
+          ['@class.outer'] = '<c-v>',
+        },
+        include_surrounding_whitespace = true,
+      },
+      move = {
+        enable = true,
+        set_jumps = true, -- whether to set jumps in the jumplist
+        goto_next_start = {
+          ["]m"] = "@function.outer",
+          ["]]"] = { query = "@class.outer", desc = "Next class start" },
+          --
+          -- You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queires.
+          ["]o"] = "@loop.*",
+          -- ["]o"] = { query = { "@loop.inner", "@loop.outer" } }
+          --
+          -- You can pass a query group to use query from `queries/<lang>/<query_group>.scm file in your runtime path.
+          -- Below example nvim-treesitter's `locals.scm` and `folds.scm`. They also provide highlights.scm and indent.scm.
+          ["]s"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
+          ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
+        },
+        goto_next_end = {
+          ["]M"] = "@function.outer",
+          ["]["] = "@class.outer",
+        },
+        goto_previous_start = {
+          ["[m"] = "@function.outer",
+          ["[["] = "@class.outer",
+        },
+        goto_previous_end = {
+          ["[M"] = "@function.outer",
+          ["[]"] = "@class.outer",
+        },
+        -- Below will go to either the start or the end, whichever is closer.
+        -- Use if you want more granular movements
+        -- Make it even more gradual by adding multiple queries and regex.
+        goto_next = {
+          ["]d"] = "@conditional.outer",
+        },
+        goto_previous = {
+          ["[d"] = "@conditional.outer",
+        }
+      },
+    },
   }
-
   ---------------------------
   -- nvim-tree
   ---------------------------
@@ -573,8 +610,8 @@ function Lib.setup()
   cmp.setup({
     sorting = {
       comparators = {
-        cmp.config.compare.exact,
         cmp.config.compare.recently_used,
+        cmp.config.compare.exact,
         cmp.config.compare.score,
         cmp.config.compare.offset,
       },
