@@ -899,7 +899,7 @@ require("lazy").setup({
     end,
     event = "VeryLazy",
     priority = getPriority()
-  }
+  },
 })
 
 local Lib = require('user/lib')
