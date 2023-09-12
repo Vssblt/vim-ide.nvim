@@ -271,7 +271,7 @@ function Lib.setup()
   vim.g.interestingWordsDefaultMappings = 0
   vim.g.interestingWordsRandomiseColors = 1
   vim.g.interestingWordsTermColors = {'154', '121', '211', '137', '214', '222', '1', '2', '3', '4', '6', '64', '99' }
-  vim.g.interestingWordsGUIColors = {'#ef9062', '#e5c463', '#9ECD6F', '#ab9df2', '#E3E1E4', '#848089' }
+  vim.g.interestingWordsGUIColors = {'#ef9062', '#e5c463', '#ab9df2', '#E3E1E4', '#848089' }
 
   -- '#f85e84'
   ---------------------------

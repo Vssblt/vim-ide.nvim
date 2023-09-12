@@ -4,6 +4,7 @@ function Map.setup()
   vim.keymap.set("n", "o", [[ox<BS>]], {noremap = true, silent = true})
   vim.keymap.set("n", "O", [[Ox<BS>]], {noremap = true, silent = true})
   vim.keymap.set("n", "W", [[b]], {noremap = true, silent = true})
+  vim.keymap.set("v", "W", [[b]], {noremap = true, silent = true})
   vim.keymap.set("n", "*", [[:let @/= '\<' . expand('<cword>') . '\>' <bar> set hls <cr>]], {noremap = true, silent = true})
   vim.keymap.set("n", "g*", [[:let @/=expand('<cword>') <bar> set hls <cr>]], {noremap = true, silent = true})
   vim.keymap.set("t", "<C-d>", [[<C-\><C-n>]], {noremap = true, silent = true})
@@ -145,7 +146,7 @@ function Map.setup()
     nnoremap <tab><tab> <Esc>/\(\(\[TODO\:\)\\|\(<+\)\).*\(\(\]\)\\|\(+>\)\)<CR>:nohlsearch<CR>"_cgn
     nnoremap <tab><tab> <Esc>/<++><CR>:nohlsearch<CR>"_cgn
     
-    nnoremap <silent> <leader>; :SymbolsOutline<CR>
+    nnoremap <silent> <leader>; :AerialToggle<CR>
     nnoremap <silent> <leader>q :NvimTreeToggle<CR> 
     ":UndotreeToggle<CR>:lua require("edgy").goto_main()<CR>
     nnoremap <silent> <leader>j :UndotreeToggle<CR>
@@ -184,11 +185,6 @@ function Map.setup()
     inoremap  <C-W>
     onoremap <C-BS> <C-W>
     onoremap  <C-W>
-    
-    """"""""""""""""""""""""""""""
-    " SymbolsOutline
-    """"""""""""""""""""""""""""""
-    " autocmd FileType Outline IndentBlanklineDisable
     
     """"""""""""""""""""""""""""""
     " ranger
@@ -271,7 +267,7 @@ function Map.setup()
     if (!exists('g:makefile_path'))
       let g:makefile_path = "."
     endif
-    nnoremap <silent> <F4> :exec "Make -C " . g:makefile_path . " -j `nproc`"<CR>:lua require("edgy").goto_main()<CR>
+    nnoremap <silent> <F4> :exec "Make -C " . g:makefile_path . " -j `nproc`"<CR>
     nnoremap <silent> <C-c> :AbortDispatch<CR>
     function! GetBufferList()
       redir =>buflist
@@ -325,6 +321,12 @@ function Map.setup()
     augroup autoHideBuf
       autocmd!
       autocmd BufReadPost,BufFilePost * call HideBuf(["[dap-repl]"], ["quickfix"]) 
+    augroup END
+    
+    augroup autoGotoMain
+      autocmd!
+      " autocmd WinClosed qf lua require("edgy").goto_main()
+      autocmd WinClosed * if &buftype == 'quickfix' | exec('lua require("edgy").goto_main()') | endif
     augroup END
     
     function HideBuf(name_list, type_list)

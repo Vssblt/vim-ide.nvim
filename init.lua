@@ -610,117 +610,276 @@ require("lazy").setup({
   {
     "shellRaining/hlchunk.nvim",
     config = function()
-      require('hlchunk').setup({
-        indent = {
-          chars = { "│" },
-          style = {
-            { fg = "#39363e" }
-         },
-        },
-        chunk = {
-          enable = true,
-          use_treesitter = true,
-          notify = true,
-          exclude_filetypes = {
-            aerial = true,
-            dashboard = true,
-            Outline = true,
-            qf = true,
+      require('hlchunk').setup(
+        {
+          indent = {
+            use_treesitter = false,
+            chars = { "│" },
+            style = {
+              { fg = "#39363e" }
+           },
           },
-          chars = {
-            horizontal_line = "─",
-            vertical_line = "│",
-            left_top = "┌",
-            left_bottom = "└",
-            right_arrow = ">",
+          chunk = {
+            enable = true,
+            use_treesitter = true,
+            notify = true,
+            exclude_filetypes = {
+              aerial = true,
+              dashboard = true,
+              Outline = true,
+              qf = true,
+            },
+            chars = {
+              horizontal_line = "─",
+              vertical_line = "│",
+              left_top = "┌",
+              left_bottom = "└",
+              right_arrow = ">",
+            },
+            style = {
+              { fg = "lightblue" },
+            },
           },
-          style = {
-            { fg = "lightblue" },
+          blank = {
+            enable = false,
+            use_treesitter = true,
           },
-        },
-        blank = {
-          enable = false,
-          use_treesitter = true,
-        },
-        line_num = {
-          enable = true,
-          use_treesitter = true,
-          style = {
-            { fg = "lightblue" }
-          }
-        },
-      })
+          line_num = {
+            enable = true,
+            use_treesitter = true,
+            style = {
+              { fg = "lightblue" }
+            }
+          },
+        }
+      )
     end,
     priority = getPriority(),
   },
-
   {
-    'Vssblt/symbols-outline.nvim',
+    'stevearc/aerial.nvim',
+    opts = {},
     config = function()
-      local opts = {
-        highlight_hovered_item = true,
-        show_guides = true,
-        auto_preview = false,
-        position = 'right',
-        relative_width = false,
-        width = 26,
-        auto_close = false,
-        show_numbers = false,
-        show_relative_numbers = false,
-        show_symbol_details = true,
-        preview_bg_highlight = 'Pmenu',
-        autofold_depth = nil,
-        auto_unfold_hover = true,
-        fold_markers = { '', '' },
-        wrap = false,
+      require("aerial").setup({
+        backends = { "treesitter", "lsp", "markdown", "man" },
+        layout = {
+          max_width = nil,
+          width = nil,
+          min_width = nil,
+          win_opts = {},
+          default_direction = "prefer_left",
+          placement = "window",
+          resize_to_content = false,
+          preserve_equality = false,
+        },
+        attach_mode = "window",
+        close_automatic_events = {},
         keymaps = {
-          close = {"q"},
-          goto_location = "<Cr>",
-          focus_location = "o",
-          hover_symbol = "<C-space>",
-          toggle_preview = "K",
-          rename_symbol = "r",
-          code_actions = "a",
-          fold = "zf",
-          unfold = "zo",
+          ["?"] = "actions.show_help",
+          ["g?"] = false,
+          ["<CR>"] = "actions.jump",
+          ["<2-LeftMouse>"] = "actions.jump",
+          ["<tab>v"] = "actions.jump_vsplit",
+          ["<tab>s"] = "actions.jump_split",
+          ["p"] = false,
+          ["<C-n>"] = "actions.down_and_scroll",
+          ["<c-t>"] = "actions.up_and_scroll",
+          ["{"] = "actions.prev",
+          ["}"] = "actions.next",
+          ["[["] = "actions.prev_up",
+          ["]]"] = "actions.next_up",
+          ["q"] = "actions.close",
+          ["o"] = false,
+          ["za"] = "actions.tree_toggle",
+          ["O"] = false,
+          ["zA"] = "actions.tree_toggle_recursive",
+          ["l"] = false,
+          ["zo"] = "actions.tree_open",
+          ["L"] = false,
+          ["zO"] = "actions.tree_open_recursive",
+          ["h"] = false,
+          ["zc"] = "actions.tree_close",
+          ["H"] = false,
+          ["zC"] = "actions.tree_close_recursive",
+          ["zr"] = "actions.tree_increase_fold_level",
+          ["zR"] = "actions.tree_open_all",
+          ["zm"] = "actions.tree_decrease_fold_level",
+          ["zM"] = "actions.tree_close_all",
+          ["zx"] = "actions.tree_sync_folds",
+          ["zX"] = "actions.tree_sync_folds",
         },
-        lsp_blacklist = {},
-        symbol_blacklist = {},
-        symbols = {
-          File = { icon = "", hl = "@text.uri" },
-          Module = { icon = "", hl = "@namespace" },
-          Namespace = { icon = "", hl = "@namespace" },
-          Package = { icon = "", hl = "@namespace" },
-          Class = { icon = "󰙱", hl = "@type" },
-          Method = { icon = "ƒ", hl = "@method" },
-          Property = { icon = "", hl = "@method" },
-          Field = { icon = "󰽑", hl = "@field" },
-          Constructor = { icon = "", hl = "@constructor" },
-          Enum = { icon = "ℰ", hl = "@type" },
-          Interface = { icon = "ﰮ", hl = "@type" },
-          Function = { icon = "󰡱", hl = "@function" },
-          Variable = { icon = "", hl = "@constant" },
-          Constant = { icon = "󰏿", hl = "@constant" },
-          String = { icon = "𝓐", hl = "@string" },
-          Number = { icon = "#", hl = "@number" },
-          Boolean = { icon = "⊨", hl = "@boolean" },
-          Array = { icon = "", hl = "@constant" },
-          Object = { icon = "⦿", hl = "@type" },
-          Key = { icon = "", hl = "@type" },
-          Null = { icon = "󰟢", hl = "@type" },
-          EnumMember = { icon = "", hl = "@field" },
-          Struct = { icon = "𝓢", hl = "@type" },
-          Event = { icon = "", hl = "@type" },
-          Operator = { icon = "+", hl = "@operator" },
-          TypeParameter = { icon = "𝙏", hl = "@parameter" },
-          Component = { icon = "", hl = "@function" },
-          Fragment = { icon = "", hl = "@constant" },
+        lazy_load = true,
+        disable_max_lines = 10000,
+        disable_max_size = 2000000, -- Default 2MB
+        filter_kind = false,
+        -- filter_kind = {
+          -- "Class",
+          -- "Constructor",
+          -- "Enum",
+          -- "Function",
+          -- "Interface",
+          -- "Module",
+          -- "Method",
+          -- "Struct",
+        -- },
+        highlight_mode = "split_width",
+        highlight_closest = true,
+        highlight_on_hover = false,
+        highlight_on_jump = 300,
+        autojump = false,
+        icons = {},
+        ignore = {
+          unlisted_buffers = false,
+          filetypes = {},
+          buftypes = "special",
+          wintypes = "special",
         },
-      }
-      require("symbols-outline").setup(opts)
-    end,
-    priority = getPriority(),
-  },
+        manage_folds = false,
+        link_folds_to_tree = false,
+        link_tree_to_folds = true,
+        nerd_font = "auto",
+        on_attach = function(bufnr) end,
+        on_first_symbols = function(bufnr) end,
+          open_automatic = false,
+          post_jump_cmd = "normal! zz",
+          post_parse_symbol = function(bufnr, item, ctx)
+            return true
+          end,
+          post_add_all_symbols = function(bufnr, items, ctx)
+            return items
+          end,
+          close_on_select = false,
+          update_events = "TextChanged,InsertLeave",
+          show_guides = false,
+          guides = {
+            mid_item = "├─",
+            last_item = "└─",
+            nested_top = "│ ",
+            whitespace = "  ",
+          },
+          get_highlight = function(symbol, is_icon, is_collapsed)
+          end,
+
+          float = {
+            border = "rounded",
+            relative = "cursor",
+            max_height = 0.9,
+            height = nil,
+            min_height = { 8, 0.1 },
+            override = function(conf, source_winid)
+              return conf
+            end,
+          },
+          nav = {
+            border = "rounded",
+            max_height = 0.9,
+            min_height = { 10, 0.1 },
+            max_width = 0.5,
+            min_width = { 0.2, 20 },
+            win_opts = {
+              cursorline = true,
+              winblend = 10,
+            },
+            autojump = false,
+            preview = false,
+            keymaps = {
+              ["<CR>"] = "actions.jump",
+              ["<2-LeftMouse>"] = "actions.jump",
+              ["<tab>v"] = "actions.jump_vsplit",
+              ["<tab>s"] = "actions.jump_split",
+              ["h"] = "actions.left",
+              ["l"] = "actions.right",
+              ["<C-c>"] = "actions.close",
+            },
+          },
+          lsp = {
+            diagnostics_trigger_update = true,
+            update_when_errors = true,
+            update_delay = 300,
+            priority = {
+            },
+          },
+          treesitter = {
+            update_delay = 300,
+            experimental_selection_range = false,
+          },
+          markdown = {
+            update_delay = 300,
+          },
+          man = {
+            update_delay = 300,
+          },
+        })
+      end
+    },
+    
+  -- {
+  --   'Vssblt/symbols-outline.nvim',
+  --   config = function()
+  --     local opts = {
+  --       highlight_hovered_item = true,
+  --       show_guides = true,
+  --       auto_preview = false,
+  --       position = 'right',
+  --       relative_width = false,
+  --       width = 26,
+  --       auto_close = false,
+  --       show_numbers = false,
+  --       show_relative_numbers = false,
+  --       show_symbol_details = true,
+  --       preview_bg_highlight = 'Pmenu',
+  --       autofold_depth = nil,
+  --       auto_unfold_hover = true,
+  --       fold_markers = { '', '' },
+  --       wrap = false,
+  --       keymaps = {
+  --         close = {"q"},
+  --         goto_location = "<Cr>",
+  --         focus_location = "o",
+  --         hover_symbol = "<C-space>",
+  --         toggle_preview = "K",
+  --         rename_symbol = "r",
+  --         code_actions = "a",
+  --         fold = "zf",
+  --         unfold = "zo",
+  --       },
+  --       lsp_blacklist = {},
+  --       symbol_blacklist = {},
+  --       symbols = {
+  --         File = { icon = "", hl = "@text.uri" },
+  --         Module = { icon = "", hl = "@namespace" },
+  --         Namespace = { icon = "", hl = "@namespace" },
+  --         Package = { icon = "", hl = "@namespace" },
+  --         Class = { icon = "󰙱", hl = "@type" },
+  --         Method = { icon = "ƒ", hl = "@method" },
+  --         Property = { icon = "", hl = "@method" },
+  --         Field = { icon = "󰽑", hl = "@field" },
+  --         Constructor = { icon = "", hl = "@constructor" },
+  --         Enum = { icon = "ℰ", hl = "@type" },
+  --         Interface = { icon = "ﰮ", hl = "@type" },
+  --         Function = { icon = "󰡱", hl = "@function" },
+  --         Variable = { icon = "", hl = "@constant" },
+  --         Constant = { icon = "󰏿", hl = "@constant" },
+  --         String = { icon = "𝓐", hl = "@string" },
+  --         Number = { icon = "#", hl = "@number" },
+  --         Boolean = { icon = "⊨", hl = "@boolean" },
+  --         Array = { icon = "", hl = "@constant" },
+  --         Object = { icon = "⦿", hl = "@type" },
+  --         Key = { icon = "", hl = "@type" },
+  --         Null = { icon = "󰟢", hl = "@type" },
+  --         EnumMember = { icon = "", hl = "@field" },
+  --         Struct = { icon = "𝓢", hl = "@type" },
+  --         Event = { icon = "", hl = "@type" },
+  --         Operator = { icon = "+", hl = "@operator" },
+  --         TypeParameter = { icon = "𝙏", hl = "@parameter" },
+  --         Component = { icon = "", hl = "@function" },
+  --         Fragment = { icon = "", hl = "@constant" },
+  --       },
+  --     }
+  --     require("symbols-outline").setup(opts)
+  --   end,
+  --   priority = getPriority(),
+  -- },
 
   {
     'sindrets/winshift.nvim',
@@ -782,6 +941,16 @@ require("lazy").setup({
   {
     "folke/edgy.nvim",
     config = function()
+      vim.cmd[[hi EdgyTitle cterm=bold ctermfg=203 gui=bold guifg=#f85e84 guibg=#1f1f1f]]
+      vim.cmd[[hi EdgyIconActive ctermfg=215 guifg=#ef9062 guibg=#1f1f1f]]
+      vim.cmd[[hi EdgyIcon ctermfg=215 guifg=#ef9062 guibg=#1f1f1f]]
+      -- vim.cmd[[hi EdgyWinBar ctermfg=215 guifg=#848089 guibg=#1f1f1f]]
+      vim.cmd[[hi EdgyNormal ctermfg=250 ctermbg=235 guifg=#d3d1d4 guibg=#131313]]
+      
+      
+      vim.cmd[[hi WinBarNC ctermfg=215 guifg=#848089 guibg=#1f1f1f]]
+      vim.cmd[[hi WinBar ctermfg=215 guifg=#848089 guibg=#1f1f1f]]
+
       require'edgy'.setup({
         left = {
           {
@@ -798,20 +967,20 @@ require("lazy").setup({
             size = { height = 0.1}
           },
           {
-            title = "Symbols",
-            ft = "Outline",
-          },
-          {
-            title = "Breakpoint",
-            ft = "ltgdb-breakpoint",
-          },
-          {
-            title = "Watch",
-            ft = "ltgdb-watch",
+            title = "Aerial",
+            ft = "aerial",
           },
           {
             title = "scope",
             ft = "ltgdb-scope",
+          },
+          {
+            title = "Stack",
+            ft = "ltgdb-stack",
+          },
+          {
+            title = "Watch",
+            ft = "ltgdb-watch",
           },
         },
         bottom = {
@@ -827,13 +996,13 @@ require("lazy").setup({
         right = {},
         top = {
           {
-            title = "Stack",
-            ft = "ltgdb-stack",
-          },
-          {
             title = "Standard Output",
             ft = "ltgdb-gdbout",
           },
+          -- {
+          --   title = "Breakpoint",
+          --   ft = "ltgdb-breakpoint",
+          -- },
         },
 
         options = {
