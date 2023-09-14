@@ -712,16 +712,16 @@ require("lazy").setup({
         disable_max_lines = 10000,
         disable_max_size = 2000000, -- Default 2MB
         filter_kind = false,
-        -- filter_kind = {
-          -- "Class",
-          -- "Constructor",
-          -- "Enum",
-          -- "Function",
-          -- "Interface",
-          -- "Module",
-          -- "Method",
-          -- "Struct",
-        -- },
+        filter_kind = {
+          "Class",
+          "Constructor",
+          "Enum",
+          "Function",
+          "Interface",
+          "Module",
+          "Method",
+          "Struct",
+        },
         highlight_mode = "split_width",
         highlight_closest = true,
         highlight_on_hover = false,
@@ -813,74 +813,6 @@ require("lazy").setup({
       end
     },
     
-  -- {
-  --   'Vssblt/symbols-outline.nvim',
-  --   config = function()
-  --     local opts = {
-  --       highlight_hovered_item = true,
-  --       show_guides = true,
-  --       auto_preview = false,
-  --       position = 'right',
-  --       relative_width = false,
-  --       width = 26,
-  --       auto_close = false,
-  --       show_numbers = false,
-  --       show_relative_numbers = false,
-  --       show_symbol_details = true,
-  --       preview_bg_highlight = 'Pmenu',
-  --       autofold_depth = nil,
-  --       auto_unfold_hover = true,
-  --       fold_markers = { '', '' },
-  --       wrap = false,
-  --       keymaps = {
-  --         close = {"q"},
-  --         goto_location = "<Cr>",
-  --         focus_location = "o",
-  --         hover_symbol = "<C-space>",
-  --         toggle_preview = "K",
-  --         rename_symbol = "r",
-  --         code_actions = "a",
-  --         fold = "zf",
-  --         unfold = "zo",
-  --       },
-  --       lsp_blacklist = {},
-  --       symbol_blacklist = {},
-  --       symbols = {
-  --         File = { icon = "", hl = "@text.uri" },
-  --         Module = { icon = "", hl = "@namespace" },
-  --         Namespace = { icon = "", hl = "@namespace" },
-  --         Package = { icon = "", hl = "@namespace" },
-  --         Class = { icon = "󰙱", hl = "@type" },
-  --         Method = { icon = "ƒ", hl = "@method" },
-  --         Property = { icon = "", hl = "@method" },
-  --         Field = { icon = "󰽑", hl = "@field" },
-  --         Constructor = { icon = "", hl = "@constructor" },
-  --         Enum = { icon = "ℰ", hl = "@type" },
-  --         Interface = { icon = "ﰮ", hl = "@type" },
-  --         Function = { icon = "󰡱", hl = "@function" },
-  --         Variable = { icon = "", hl = "@constant" },
-  --         Constant = { icon = "󰏿", hl = "@constant" },
-  --         String = { icon = "𝓐", hl = "@string" },
-  --         Number = { icon = "#", hl = "@number" },
-  --         Boolean = { icon = "⊨", hl = "@boolean" },
-  --         Array = { icon = "", hl = "@constant" },
-  --         Object = { icon = "⦿", hl = "@type" },
-  --         Key = { icon = "", hl = "@type" },
-  --         Null = { icon = "󰟢", hl = "@type" },
-  --         EnumMember = { icon = "", hl = "@field" },
-  --         Struct = { icon = "𝓢", hl = "@type" },
-  --         Event = { icon = "", hl = "@type" },
-  --         Operator = { icon = "+", hl = "@operator" },
-  --         TypeParameter = { icon = "𝙏", hl = "@parameter" },
-  --         Component = { icon = "", hl = "@function" },
-  --         Fragment = { icon = "", hl = "@constant" },
-  --       },
-  --     }
-  --     require("symbols-outline").setup(opts)
-  --   end,
-  --   priority = getPriority(),
-  -- },
-
   {
     'sindrets/winshift.nvim',
     priority = getPriority(),
@@ -954,33 +886,59 @@ require("lazy").setup({
       require'edgy'.setup({
         left = {
           {
-            title = "Nvim-Tree",
-            ft = "NvimTree",
-          },
-          {
             title = "Undo-Tree",
             ft = "undotree",
+            size = { height = 0.3}
           },
           {
             title = "Undo-Tree-Diff",
             ft = "diff",
-            size = { height = 0.1}
+            size = { height = 0.3}
+          },
+          -- {
+          --   title = "scope",
+          --   ft = "ltgdb-scope",
+          --   size = { height = 0.5}
+          -- },
+          -- {
+          --   title = "Stack",
+          --   ft = "ltgdb-stack",
+          --   size = { height = 0.5}
+          -- },
+          -- {
+          --   title = "Watch",
+          --   ft = "ltgdb-watch",
+          --   size = { height = 0.5}
+          -- },
+          {
+            title = "Nvim-Tree",
+            ft = "NvimTree",
+            size = { height = 0.5}
           },
           {
             title = "Aerial",
             ft = "aerial",
+            size = { height = 0.5}
           },
           {
-            title = "scope",
+            title = "Breakpoint",
+            ft = "ltgdb-breakpoint",
+            size = { height = 0.5}
+          },
+          {
+            title = "Scope",
             ft = "ltgdb-scope",
-          },
-          {
-            title = "Stack",
-            ft = "ltgdb-stack",
+            size = { height = 0.5}
           },
           {
             title = "Watch",
             ft = "ltgdb-watch",
+            size = { height = 0.5}
+          },
+          {
+            title = "Stack",
+            ft = "ltgdb-stack",
+            size = { height = 0.5}
           },
         },
         bottom = {
@@ -993,75 +951,53 @@ require("lazy").setup({
             ft = "ltgdb-terminal",
           },
         },
-        right = {},
+        right = {
+        },
         top = {
           {
             title = "Standard Output",
             ft = "ltgdb-gdbout",
           },
-          -- {
-          --   title = "Breakpoint",
-          --   ft = "ltgdb-breakpoint",
-          -- },
         },
 
         options = {
-          left = { size = 33 },
-          bottom = { size = 18 },
-          right = { size = 33 },
+          left = { size = 35 },
+          bottom = { size = 14 },
+          right = { size = 35 },
           top = { size = 18 },
         },
-        -- edgebar animations
         animate = {
           enabled = true,
-          fps = 165, -- frames per second
-          cps = 250, -- cells per second
+          fps = 165,
+          cps = 250,
           on_begin = function()
             vim.g.minianimate_disable = true
           end,
           on_end = function()
             vim.g.minianimate_disable = true
           end,
-          -- Spinner for pinned views that are loading.
-          -- if you have noice.nvim installed, you can use any spinner from it, like:
-          -- spinner = require("noice.util.spinners").spinners.circleFull,
           spinner = {
             frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
             interval = 80,
           },
         },
-        -- enable this to exit Neovim when only edgy windows are left
         exit_when_last = true,
-        -- close edgy when all windows are hidden instead of opening one of them
-        -- disable to always keep at least one edgy split visible in each open section
         close_when_all_hidden = true,
-        -- global window options for edgebar windows
-        ---@type vim.wo
         wo = {
-          -- Setting to `true`, will add an edgy winbar.
-          -- Setting to `false`, won't set any winbar.
-          -- Setting to a string, will set the winbar to that string.
           winbar = true,
           winfixwidth = true,
           winfixheight = true,
           spell = false,
           signcolumn = "no",
         },
-        -- buffer-local keymaps to be added to edgebar buffers.
-        -- Existing buffer-local keymaps will never be overridden.
-        -- Set to false to disable a builtin.
-        ---@type table<string, fun(win:Edgy.Window)|false>
         keys = {
-          -- -- close window
-          -- ["q"] = function(win)
-          --   win:close()
-          -- end,
-          -- -- hide window
-          -- ["<c-q>"] = function(win)
-          --   win:hide()
-          -- end,
-          -- -- close sidebar
-          -- ["Q"] = function(win)
+          ["q"] = function(win)
+            win:close()
+          end,
+          ["Q"] = function(win)
+            win:hide()
+          end,
+          -- [""] = function(win)
           --   win.view.edgebar:close()
           -- end,
         },
@@ -1069,8 +1005,6 @@ require("lazy").setup({
           closed = " ",
           open = " ",
         },
-        -- enable this on Neovim <= 0.10.0 to properly fold edgebar windows.
-        -- Not needed on a nightly build >= June 5, 2023.
         fix_win_height = vim.fn.has("nvim-0.10.0") == 0,
       })
     end,
@@ -1081,6 +1015,66 @@ require("lazy").setup({
     "mbbill/undotree",
     priority = getPriority(),
     config = function()
+    end
+  },
+  {
+    "akinsho/bufferline.nvim",
+    priority = getPriority(),
+    config = function()
+      require("bufferline").setup({
+        options = {
+          diagnostics = "nvim_lsp",
+          diagnostics_update_in_insert = false,
+          diagnostics_indicator = function(count, level)
+            local icon = level:match("error") and " " or ""
+            return icon .. "  " .. count
+          end,
+          offsets = {
+            {
+              filetype = "diff",
+              text = "Toolbar",
+              text_align = "left",
+              separator = true
+            },
+            {
+              filetype = "undotree",
+              text = "Toolbar",
+              text_align = "left",
+              separator = true
+            },
+            {
+              filetype = "aerial",
+              text = "Toolbar",
+              text_align = "left",
+              separator = true
+            },
+            {
+              filetype = "NvimTree",
+              text = "Toolbar",
+              text_align = "left",
+              separator = true
+            },
+            {
+              filetype = "ltgdb-stack",
+              text = "Toolbar",
+              text_align = "left",
+              separator = true
+            },
+            {
+              filetype = "ltgdb-breakpoint",
+              text = "Toolbar",
+              text_align = "left",
+              separator = true
+            },
+            {
+              filetype = "ltgdb-watch",
+              text = "Toolbar",
+              text_align = "left",
+              separator = true
+            }
+          }
+        },
+      })
     end
   },
 })
