@@ -1,5 +1,6 @@
 local Map = {}
 function Map.setup()
+  vim.keymap.set("n", "<leader>tm", [[:TableModeToggle<CR>]], {noremap = true, silent = true})
   vim.keymap.set("n", "n", [[]], {noremap = true, expr = true, silent=true})
   vim.keymap.set("n", "o", [[ox<BS>]], {noremap = true, silent = true})
   vim.keymap.set("n", "O", [[Ox<BS>]], {noremap = true, silent = true})

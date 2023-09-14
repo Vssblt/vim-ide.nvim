@@ -111,7 +111,7 @@ function Lib.setup()
   vim.o.synmaxcol = 320
   vim.o.updatetime = 100
   vim.o.autoread = true
-  vim.o.signcolumn = "number"
+  vim.o.signcolumn = "yes"
   vim.o.undofile = true
   vim.o.completeopt = "menu,menuone,noselect,noinsert"
   vim.o.termguicolors = true
@@ -222,39 +222,6 @@ function Lib.setup()
   vim.api.nvim_set_hl(0, "ClockNormal", { fg = "#000000" })
   vim.g.clockn_to_top = 1
   vim.g.clockn_to_right = 1
-
-  ---------------------------
-  -- markdown-preview.nvim
-  ---------------------------
-  vim.g.mkdp_auto_start = 1
-  vim.g.mkdp_auto_close = 1
-  vim.g.mkdp_refresh_slow = 0
-  vim.g.mkdp_command_for_global = 0
-  vim.g.mkdp_open_to_the_world = 0
-  vim.g.mkdp_open_ip = ''
-  vim.g.mkdp_browser = ''
-  vim.g.mkdp_echo_preview_url = 0
-  vim.g.mkdp_browserfunc = ''
-  vim.g.mkdp_preview_options = {
-   mkit = {},
-   katex = {},
-   uml = {},
-   maid = {},
-   disable_sync_scroll = 0,
-   sync_scroll_type = 'middle',
-   hide_yaml_meta = 1,
-   sequence_diagrams = {},
-   flowchart_diagrams = {},
-   content_editable = false,
-   disable_filename = 0,
-   toc = {}
-   }
-  vim.g.mkdp_markdown_css = ''
-  vim.g.mkdp_highlight_css = ''
-  vim.g.mkdp_port = ''
-  vim.g.mkdp_page_title = '「${name}」'
-  vim.g.mkdp_theme = 'dark'
-  vim.g.vim_markdown_folding_disabled = 1
 
   ---------------------------
   -- vim-template
@@ -521,7 +488,7 @@ function Lib.setup()
           'filename',
           file_status = true,
           path = 2
-        }
+        },
       },
       lualine_x = {'encoding', 'fileformat', 'filetype'},
       lualine_y = {'progress'},
@@ -561,33 +528,33 @@ function Lib.setup()
   ---------------------------
   -- nvim-gdb
   ---------------------------
-  require'nvim-gdb'.setup({
-    logfile = "/tmp/nvim-gdb-lua.log",
-    gdb_cli_prompt = '(gdb) ',
-    gdb_path = '/usr/bin/gdb',
-    gdb_options = {'./main'},
-    break_enabled_sign = '🔴',
-    break_disabled_sign = '🚫',
-    keymap = {
-      terminal = {
-        exit_to_normal = "<ESC>"
-      },
-      debug = {
-        break_insert = "<CR>",
-        run = "<NOP>",
-        next = "<F10>",
-        step = "<F11>",
-        finish = "<leader><F11>",
-        abort = "<leader><F5>",
-        continue = "<F6>",
-      },
-      breakpoint = {
-        open = "<CR>",
-        disable = "dd",
-        delete = "D"
-      },
-    }
-  })
+ require'nvim-gdb'.setup({
+   logfile = "/tmp/nvim-gdb-lua.log",
+   gdb_cli_prompt = '(gdb) ',
+   gdb_path = '/usr/bin/gdb',
+   gdb_options = {'./main'},
+   break_enabled_sign = '🔴',
+   break_disabled_sign = '🚫',
+   keymap = {
+     terminal = {
+       exit_to_normal = "<ESC>"
+     },
+     debug = {
+       break_insert = "<CR>",
+       run = "<NOP>",
+       next = "<F10>",
+       step = "<F11>",
+       finish = "<leader><F11>",
+       abort = "<leader><F5>",
+       continue = "<F6>",
+     },
+     breakpoint = {
+       open = "<CR>",
+       disable = "dd",
+       delete = "D"
+     },
+   }
+ })
 
   ---------------------------
   -- nvim-cmp
